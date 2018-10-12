@@ -1,0 +1,316 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-transform: none
+}
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, blockquote, th, td, button {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    /* color: #333; */
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    -webkit-user-select: none;
+    -moz-user-focus: none;
+    -moz-user-select: none;
+}
+
+ul, li, ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+input,
+textarea {
+    outline: none;
+    border: 0; /* 方法1 */
+    -webkit-appearance: none; /* 方法2 */
+}
+
+img {
+    border: none;
+    /* display: block; */
+}
+
+button{
+    border: 0;
+    outline: none;
+    cursor: pointer;
+}
+
+input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{
+    -webkit-appearance: none !important; 
+}/* chrome */
+
+input[type="number"]{
+    -moz-appearance:textfield;/* firefox */
+}
+@media screen and (max-width:1600px){    
+    /* header */
+    body 
+    #header .header-nav{
+        width: 1400px;
+    }
+    #header .topNavWrapper{
+        width: 1400px;
+    }
+    /* 轮播 */
+    body
+    #carousel{
+        height: 490px;
+    }
+
+    /* 首页content */
+    body
+    .dadProject{
+        width: 1400px;
+    }  
+    body
+    .dadProject .projectBox ul li{
+        width: 330px;
+        height: 363px;
+    }
+    body
+    .dadProject .projectBox ul li .pic-box{
+        width: 330px;
+        height: 252px;
+    }
+    body
+    .dadProject .projectBox ul li .detail-box{
+        height: 111px;
+    }
+    body
+    .projectBox ul li.li-first {
+        width: 700px;
+        height: 746px;
+    }
+    body
+    .projectBox ul li.li-first .pic-box{
+        width: 700px;
+        height: 746px;
+    }
+    body
+    .dadProject .tab-list-right{
+        width: 335px;
+    }
+    body
+    .dadProject .tab-list-left{
+        width: 1045px;
+    }
+    body
+    .dadProject .tab-list-left .surround-content-item{
+        width: 335px;
+        height: 378px;
+    }
+    body
+    .dadProject .tab-list-left .surround-content-item a>div{
+        height: 252px;
+    }
+    body
+    .dadProject .tab-list-left .surround-content-item .item-text{
+        height: 121px;
+    }
+
+    body .newProduct{
+        width: 1400px;
+    }
+    .newProduct .surround-content-item{
+        width: 335px;
+        height: 378px;
+    }
+    .newProduct .surround-content-item a>div{
+        height: 252px;
+    }
+    .newProduct .surround-content-item .item-text{
+        height: 126px;
+    }
+
+    /* 景点 */
+    .newProduct
+    .localAttractions>div:nth-child(1){
+        width: 335px;
+    }
+
+    /* 专题 */
+    /* 目的地 */
+    body
+    .common{
+        width: 1400px;
+    }
+
+    /* 产品详情 */
+    body
+    .product{
+        width: 1400px;
+    }
+    .product .carousel{
+        width: 1400px;
+    }
+
+    /* 订单 */
+    body
+    .order{
+        width: 1400px;
+    }
+
+    /* 合作伙伴 */
+    .newProduct .invest-list ul li{
+        width: 157px;
+    }
+    .newProduct .invest-list ul li img{
+        max-width: 157px;
+    }
+    
+    /* 底部 */
+    .footer .Contactus{
+        width: 1400px;
+    }
+}  
+
+@media screen and (max-width:1400px){   
+    /* header */
+    body 
+    #header .header-nav{
+        width: 1200px;
+    }
+    #header .topNavWrapper{
+        width: 1200px;
+    }
+    /* 轮播 */
+    body
+    #carousel{
+        height: 440px;
+    }
+
+    /* 首页content */
+    body
+    .dadProject{
+        width: 1200px;
+    }  
+    body
+    .dadProject .projectBox ul li{
+        width: 280px;
+        height: 320px;
+    }
+    body
+    .dadProject .projectBox ul li .pic-box{
+        width: 280px;
+        height: 214px;
+    }
+    body
+    .dadProject .projectBox ul li .detail-box{
+        height: 106px;
+    }
+    body
+    .projectBox ul li.li-first {
+        width: 600px;
+        height: 660px;
+    }
+    body
+    .projectBox ul li.li-first .pic-box{
+        width: 600px;
+        height: 660px;
+    }
+    body
+    .dadProject .tab-list-right{
+        width: 285px;
+    }
+    body
+    .dadProject .tab-list-left{
+        width: 895px;
+    }
+    body
+    .dadProject .tab-list-left .surround-content-item{
+        width: 285px;
+        height: 335px;
+    }
+    body
+    .dadProject .tab-list-left .surround-content-item a>div{
+        height: 214px;
+    }
+    body
+    .dadProject .tab-list-left .surround-content-item .item-text{
+        height: 121px;
+    }
+
+    body .newProduct{
+        width: 1200px;
+    }
+    .newProduct .surround-content-item{
+        width: 285px;
+        height: 335px;
+    }
+    .newProduct .surround-content-item a>div{
+        height: 214px;
+    }
+    .newProduct .surround-content-item .item-text{
+        height: 121px;
+    }
+
+    /* 景点 */
+    .newProduct
+    .localAttractions>div:nth-child(1){
+        width: 285px;
+    }
+
+    /* 专题 */
+    /* 目的地 */
+    body
+    .common{
+        width: 1200px;
+    }
+    .hotTopic
+    #hotTopic ul li img{
+        height: 350px;
+    }
+    .hotTopic
+    #hotTopic ul li{
+        height: 350px;
+    }
+    .hotTopic
+    #hotDes ul li img{
+        height: 350px;
+    }
+    .hotTopic
+    #hotDes ul li{
+        height: 350px;
+    }
+    
+    /* 产品详情 */
+    body
+    .product{
+        width: 1200px;
+    }
+    .product .carousel{
+        width: 1200px;
+    }
+
+    /* 订单 */
+    body
+    .order{
+        width: 1200px;
+    }
+
+    /* 合作伙伴 */
+    .newProduct .invest-list ul li{
+        width: 132px;
+    }
+    .newProduct .invest-list ul li img{
+        max-width: 132px;
+        height: 80px;
+    }
+
+    /* 底部 */
+    .footer .Contactus{
+        width: 1200px;
+    }
+} 

@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>预定</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="js/swiper/swiper-4.2.0.min.css">
+    <link rel="stylesheet" href="css/public.css">
+    <style>
+        /* 最新上线 */
+        .ticket{
+            width: 1200px;
+            min-height: 780px;
+            height: 100%;
+            margin: auto;
+            margin-top: 20px;
+        }
+        .ticket-left{
+            width: 73%;
+            border: 1px solid #e1e1e1;
+            border-top: 3px solid #00bdd5;
+            position: relative;
+            float: left;
+        }
+        .ticket-right{
+            width: 25%;
+            /* height: 400px; */
+            margin-left: 2%;
+            border: 1px solid #e1e1e1;
+            float: left;
+        }
+        .ticket-left .ticket-content{
+            margin: 20px 20px;
+            
+        }
+        .ticket-content .ticket-title{
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e1e1e1;
+        }
+        .ticket-content .ticket-title h2{
+            float: left;
+            width: 694px;
+            padding-left: 20px;
+            line-height: 24px;
+            font-weight: normal;
+            color: #333;
+            font-family: "Hiragino Sans GB","\5FAE\8F6F\96C5\9ED1",Tahoma,Arial,sans-serif;
+        }
+        .ticket-title-info{
+            line-height: 24px;
+            padding-right: 30px;
+            font-size: 14px;
+            color: #9e9e9e;
+        }
+        .ticket-title-info span:nth-child(1){
+            font-size: 20px;
+            color: #f60;
+        }
+        /* 日期 */
+        .ticket-content .ticket-date{
+            padding: 30px 0 0 0;
+        }
+        .ticket-date-label{
+            float: left;
+            width: 106px;
+            height: 60px;
+            line-height: 60px;
+            text-align: right;
+            font-size: 14px;
+            color: #333;
+        }
+        .ticket-date-content{
+            margin-left: 128px;
+            position: relative;
+        }
+        .ticket-date-content .dateList{
+            height: 60px;
+        }
+        .ticket-date-content p{
+            font-size: 12px;
+            line-height: 24px;
+            padding: 8px 0;
+            color: #666;
+        }
+        .dateList-day{
+            float: left;
+            width: 100px;
+            height: 60px;
+            margin-right: 10px;
+            padding: 9px 0;
+            text-align: center;
+            cursor: pointer;
+            font-size: 14px;
+            border: 1px solid #bdbdbd;
+            color: #666;
+        }
+        .dateList-day span{
+            display: block;
+        }
+        .day-active{
+            border: 1px solid #00bcd4;
+            background: #00bcd4;
+            color: #fff;
+        }
+        .dateList-otherday{
+            height: 60px;
+            line-height: 40px;
+        }
+        .dateList-day.invalid {
+            background: #f7f7f7;
+            border: solid 0.01rem #eeeeee;
+        }
+        /* 票数 */
+        .ticketcount{
+            margin-top: 10px;
+        }
+        .ticketcount-label{
+            float: left;
+            width: 106px;
+            height: 30px;
+            line-height: 30px;
+            text-align: right;
+            font-size: 14px;
+            color: #333;
+        }
+        .ticketcount-content{
+            margin-left: 128px;
+            padding-bottom: 26px;
+            height: 32px;
+        }
+        .num_control{
+            float: left;
+            width: 120px;
+            margin-right: 12px;
+        }
+        .num_bar{
+            position: relative;
+            width: 30px;
+            height: 30px;
+            margin-right: -1px;
+            border: 1px solid #bdbdbd;
+            font-size: 22px;
+            text-align: center;
+            background: #fff;
+            color: #00bdd5;
+            cursor: pointer;
+            float: left;
+        }
+        .disable{
+            color: #9e9e9e;
+        }
+        #num_input{
+            width: 56px;
+            height: 30px;
+            padding: 0;
+            line-height: 30px;
+            font-family: Arial,sans-serif;
+            font-size: 14px;
+            text-align: center;
+            margin-right: -1px;
+            border: 1px solid #bdbdbd;
+            float: left;
+        }
+        .num_max{
+            float: left;
+            line-height: 32px;
+            font-size: 12px;
+            color: #666;
+        }
+        /* 游客 */
+        .passenger{
+            margin: 0 20px;
+            padding-top: 30px;
+        }
+        .passenger-title{
+            line-height: 54px;
+            font-size: 22px;
+            color: #333;
+            border-bottom: 1px solid #e1e1e1;
+        }
+        .passenger-title span{
+            line-height: 14px;
+            font-size: 14px;
+            color: #9e9e9e;
+            padding-left: 18px;
+        }
+        .contacts{
+            padding: 20px 0 0 0;
+            line-height: 42px;
+            font-size: 14px;
+            color: #333;
+        }
+        .contacts-left{
+            float: left;
+            width: 70px;
+            height: 42px;
+            margin-right: 22px;
+            text-align: right;
+            
+        }
+        .contacts-right{
+            float: left;
+        }
+        .contacts-box{
+            float: left;
+            width: 70px;
+            height: 30px;
+            line-height: 30px;
+            margin-top: 6px;
+            margin-right: 22px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .contacts-box input{
+            -webkit-appearance: checkbox;
+        }
+        .passenger-content{
+            padding-top: 10px;
+        }
+        .passenger-content .passenger-item{
+            height: 42px;
+            line-height: 42px;
+            font-size: 14px;
+        }
+        .passenger-item label{
+            display: block;
+            float: left;
+            width: 60px;
+            height: 42px;
+            margin-right: 22px;
+            color: #333;
+            text-align: right;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .passenger-item input{
+            float: left;
+            position: relative;
+            top: 6px;
+            width: 230px;
+            height: 30px;
+            line-height: 30px;
+            margin-right: 15px;
+            padding: 0 10px;
+            border: 1px solid #bdbdbd;
+            font-size: 14px;
+            font-family: "\5FAE\8F6F\96C5\9ED1",Arial,"Hiragino Sans GB",sans-serif;
+        }
+        .passenger-item span{
+            font-size: 12px;
+            color: red;
+            display: none;
+        }
+        .passenger-save{
+            line-height: 34px;
+            margin: 0 0 10px 75px;
+            font-size: 14px;
+            color: #333;
+            cursor: pointer;
+        }
+        .passenger-save input{
+            float: left;
+            width: 16px;
+            height: 16px;
+            position: relative;
+            top: 9px;
+            vertical-align: middle;
+            margin-right: 5px;
+            -webkit-appearance: checkbox;
+        }
+
+        .ordersubmit{
+            margin: 0 20px;
+            padding: 40px 0;
+            border-top: 1px solid #dedede;
+        }
+        .agreement{
+            padding-left: 128px;
+            margin-bottom: 28px;
+            height: 16px;
+            line-height: 16px;
+            font-size: 14px;
+            color: #333;
+        }
+        .agreement input{
+            float: left;
+            width: 16px;
+            height: 16px;
+            vertical-align: middle;
+            margin-right: 5px;
+            -webkit-appearance: checkbox;
+        }
+        .submit-btn{
+            display: block;
+            margin: 0 auto;
+            width: 190px;
+            line-height: 50px;
+            text-align: center;
+            font-size: 24px;
+            background: #fe8101;
+            border-radius: 4px;
+            color: #fff;
+        }
+        /* 右边框 */
+        .right-content{
+            margin-top: 15px;
+        }
+        .right-content h4{
+            margin: 0 20px;
+            line-height: 30px;
+            font-size: 20px;
+            color: #00bed6;
+            font-weight: normal;
+            font-family: "Hiragino Sans GB","\5FAE\8F6F\96C5\9ED1",Tahoma,Arial,sans-serif;
+        }
+        .right-content h5{
+            margin: 12px 20px 5px 20px;
+            text-indent: 30px;
+            line-height: 20px;
+            font-family: "Hiragino Sans GB","\5FAE\8F6F\96C5\9ED1",Tahoma,Arial,sans-serif;
+            font-size: 16px;
+            color: #333;
+            font-weight: normal;
+        }
+        .right-content p{
+            margin: 0 20px 0 50px;
+            line-height: 25px;
+            font-size: 14px;
+            color: #666;
+        }
+        .right-pricearea{
+            border-top: 1px solid #e1e1e1;
+            padding: 20px 0;
+        }
+        .totalprice{
+            line-height: 30px;
+            text-align: center;
+            font-size: 18px;
+            color: #333;
+        }
+        .totalprice .price{
+            font-size: 22px;
+            color: #ff6800;
+        }
+        .totalprice .nums{
+            margin-left: 3px;
+            font-size: 14px;
+        }
+        .detailbtn{
+            width: 188px;
+            height: 36px;
+            line-height: 36px;
+            border: 1px solid #bdbdbd;
+            margin: 0 auto 30px auto;
+            font-size: 14px;
+            color: #333;
+            text-align: center;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        /* 日历 */
+        .calendar-container{
+            width: 420px;
+            padding: 8px 0px;
+            background: #fff;
+            box-shadow: 0 0 10px #ddd;
+            border: 1px solid #bcbcbc; 
+            position: absolute;
+            top: 65px;
+            left: 10%;
+            z-index: 100;
+            display: none;
+        }
+        .calendar-left,.calendar-right{
+            float: left;
+            width: 20px;
+            height: 40px;
+            margin-left: 5px;
+            /* margin-top: 50px; */
+            cursor: pointer;
+        }
+        .calendar-container .calendar-box{
+            width: 360px;
+            height: 375px;
+            overflow: hidden;
+            float: left;
+        }
+        .calendar-week-box {
+            width: 100%;
+            height: 50px;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            display: -webkit-flex;
+            -webkit-align-items: center;
+            -webkit-justify-content: space-around;
+            position: relative;
+            z-index: 100;
+        }
+        .calendar-week-item:first-child, .calendar-week-item:last-child {
+            color: #f7ae5c;
+        }
+        /* 年 月 日 */
+        .calendar-day-box, .calendar-day-item {
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+            position: relative;
+            margin-top: 0;
+        }
+
+        .calendar-day-box .calendar-day-title:first-child {
+            margin-top: 0;
+        }
+
+        .calendar-day-title {
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            margin-top: 20px;
+            background: #fff;
+            font-size: 14px;
+        }
+
+        .calendar-days-box {
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        .calendar-days-box * {
+            box-sizing: border-box !important;
+        }
+
+        .calendar-days-box > li {
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .calendar-days-item {
+            width: 14.25%;
+            float: left;
+            height: 47px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-direction: column;
+            display: -webkit-flex;
+            -webkit-align-items: center;
+            -webkit-justify-content: space-around;
+            -webkit-flex-direction: column;
+            padding: 6px 0;
+        }
+
+        .days {
+            width: 25px;
+            height: 25px;
+            font-size: 14px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            display: -webkit-flex;
+            -webkit-align-items: center;
+            -webkit-justify-content: center;
+        }
+
+        .calendar-days-item.new {
+            color: #494949;
+            cursor: pointer;
+        }
+
+        .calendar-days-item.today {
+            background: #fff;
+            border: 1px solid #47bfc5;
+        }
+
+        .calendar-days-item.active .days {
+            background: #47bfc5;
+            color: #fff;
+
+        }
+
+        .calendar-days-item.old {
+            color: #d9d9d9;
+        }
+
+        .price {
+            /* display: block; */
+            width: 100%;
+            height: 22px;
+            line-height: 22px;
+            color: #f79628;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        #playDays {
+            position: fixed;
+            top: 0;
+            z-index: 10;
+        }
+
+        #chosePlayDays {
+
+            display: none;
+        }
+
+        .share-laybox {
+            width: 80% !important;
+        }
+        .smallBox{
+            height: 322px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部 -->
+    <div id="header">
+        <div class="header-top">
+            <div class="header-nav">
+                <div class="topLogin">
+                    <ul>
+                        <li id="login"><a href="login.html">登录</a> </li>
+                        <li><a href="register.html">注册</a> </li>
+                    </ul>
+                </div>
+                <ul class="clearfix">
+                    <li><a href="http://business.tongyoutrip.com/" target="_blank" class="shouye">商家入驻</a> </li>
+                    <li>0571-86981186 </li>
+                    <li><a href="register.html"></a> </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="topNavWrapper">
+            <div class="topContent">
+                <div class="topLogo">
+                    <img src="img/logo.jpg" alt="">
+                </div>
+                <div class="topSearch">
+                    <span>同游科技</span>
+                </div>
+            </div>
+            <div class="menuNav">
+                <ul id="menu">
+                    <li ><a href="index.html" >首页</a> </li>
+                    <li><a href="productList.html">景点</a></li>
+                    <li><a href="hotel/hotel.html">酒店</a></li>
+                    <li><a href="destination.html">目的地</a></li>
+                    <li><a href="Topic.html">专题</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- 订单 -->
+    <div class="ticket">
+        <div class="ticket-left">
+            <div class="ticket-content">
+                <div class="ticket-title">
+                    <h2></h2>
+                    <div class="ticket-title-info"><span>¥ <span id="retailPrice"></span></span><span> / 张</span></div>
+                </div>
+                <div class="ticket-date">
+                    <div class="ticket-date-label">游玩日期</div>
+                    <div class="ticket-date-content">
+                        <div class="dateList">
+                            <!-- <div class="dateList-day day-active">
+                                <span>今天</span>
+                                <span>09月05日</span>
+                            </div>
+                            <div class="dateList-day">
+                                <span>明天</span>
+                                <span>09月06日</span>
+                            </div>
+                            <div class="dateList-otherday">
+                                <span>其他</span>
+                                <span>日期</span>
+                            </div> -->
+                        </div>
+                        <p class="">请在游玩当天的16:00前完成预订</p>
+                        <!-- 日历 -->
+                        <div class="calendar-container">
+                            <div class="calendar-left"><img src="http://demo.sc.chinaz.com/Files/DownLoad/webjs1/201712/jiaoben5611/img/arrowl.png" alt=""></div>
+                            <div class="calendar-box">
+                                <ul class="calendar-week-box">
+                                    <li class="calendar-week-item">日</li>
+                                    <li class="calendar-week-item">一</li>
+                                    <li class="calendar-week-item">二</li>
+                                    <li class="calendar-week-item">三</li>
+                                    <li class="calendar-week-item">四</li>
+                                    <li class="calendar-week-item">五</li>
+                                    <li class="calendar-week-item">六</li>
+                                </ul>
+                                <ul class="calendar-day-box">
+                                </ul>
+                            </div>
+                            <div class="calendar-right"><img src="http://demo.sc.chinaz.com/Files/DownLoad/webjs1/201712/jiaoben5611/img/arrowr.png" alt=""></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ticketcount">
+                    <div class="ticketcount-label">购买张数</div>
+                    <div class="ticketcount-content">
+                        <div class="num_control">
+                            <button class="num_bar num_minus disable" >-</button>
+                            <input type="number" id="num_input" value="1" min="1" max="999">
+                            <button class="num_bar num_plus">+</button>
+                        </div>
+                        <div class="num_max">最多可预订999张</div>
+                    </div>
+                </div>
+                <div class="passenger">
+                    <div class="passenger-title">游客信息
+                        <span>请填写任意1位游客信息</span>
+                        <span id="addcontact">请先<a href="" style="color: #00bdd5">登录</a>添加联系人</span>
+                    </div>
+                    <div class="contacts">
+                        <!-- <div class="contacts-left">
+                            常用联系人
+                        </div>
+                        <div class="contacts-right">
+                            <div class="contacts-box">
+                                <input type="radio" name="name" class="" value="1">
+                                <span>联系人</span>
+                            </div>
+                        </div>
+                        <div style="clear: both;"></div> -->
+                    </div>
+                    <div class="passenger-content">
+                        <div class="passenger-item">
+                            <label for="">姓 名</label>
+                            <input type="text" class="passenger-name" placeholder="请输入2-15个汉字" readonly="readonly">
+                            <span>* 姓名不为空</span>
+                        </div>
+                        <div class="passenger-item">
+                            <label for="">手 机</label>
+                            <input type="text" class="passenger-phone" placeholder="请填写手机号" readonly="readonly">
+                            <span>* 手机号有误</span>
+                        </div>
+                        <div class="passenger-item">
+                            <label for="">身份证</label>
+                            <input type="text" class="passenger-idcard" placeholder="请填写真实证件号码" readonly="readonly">
+                            <span>* 证件号有误</span>
+                        </div>
+                    </div>
+                    <div class="passenger-save">
+                        <!-- <input type="checkbox" checked="checked" class="passenger-check">
+                        <span>保存常用联系人</span> -->
+                    </div>
+                </div>
+                <div class="ordersubmit">
+                    <div class="agreement">
+                        <input type="checkbox" checked="checked" class="agreement-check">
+                        <span>我已阅读并接受合同条款、补充条款及其他所有内容</span>
+                    </div>
+                    <div class="">
+                        <button class="submit-btn">提交订单</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 右边框 -->
+        <div class="ticket-right">
+            <div class="right-content">
+                <h4>购票须知</h4>
+                <div>
+                    <h5>购票限制</h5>
+                    <p id="package-data">有效日期：</p>
+                    <p id="refund">不可退款</p>
+                    <p id="endsale">截止售票时间：</p>
+                </div>
+                <!-- <div>
+                    <h5>出行信息</h5>
+                    <p>西湖</p>
+                </div> -->
+                <div class="detailbtn" onclick="details();">
+                    详情购买须知>>
+                </div>
+            </div>
+            <div class="right-pricearea">
+                <div class="totalprice">订单总额：
+                    <span class="price">¥<em id="total-price">120</em></span>
+                    <span class="nums">(<em id="nums">1</em> )张</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 底部 -->
+    <div class="footer">
+        <div class="Contactus">
+            <div><span>24小时客服热线：0571-86981889 同游总部：杭州市天目山路226号网新大厦3楼326</span></div>
+            <div>
+                <ul class="clearfix">
+                    <li><a href="">关于同游</a></li>
+                    <li><a href="">联系我们</a></li>
+                    <li><a href="">投诉建议</a></li>
+                    <li><a href="">同游服务</a></li>
+                    <li><a href="">商家入驻</a></li>
+                    <li><a href="">使用指南</a></li>
+                    <li><a href="">运营方案</a></li>
+                    <li><a href="">同游团队</a></li>
+                    <li><a href="">加入我们</a></li>
+                </ul>
+            </div>
+            <div>
+                <ul class="clearfix" style="margin-left: 168px;">
+                    <li>友情链接：</li>
+                    <li><a href="http://www.guoshu.cn/" target="back">找果蔬网</a></li>
+                    <li><a href="http://www.hzvhost.cn/" target="back">域名注册</a></li>
+                    <li><a href="http://www.hzvhost.com/ " target="back">网站建设</a></li>
+                    <li><a href="http://www.dazj.cn/" target="back">空间租用</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <div style="width:1200px; margin:0 auto">
+                <span>Copyright©2017.浙ICP17016319号-1</span>
+                <span> &nbsp; 杭州同游科技有限公司</span>
+                <span> &nbsp; new.tongyoutrip.com</span>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/swiper/swiper-4.2.0.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/ajaxTool.js"></script>
+<script src="js/public.js"></script>
+<script src="js/calendarPlug.js"></script>
+<script src="js/jsencrypt.js"></script>
+<script src="js/layer-v3.1.1/layer/layer.js"></script>
+<script>
+    var showA = 1;   
+    var productId,productPackageId,startTime,endTime,endSale, endSaleTime,weekData,pubKey,buyCustomer;
+    var packageNumber,packageDay,packageYear; //传参
+    var detail;
+    var contactsData;
+    $(function () {
+        // 用户信息
+        getUser();
+        // var innerEmpty = priceCalendar("2018-09-05", "2018-12-12", "2018-12-12", "100");
+        // $(".calendar-day-box").append(innerEmpty);
+        productPackageId=GetQueryString("productPackageId");
+        /*获取套餐信息*/
+        publicAjax(baseAjaxUrl + "/ty_api/product/package/getDetail", "POST", {"productPackageId": productPackageId}, getPackageDetailCall);
+        //获取钥匙
+        publicAjaxToken(baseAjaxUrl + "/ty_api/order/getPublickey", "POST", {}, pubKeyCall);
+        // 全部联系人
+        $.ajax({
+            beforeSend: function (xhr) {
+                //发送ajax请求之前向http的head里面加入验证信息
+                xhr.setRequestHeader("token", $.cookie('token')); // 请求发起前在头部附加token
+            },
+            url: baseAjaxUrl + "/ty_api/customer/getListByUserId",
+            type: "post",
+            data: {
+                "pageNum": 1,
+                "pageSize": 10,
+                "type": "SCENE"
+            },
+            async: false,
+            success: function (res) {
+                var names = ""
+                if (res.errorCode == 200) {
+                    var contact = '<a href="contact.html" style="color: #00bdd5">添加联系人</a>'
+                    $("#addcontact").html(contact);
+                    var data = res.data.list;
+                    contactsData = data;
+                    if (data.length != 0) {
+                        for(var i=0; i<data.length; i++){
+                            names += 
+                            '<div class="contacts-box">'+
+                                '<input type="radio" name="name" class="contacts-check" onclick="choosePeople(this)" value="'+data[i].customerId+'">'+
+                                '<span>'+data[i].realname+'</span>'+
+                                '<input type="hidden" class="nam" value="' + data[i].realname + '">' +
+                                '<input type="hidden" class="mobile" value="' + data[i].mobile + '">' +
+                                '<input type="hidden" class="identityCard" value="' + data[i].identityCard + '">' +
+                            '</div>';
+                        }
+                        var html = '<div class="contacts-left">常用联系人</div>'+
+                                '<div class="contacts-right">'+names+'</div>'+
+                            '</div>'+
+                            '<div style="clear: both;"></div>';
+                        $(".contacts").html(html);
+                    }
+                }
+            }
+        })
+    });
+
+
+    // 套餐回调
+    function getPackageDetailCall(e){
+        if (e.errorCode == 200) {
+            var salePrice = e.data.salePrice;
+            productId = e.data.productId;
+            detail = e.data.detail;
+            console.log(e.data);
+            $(".ticket-title h2").html(e.data.packageName);
+            // $("#endSale").html(timeTransformation(e.data.endSale, "time"));
+            $("#retailPrice").html(e.data.salePrice);
+            $("#total-price").html(e.data.salePrice);
+            // $("#packageCountPrice").html(Number(packageNumber) * Number(e.data.salePrice))
+            if (e.data.refundType == "NO_REFUND") {
+                $("#refund").html("退款：概不退换");
+            } else if (e.data.refundType == "REFUND") {
+                $("#refund").html("退款：条件退");
+            }
+            endSale = timeTransformation(e.data.endSale, "time");
+            $("#endsale").html("截止售票时间：" + endSale);
+
+            if (e.data.saleDateType == "NONE") {
+                $("#package-data").html("有效日期：永久有效");
+                startTime = getThisDay();
+                endTime = (new Date().getFullYear()) + "-12-31";
+            } else if (e.data.saleDateType == "RANGE") {//这里选择是日期范围
+                var startDate = timeTransformation(e.data.startDate, "dateCount");
+                var endDate = timeTransformation(e.data.endDate, "dateCount");
+                $("#package-data").html("有效日期：" + startDate + " 至 " + endDate);
+                startTime = timeTransformation(e.data.startDate);
+                endTime = timeTransformation(e.data.endDate);
+            } else if (e.data.saleDateType == "WEEK") {//这里选择是日期范围
+                $("#package-data").html("有效日期：周期内有效");
+                startTime = timeTransformation(e.data.startDate);
+                endTime = timeTransformation(e.data.endDate);
+                weekData = e.data.weekItem
+            } else if(e.data.saleDateType == "TODAY") {
+                $("#package-data").html("有效日期：当天有效");
+                startTime = getThisDay();
+                endTime = (new Date().getFullYear() + 1) + "-12-31";
+            }
+            endSaleTime = e.data.endSale;
+
+            //前面陈列的前三个日期
+            if (e.data.saleDateType == "WEEK") {
+                var orderDay = choseDayWeek(startTime, endTime, endSaleTime, weekData);
+                var innerEmpty = priceCalendarWeek(startTime, endTime, endSaleTime, salePrice, weekData);
+            } else {
+                var orderDay = choseDay(startTime, endTime, endSaleTime);
+                var innerEmpty = priceCalendar(startTime, endTime, endSaleTime, salePrice);
+            }
+            // var innerEmpty = priceCalendar("2018-09-05", "2018-12-12", "23:00", "100");
+            $(".calendar-day-box").append(innerEmpty);
+            $(".dateList").append(orderDay);
+            $(".dateList-day.com").eq(0).addClass("day-active");
+            $(".dateList-day.com").each(function (i, v) {
+                $(v).click(function () {
+                    console.log("1")
+                    $(".dateList-day.com").removeClass("day-active");
+                    $(this).addClass("day-active");
+                    if (!$(".dateList-day.dateList-otherday").hasClass("day-active")) {
+                        $(".dateList-day.dateList-otherday").html("其他日期");
+                    }
+                })
+            });
+
+            //其他日期中的选中日期
+            $(".calendar-days-item.new").each(function (i, v) {
+                $(v).click(function () {
+                    console.log("asdf");
+                    $(".calendar-days-item.new").removeClass("day-active");
+                    $(this).addClass("day-active");
+                    setTimeout("returnGoods()", 100);
+                })
+            });
+
+            // 日历显示/隐藏
+            $(".dateList-otherday").on("click", function(e){
+                $(".calendar-container").toggle(); 
+                e.stopPropagation();
+
+                $(document).one("click", function(){
+                    $(".calendar-container").hide();
+                });
+
+                e.stopPropagation();
+            });
+            $(".calendar-container").on("click", function(e){
+                e.stopPropagation();
+            });
+        }
+    }
+    //获取秘钥的回调
+    function pubKeyCall(res) {
+        if (res.errorCode == 200) {
+            pubKey = res.data.publicKey;
+        }
+    }
+    // 富文本弹框
+    function details(){
+        layer.open({
+            type: 1,
+            title: '购买须知',
+            area: ['700px', '500px'],
+            shadeClose: true, //点击遮罩关闭
+            content: '\<\div style="padding:20px;">'+detail+'\<\/div>'
+        });
+    }
+    // 选择联系人
+    function choosePeople(e){
+        // if($(e).attr('checked')){
+            buyCustomer = $(e).val();
+            $(".passenger-name").val($(e).siblings(".nam").val());
+            $(".passenger-phone").val($(e).siblings(".mobile").val());
+            $(".passenger-idcard").val($(e).siblings(".identityCard").val());
+        // }
+    }
+    // 创建订单
+    $(".submit-btn").on("click",function(){
+        var token = $.cookie("token");
+        console.log(token)
+        if(token == null || token == undefined || token == "null"){
+            layer.open({
+                type: 1
+                ,content: '<div style="padding: 10px 20px;">请登陆后进行该操作！</div>'
+                ,btn: '确定',
+                title: ["提示", 'font-size:18px;'],
+                area: ['300px', '160px'],
+                shadeClose: true,
+                yes: function(){
+                    layer.closeAll();
+                }
+            });
+            return false;
+        }
+        if(buyCustomer == null || buyCustomer == ""){
+            layMessage("请添加联系人");
+            return false
+        }
+        packageNumber = $("#num_input").val();
+        packageDay = $(".dateList-day.day-active .lay-calendar").text();
+        packageYear = $(".dateList-day.day-active .lay-calendar").attr("data-year"); 
+        console.log(packageNumber,packageDay,packageYear);
+
+        // buyCustomer = null;
+        var data = {
+            "productPackageId": productPackageId,
+            "buySum": packageNumber,
+            "buyCustomer": buyCustomer,
+            "arriveTime": DayReg(packageDay,packageYear),
+        }
+        data = JSON.stringify(data);
+        //实例化
+        var encrypt = new JSEncrypt();
+        //公钥
+        encrypt.setPublicKey(pubKey);
+        //加密串分段加密
+        var dataJson = encrypt.encryptLong(data);
+        //创建订单
+        publicAjaxToken(baseAjaxUrl + "/ty_api/order/createOrder", "POST", {"orderStr": dataJson}, creatOrderCall)
+        // location.href = "orderPay.html?productId="+productId+"&productPackageId=" + productPackageId + "&packageNumber=" + packageNumber + "&packageDay=" + packageDay + "&packageYear=" + packageYear;
+    })
+    // 订单回调
+    function creatOrderCall(res){
+        if(res.errorCode == 200){
+            var orderNo = res.data.orderNo;
+            var orderId = res.data.orderId;
+            location.href = "orderPay.html?orderNo="+orderNo+"&productId="+productId+"&productPackageId=" + productPackageId + "&packageNumber=" + packageNumber + "&packageDay=" + packageDay + "&packageYear=" + packageYear;
+        }
+    }
+    // 信息验证
+    // 验证姓名
+    $(".passenger-name").blur(function(){
+        var name = $(".passenger-name").val();
+        if (name.length < 1) {
+            $(".passenger-item span").eq(0).show();
+            $(".passenger-item input").eq(0).css("border","1px solid red");
+            console.log("false")
+            return false;
+        }else{
+            $(".passenger-item span").eq(0).hide();
+            $(".passenger-item input").eq(0).css("border","1px solid #bdbdbd");
+        }
+    })
+    // 验证手机号
+    $(".passenger-phone").blur(function(){
+        var phone = $(".passenger-phone").val();
+        if (mobileReg(phone) == false) {
+            $(".passenger-item span").eq(1).show();
+            $(".passenger-item input").eq(1).css("border","1px solid red");
+            console.log("false")
+            return false;
+        }else{
+            $(".passenger-item span").eq(1).hide();
+            $(".passenger-item input").eq(1).css("border","1px solid #bdbdbd");
+        }
+    })
+    // 验证身份证
+    $(".passenger-idcard").blur(function(){
+        var idcard = $(".passenger-idcard").val();
+        if (IDcardReg(idcard) == false) {
+            $(".passenger-item span").eq(2).show();
+            $(".passenger-item input").eq(2).css("border","1px solid red");
+            console.log("false")
+            return false;
+        }else{
+            $(".passenger-item span").eq(2).hide();
+            $(".passenger-item input").eq(2).css("border","1px solid #bdbdbd");
+        }
+    })
+    
+    //从日历选择跳回这里
+    function returnGoods() {
+        if ($(".calendar-days-item.day-active").length == 0) {
+            $(".dateList-otherday").html('<p class="lay-calendar">其他日期</p>');
+        } else {
+            var day = $(".calendar-days-item.day-active>.days").text();
+            console.log("hahhah" + day);
+            if (Number(day) < 10) {
+                day = '0' + day;
+            }
+            //用来传递给预定页，下订单用
+            var month = $(".calendar-days-item.day-active>.days").attr("data-month");
+            var year = $(".calendar-days-item.day-active>.days").attr("data-year");
+
+            if (Number(month) < 10) {
+                month = '0' + month;
+            }
+            $(".dateList-otherday").html('<span class="lay-calendar" data-year="' + year + '">' + month + '月' + day + '日' + '</span>');
+        }
+        $(".calendar-container").hide();
+    }
+
+    // 日历 next
+    var num = 0;
+    $(".calendar-right").click(function(){
+        var str = 0;
+        var marginTop = -322;
+        if($(".smallBox").length > num+1){
+            num ++;
+            str = num*marginTop;
+            $(".calendar-day-box").css("margin-top",str+"px");   
+            console.log(str); 
+        }  
+    })
+    $(".calendar-left").click(function(){
+        var str = 0;
+        var marginTop = -322;
+        if(num > 0){
+            num --;
+            str = num*marginTop;
+            $(".calendar-day-box").css("margin-top",str+"px");   
+            console.log(str); 
+        }  
+    })
+
+</script>
+<script>
+    // 票数加减
+    var nums = $("#num_input").val();
+    $("#num_input").bind("input propertychange",function () {
+        nums = $("#num_input").val();
+        var price = $("#retailPrice").text() * nums;
+        $("#total-price").text(price);
+        $("#nums").text(nums);
+        btnNums();
+        console.log($("#num_input").val());
+    });
+    $("#num_input").blur(function () {
+        nums = $("#num_input").val();
+        if(nums < 1){
+            $("#num_input").val(1);
+            var price = $("#retailPrice").text();
+            $("#total-price").text(price);
+            $("#nums").text(1);
+        }
+    });
+    btnNums();
+    function btnNums() {
+        if(nums == 1) {
+            $(".num_minus").attr("disabled", true);
+        }else if(nums > 1){
+            $(".num_minus").attr("disabled", false);
+        }
+    }
+    $(".num_minus").on("click",function(){
+        if(nums > 1){
+            nums --
+            $("#num_input").val(nums);
+            var price = $("#retailPrice").text() * nums;
+            $("#total-price").text(price);
+            $("#nums").text(nums);
+        }
+        btnNums();
+    })
+    $(".num_plus").on("click",function(){
+        nums ++ 
+        $("#num_input").val(nums);
+        var price = $("#retailPrice").text() * nums;
+        $("#total-price").text(price);
+        $("#nums").text(nums);
+        btnNums();
+    })
+</script>
+</html>

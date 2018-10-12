@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>酒店预定</title>
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/js/swiper/swiper-4.2.0.min.css">
+    <link rel="stylesheet" href="/css/public.css">
+    <link rel="stylesheet" href="/css/hotelDate.css">
+    <style>
+        .order{
+            width: 1600px;
+            margin: auto;
+            margin-top: 30px;
+        }
+        .order .order-title{
+            height: 150px;
+        }
+        .order .order-content{
+            margin-top: 20px;
+        }
+        .order .order-content>div{
+            float: left;
+        }
+        .order .order-content .left{
+            /* width: 1140px; */
+            width: 73%;
+            /* margin-right: 40px; */
+            margin-right: 3%;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #D2D2D2;
+        }
+        .order .order-content .left .loginStatus{
+            height: 40px;
+            line-height: 40px;
+            font-size: 14px;
+            padding: 0 20px;
+            background: #F0F9F9;
+        }
+        .order .order-content .left .orderInfo{
+            margin-top: 20px;
+        }
+        .orderInfo .orderInfo-common{
+            margin-bottom: 30px;
+        }
+        .orderInfo .orderInfo-common .name{
+            /* width:1140px; */
+            width: 100%;
+            height: 100px;
+            line-height: 100px;
+            background:rgba(247,247,247,1);
+            font-size: 26px;
+            padding: 0 30px;
+        }
+        .orderInfo .orderInfo-common .infoInput{
+            margin-top: 20px;
+            padding-left: 60px;
+        }
+        /* 日期 */
+        .ticket-date{
+            /* padding: 30px 0 0 0; */
+        }
+        .ticket-date-label{
+            float: left;
+            width: 66px;
+            height: 60px;
+            line-height: 60px;
+            text-align: right;
+            font-size: 14px;
+            color: #333;
+        }
+        .ticket-date-content{
+            margin-left: 88px;
+            padding-top: 10px;
+            position: relative;
+        }
+        .ticket-date-content .dateList{
+            height: 60px;
+        }
+        .ticket-date-content p{
+            font-size: 12px;
+            line-height: 24px;
+            padding: 8px 0;
+            color: #666;
+        }
+        /* 入住时间 */
+        #hotelTime{
+            height: 60px;
+            position: relative;
+        }
+        #hotelTime div{
+            font-size: 14px;
+            float: left;
+        }
+        #hotelTime .ht-left>div{
+            width: 150px;
+            height: 40px;
+            line-height: 40px;
+            padding: 0 10px;
+            border: 1px solid #D2D2D2;
+            background: #fff;
+            cursor: pointer;
+        }
+        #hotelTime .ht-right{
+            height: 40px;
+            line-height: 40px;
+            margin-left: 20px;
+        }
+        .calendar{
+            z-index: 100;
+            top: 40px;
+            left: 0;
+        }
+        .comboName{
+            line-height: 30px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        /* 票数 */
+        .ticketcount{
+            margin-top: 10px;
+        }
+        .ticketcount-label{
+            float: left;
+            width: 66px;
+            height: 30px;
+            line-height: 30px;
+            text-align: right;
+            font-size: 14px;
+            color: #333;
+        }
+        .ticketcount-content{
+            margin-left: 88px;
+            padding-bottom: 26px;
+            height: 32px;
+        }
+        .num_control{
+            float: left;
+            width: 120px;
+            margin-right: 12px;
+        }
+        .num_bar{
+            position: relative;
+            width: 30px;
+            height: 30px;
+            margin-right: -1px;
+            border: 1px solid #bdbdbd;
+            font-size: 22px;
+            text-align: center;
+            background: #fff;
+            color: #00bdd5;
+            cursor: pointer;
+            float: left;
+        }
+        .disable{
+            color: #9e9e9e;
+        }
+        #num_input{
+            width: 56px;
+            height: 30px;
+            padding: 0;
+            line-height: 30px;
+            font-family: Arial,sans-serif;
+            font-size: 14px;
+            text-align: center;
+            margin-right: -1px;
+            border: 1px solid #bdbdbd;
+            float: left;
+        }
+        .num_max{
+            float: left;
+            line-height: 32px;
+            font-size: 12px;
+            color: #666;
+        }
+        /* 用户信息 */
+        .passenger-title{
+            line-height: 54px;
+            font-size: 22px;
+            color: #333;
+        }
+        .passenger-title span{
+            line-height: 14px;
+            font-size: 14px;
+            color: #9e9e9e;
+            padding-left: 18px;
+        }
+        .contacts{
+            padding: 20px 0 0 0;
+            line-height: 42px;
+            font-size: 14px;
+            color: #333;
+            /* display: none; */
+        }
+        .contacts-left{
+            float: left;
+            width: 70px;
+            height: 42px;
+            margin-right: 22px;
+            text-align: right;
+            
+        }
+        .contacts-right{
+            float: left;
+        }
+        .contacts-box{
+            float: left;
+            width: 70px;
+            height: 30px;
+            line-height: 30px;
+            margin-top: 6px;
+            margin-right: 22px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .contacts-box input{
+            -webkit-appearance: checkbox;
+        }
+        .passenger-content{
+            padding-top: 10px;
+        }
+        .passenger-content .passenger-item{
+            height: 42px;
+            line-height: 42px;
+            font-size: 14px;
+        }
+        .passenger-item label{
+            display: block;
+            float: left;
+            width: 60px;
+            height: 42px;
+            margin-right: 22px;
+            color: #333;
+            text-align: right;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .passenger-item input{
+            float: left;
+            position: relative;
+            top: 6px;
+            width: 230px;
+            height: 30px;
+            line-height: 30px;
+            margin-right: 15px;
+            padding: 0 10px;
+            border: 1px solid #bdbdbd;
+            font-size: 14px;
+            font-family: "\5FAE\8F6F\96C5\9ED1",Arial,"Hiragino Sans GB",sans-serif;
+        }
+        .passenger-item span{
+            font-size: 12px;
+            color: red;
+            display: none;
+        }
+        /* 提交按钮 */
+        #submit{
+            width:300px;
+            height:50px;
+            display: block;
+            margin: auto;
+            font-size: 24px;
+            color: #fff;
+            background:rgba(88,192,198,1);
+            border-radius:8px;
+        }
+
+        /* 右边框 */
+        .order .order-content .right{
+            /* width: 420px; */
+            width: 24%;
+            border: 1px solid #D2D2D2;
+        }
+        .right-content{
+            /* margin-top: 15px; */
+        }
+
+        .hotelImg {
+            width: 96%;
+            height: 180px;
+            margin: auto;
+            margin-top: 10px;
+        }
+        .hotelImg img{
+            width: 100%;
+            height: 100%;
+        }
+        .hotelName{
+            padding: 10px 0 0 10px;
+            text-align: center;
+            word-wrap:break-word;
+            
+        }
+
+        .right-content h5{
+            margin: 12px 20px 5px 20px;
+            text-indent: 30px;
+            line-height: 20px;
+            font-family: "Hiragino Sans GB","\5FAE\8F6F\96C5\9ED1",Tahoma,Arial,sans-serif;
+            font-size: 16px;
+            color: #333;
+            font-weight: normal;
+        }
+        .right-content p{
+            margin: 0 20px 0 50px;
+            line-height: 25px;
+            font-size: 14px;
+            color: #666;
+        }
+        .right-pricearea{
+            border-top: 1px solid #e1e1e1;
+            padding: 20px 0;
+        }
+        .totalprice{
+            line-height: 30px;
+            text-align: center;
+            font-size: 18px;
+            color: #333;
+        }
+        .totalprice .price{
+            font-size: 22px;
+            color: #ff6800;
+        }
+        .totalprice .nums{
+            margin-left: 3px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部 -->
+    <div id="header">
+        <div class="header-top">
+            <div class="header-nav">
+                <div class="topLogin">
+                    <ul>
+                        <li id="login"><a href="/login.html">登录</a> </li>
+                        <li><a href="/register.html">注册</a> </li>
+                    </ul>
+                </div>
+                <ul class="clearfix">
+                    <li><a href="http://business.tongyoutrip.com/" target="_blank" class="shouye">商家入驻</a> </li>
+                    <li>0571-86981186 </li>
+                    <li><a href="/register.html"></a> </li>
+                </ul>
+            </div>
+        </div>
+        <div class="header-box">
+            <div class="topNavWrapper">
+                <div class="topContent">
+                    <div class="topLogo">
+                        <img src="/img/logo.jpg" alt="">
+                    </div>
+                    <div class="topSearch">
+                        <span>同游科技</span>
+                    </div>
+                </div>
+                <div class="menuNav">
+                    <ul id="menu">
+                        <li><a href="/index.html">首页</a> </li>
+                        <li><a href="/productList.html">景点</a></li>
+                        <li><a class="changeColor" href="/hotel/hotel.html">酒店</a></li>
+                        <li><a href="/index.html">目的地</a></li>
+                        <li><a href="/Topic.html">专题</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 酒店支付 -->
+    <div class="order">
+        <div class="order-title">
+            <img src="" alt="">
+        </div>
+        <div class="order-content clearfix">
+            <div class="left">
+                <p class="loginStatus"> 您当前未登录，如您是同游科技会员，请先 </p>
+                <div class="orderInfo">
+                    <div class="orderInfo-common">
+                        <div class="name packageName">预订信息</div>
+                        <div class="infoInput">
+                            <p class=""></p>
+                            <div class="ticket-date">
+                                <div class="ticketcount-label">房间类型</div>
+                                <div class="ticketcount-content">
+                                    <p class="comboName"></p>
+                                </div>
+                                <div class="ticket-date-label">入离日期</div>
+                                <div class="ticket-date-content">
+                                    <!--入住时间-->
+                                    <div id="calendarBox">
+                                        <input type="text" id="startDate" value=""/>
+                                        <input type="text" id="endDate" value=""/>
+                                    </div>
+                                    <div id="hotelTime" class="clearfix">
+                                        <div class="ht-left" id="chooseData">
+                                            <div><span>入住 &nbsp;&nbsp;</span><span id="stayDate">2018-10-11</span></div>
+                                            <div><span>离店 &nbsp;&nbsp;</span><span id="leaveDate">2018-10-12</span></div>
+                                        </div>
+                                        <div class="ht-right">共 <span id="liveNum">1</span> 晚</div>
+                                        <!-- <div class="calendar"></div> -->
+                                    </div>
+                                    <!-- 日历 -->
+                                </div>
+                            </div>
+                            <div class="ticketcount">
+                                <div class="ticketcount-label">房间数量</div>
+                                <div class="ticketcount-content">
+                                    <div class="num_control">
+                                        <button class="num_bar num_minus disable" >-</button>
+                                        <input type="number" id="num_input" value="1" min="1" max="999">
+                                        <button class="num_bar num_plus">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 用户信息 -->
+                    <div class="orderInfo-common">
+                        <div class="name passenger-title">用户信息
+                            <span>请填写任意1位游客信息</span>
+                            <span id="addcontact">请先<a href="/login.html" style="color: #00bdd5">登录</a>添加联系人</span>
+                        </div>
+                        <div class="infoInput">
+                            <div class="contacts">
+                                <!-- <div class="contacts-left">
+                                    常用联系人
+                                </div>
+                                <div class="contacts-right">
+                                    <div class="contacts-box">
+                                        <input type="radio" name="name" class="" value="1">
+                                        <span>联系人</span>
+                                    </div>
+                                </div>
+                                <div style="clear: both;"></div> -->
+                            </div>
+                            <div class="passenger-content">
+                                <div class="passenger-item">
+                                    <label for="">姓 名</label>
+                                    <input type="text" class="passenger-name" placeholder="请输入2-15个汉字" readonly="readonly">
+                                    <span>* 姓名不为空</span>
+                                </div>
+                                <div class="passenger-item">
+                                    <label for="">手 机</label>
+                                    <input type="text" class="passenger-phone" placeholder="请填写手机号" readonly="readonly">
+                                    <span>* 手机号有误</span>
+                                </div>
+                                <div class="passenger-item">
+                                    <label for="">身份证</label>
+                                    <input type="text" class="passenger-idcard" placeholder="请填写真实证件号码" readonly="readonly">
+                                    <span>* 证件号有误</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- 发票信息 -->
+                    <div class="orderInfo-common">
+                        <div class="name ">发票信息
+                        </div>
+                        <div class="infoInput">
+                            <p></p>
+                            <p>同游提醒：发票将在出游后3-5个工作日左右完成审核并发出，纸质发票的具体送达日期以快递公司为准，发票金额为您的实付金额（不包含保险金额、礼品卡、优惠券、奖金、退款金额）。</p>
+                        </div>
+                    </div>
+                    <div>
+                        <button id="submit">立即付款</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 右边框 -->
+            <div class="right">
+                <div class="right-content">
+                    <!-- <h4>预定须知</h4> -->
+                    <div class="clearfix">
+                        <div class="hotelImg"><img src="/img/1.png" alt=""></div>
+                        <h3 class="hotelName"></h3>
+                    </div>
+                        <h5 class="right-comboName">购票限制</h5>
+                        <p>早餐：<span class="breakfast"></span></p>
+                        <p>可住：<span class="peopleNum"></span>人</p>
+                        <p>宽带：免费</p>
+                    
+                </div>
+                <div class="right-pricearea">
+                    <div class="totalprice">订单总额：
+                        <span class="price">¥<em id="total-price">120</em></span>
+                        <span class="nums">(<em id="nums">1</em> )间</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 合作伙伴 -->
+    <div class="newProduct">
+        <div class="tab_title">
+            <h2 style="float: left;">合作伙伴</h2>
+        </div>
+        <div class="invest-list">
+            <ul class="clearfix">
+                <li><img src="/img/logo/印象西湖.jpg" alt=""><p>印象西湖</p></li>
+                <li><img src="/img/logo/西溪湿地.jpg" alt=""><p>西溪湿地</p></li>
+                <li><img src="/img/logo/千岛湖.jpg" alt=""><p>千岛湖</p></li>
+                <li><img src="/img/logo/中南百草园.jpg" alt=""><p>中南百草园</p></li>
+                <li><img src="/img/logo/双溪漂流.gif" alt=""><p>双溪漂流</p></li>
+                <li><img src="/img/logo/垂云通天河.png" alt=""><p>垂云通天河</p></li>
+                <li><img src="/img/logo/天岳幕阜山.png" alt=""><p>天岳幕阜山</p></li>
+                <li><img src="/img/logo/春秋旅游.jpg" alt=""><p>春秋旅游</p></li>
+                <li><img src="/img/logo/杭州东方文化园.png" alt=""><p>杭州东方文化园</p></li>
+                <li><img src="/img/logo/杭州市运河综合保护开发建设集团.jpg" alt=""><p>杭州市运河综合保护开发建设集团</p></li>
+                <li><img src="/img/logo/杭州极地海洋公园.png" alt=""><p>杭州极地海洋公园</p></li>
+                <li><img src="/img/logo/梅花洲.png" alt=""><p>梅花洲</p></li>
+                <li><img src="/img/logo/永嘉书院.png" alt=""><p>永嘉书院</p></li>
+                <li><img src="/img/logo/浙旅集团.png" alt=""><p>浙旅集团</p></li>
+                <li><img src="/img/logo/浙江外事旅游.png" alt=""><p>浙江外事旅游</p></li>
+                <li><img src="/img/logo/清水湾温泉.jpg" alt=""><p>清水湾温泉</p></li>
+                <!-- <li><img src="img/logo/莫干山.png" alt=""></li> -->
+            </ul>
+            <ul class="clearfix" style="display: none;">
+                <li><img src="/img/logo/东平水浒影视城.png" alt=""><p>东平水浒影视城</p></li>
+                <li><img src="/img/logo/莫干山.png" alt=""><p>莫干山</p></li>
+                <li><img src="/img/logo/诸葛八卦村.png" alt=""><p>诸葛八卦村</p></li>
+                <li><img src="/img/logo/长兴旅游集团.jpg" alt=""><p>长兴旅游集团</p></li>
+                <li><img src="/img/logo/陕旅集团.jpg" alt=""><p>陕旅集团</p></li>
+            </ul>
+        </div>
+        <ul class="invest-dot clearfix">
+                <li class="change"></li>
+                <li></li>
+            </ul>
+    </div>
+    <!-- 底部 -->
+    <div class="footer">
+        <div class="Contactus">
+            <div><span>24小时客服热线：0571-86981889 同游总部：杭州市天目山路226号网新大厦3楼326</span></div>
+            <div>
+                <ul class="clearfix">
+                    <li><a href="">关于同游</a></li>
+                    <li><a href="">联系我们</a></li>
+                    <li><a href="">投诉建议</a></li>
+                    <li><a href="">同游服务</a></li>
+                    <li><a href="">商家入驻</a></li>
+                    <li><a href="">使用指南</a></li>
+                    <li><a href="">运营方案</a></li>
+                    <li><a href="">同游团队</a></li>
+                    <li><a href="">加入我们</a></li>
+                </ul>
+            </div>
+            <div>
+                <ul class="clearfix" style="margin-left: 168px;">
+                    <li>友情链接：</li>
+                    <li><a href="http://www.guoshu.cn/" target="back">找果蔬网</a></li>
+                    <li><a href="http://www.hzvhost.cn/" target="back">域名注册</a></li>
+                    <li><a href="http://www.hzvhost.com/ " target="back">网站建设</a></li>
+                    <li><a href="http://www.dazj.cn/" target="back">空间租用</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <div style="width:1200px; margin:0 auto">
+                <span>Copyright©2017.浙ICP17016319号-1</span>
+                <span> &nbsp; 杭州同游科技有限公司</span>
+                <span> &nbsp; new.tongyoutrip.com</span>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script src="/js/jquery.cookie.js"></script>
+<script src="/js/swiper/swiper-4.2.0.min.js"></script>
+<script src="/js/ajaxTool.js"></script>
+<script src="/js/public.js"></script>
+<script src="/js/jsencrypt.js"></script>
+<script src="/js/date.js"></script>
+<script src="/js/layer-v3.1.1/layer/layer.js"></script>
+<script>
+    var showA = 1;   
+    var productPackageId,startTime,endTime,endSale, endSaleTime,weekData,pubKey,buyCustomer;
+    var packageNumber,packageDay,packageYear; //传参
+    var contactsData,retailPrice,hotelSearchInfo;
+    var oldStartDate, oldEndDate;
+    var hotelInfo,onePrice;
+    $(function () {
+        // 用户信息
+        getUser();
+        productPackageId=GetQueryString("productPackageId");
+        hotelInfo = JSON.parse(getSess("hotelInfo"));
+        $(".comboName").html(hotelInfo.comboName);
+        $(".hotelName").html(hotelInfo.hotelName);
+        $("#total-price").html(hotelInfo.salePrice*hotelInfo.dayNum);
+        onePrice = $("#total-price").text();
+        $(".hotelImg img").attr("src", baseImgUrl + hotelInfo.pictureUrl + ".jpg");
+        $(".right-comboName").html(hotelInfo.comboName);
+        $(".breakfast").html(hotelInfo.breakfast);
+        $(".peopleNum").html(hotelInfo.peopleNum);
+
+        //获取钥匙
+        publicAjaxToken(baseAjaxUrl + "/ty_api/order/getPublickey", "POST", {}, pubKeyCall);
+        // 全部联系人
+        $.ajax({
+            beforeSend: function (xhr) {
+                //发送ajax请求之前向http的head里面加入验证信息
+                xhr.setRequestHeader("token", $.cookie('token')); // 请求发起前在头部附加token
+            },
+            url: baseAjaxUrl + "/ty_api/customer/getListByUserId",
+            type: "post",
+            data: {
+                "pageNum": 1,
+                "pageSize": 10,
+                "type": "SCENE"
+            },
+            async: false,
+            success: function (res) {
+                var names = ""
+                if (res.errorCode == 200) {
+                    var contact = '<a href="/contact.html" style="color: #00bdd5">添加联系人</a>'
+                    $("#addcontact").html(contact);
+                    var data = res.data.list;
+                    contactsData = data;
+                    if (data.length != 0) {
+                        for(var i=0; i<data.length; i++){
+                            names += 
+                            '<div class="contacts-box">'+
+                                '<input type="radio" name="name" class="contacts-check" onclick="choosePeople(this)" value="'+data[i].customerId+'">'+
+                                '<span>'+data[i].realname+'</span>'+
+                                '<input type="hidden" class="nam" value="' + data[i].realname + '">' +
+                                '<input type="hidden" class="mobile" value="' + data[i].mobile + '">' +
+                                '<input type="hidden" class="identityCard" value="' + data[i].identityCard + '">' +
+                            '</div>';
+                        }
+                        var html = '<div class="contacts-left">常用联系人</div>'+
+                                '<div class="contacts-right">'+names+'</div>'+
+                            '</div>'+
+                            '<div style="clear: both;"></div>';
+                        $(".contacts").html(html);
+                    }
+                }
+            }
+        })
+
+        // 入离时间
+        if (hotelInfo) {
+            startDate = hotelInfo.startDate;
+            endDate = hotelInfo.endDate;
+            liveNum = hotelInfo.dayNum;
+            $("#stayDate").html(timeTransformation(startDate, "date"));
+            $("#leaveDate").html(timeTransformation(endDate, "date"));
+            $("#liveNum").html(liveNum);
+            $("#startDate").val(startDate);
+            $("#endDate").val(endDate);
+
+        } else {
+            initStayLeaveDate()
+        }
+
+        $(".comfire").click(function () {
+            console.log("oldStartDate" + oldStartDate);
+            console.log("oldEndDate" + oldEndDate);
+            var newStartDate = $('#startDate').val();
+            var newEndDate = $('#endDate').val();
+            if (newStartDate != oldStartDate || newEndDate != oldEndDate) {
+                oldStartDate = newStartDate;
+                oldEndDate = newEndDate;
+                $("#stayDate").text(oldStartDate);
+                $("#leaveDate").text(oldEndDate);
+                $("#liveNum").html("共" + $(".hover").html() + "晚");
+
+                hotelSearchInfo.startDate = oldStartDate;
+                hotelSearchInfo.endDate = oldEndDate;
+                hotelSearchInfo.liveNum = "共" + $(".hover").html() + "晚";
+                setSess("hotelSearchInfo", JSON.stringify(hotelSearchInfo));
+            }
+        })
+    });
+
+    function initStayLeaveDate() {
+        var b = new Date();
+        //b.setDate(a.getDate()+1)
+        var ye = b.getFullYear();
+        var mo = b.getMonth() + 1;
+        var da = b.getDate();
+        if (mo < 10) {
+            mo = "0" + mo;
+        }
+        if (da < 10) {
+            da = "0" + da;
+        }
+        $('#startDate').val(ye + '-' + mo + '-' + da);
+        b = new Date(b.getTime() + 24 * 3600 * 1000);
+        var ye = b.getFullYear();
+        var mo = b.getMonth() + 1;
+        var da = b.getDate();
+        if (mo < 10) {
+            mo = "0" + mo;
+        }
+        if (da < 10) {
+            da = "0" + da;
+        }
+        $('#endDate').val(ye + '-' + mo + '-' + da);
+
+
+        oldStartDate = $("#startDate").val();
+        oldEndDate = $("#endDate").val();
+        $("#stayDate").text(oldStartDate);
+        $("#leaveDate").text(oldEndDate);
+    }
+
+    //获取秘钥的回调
+    function pubKeyCall(res) {
+        if (res.errorCode == 200) {
+            pubKey = res.data.publicKey;
+        }
+    }
+    // 选择联系人
+    function choosePeople(e){
+        // if($(e).attr('checked')){
+            buyCustomer = $(e).val();
+            $(".passenger-name").val($(e).siblings(".nam").val());
+            $(".passenger-phone").val($(e).siblings(".mobile").val());
+            $(".passenger-idcard").val($(e).siblings(".identityCard").val());
+        // }
+    }
+    // 创建订单
+    $("#submit").on("click",function(){
+        var token = $.cookie("token");
+        console.log(token)
+        if(token == null || token == undefined || token == "null"){
+            layer.open({
+                type: 1
+                ,content: '<div style="padding: 10px 20px;">请登陆后进行该操作！</div>'
+                ,btn: '确定',
+                title: ["提示", 'font-size:18px;'],
+                area: ['300px', '160px'],
+                shadeClose: true,
+                yes: function(){
+                    layer.closeAll();
+                }
+            });
+            return false;
+        }
+        if(buyCustomer == null || buyCustomer == ""){
+            layMessage("请添加联系人");
+            return false
+        }
+        packageNumber = $("#num_input").val();
+        packageDay = $(".dateList-day.day-active .lay-calendar").text();
+        packageYear = $(".dateList-day.day-active .lay-calendar").attr("data-year"); 
+        console.log(packageNumber,packageDay,packageYear);
+
+        // buyCustomer = null;
+        var data = {
+            "productPackageId": productPackageId,
+            "buySum": packageNumber,
+            "buyCustomer": buyCustomer,
+            "arriveTime": DayReg(packageDay,packageYear),
+        }
+        data = JSON.stringify(data);
+        //实例化
+        var encrypt = new JSEncrypt();
+        //公钥
+        encrypt.setPublicKey(pubKey);
+        //加密串分段加密
+        var dataJson = encrypt.encryptLong(data);
+        //创建订单
+        publicAjaxToken(baseAjaxUrl + "/ty_api/order/createOrder", "POST", {"orderStr": dataJson}, creatOrderCall)
+        // location.href = "orderPay.html?productId="+productId+"&productPackageId=" + productPackageId + "&packageNumber=" + packageNumber + "&packageDay=" + packageDay + "&packageYear=" + packageYear;
+    })
+    // 订单回调
+    function creatOrderCall(res){
+        if(res.errorCode == 200){
+            var orderNo = res.data.orderNo;
+            var orderId = res.data.orderId;
+            location.href = "orderPay.html?orderNo="+orderNo+"&productId="+productId+"&productPackageId=" + productPackageId + "&packageNumber=" + packageNumber + "&packageDay=" + packageDay + "&packageYear=" + packageYear;
+        }
+    }
+    // 信息验证
+    // 验证姓名
+    $(".passenger-name").blur(function(){
+        var name = $(".passenger-name").val();
+        if (name.length < 1) {
+            $(".passenger-item span").eq(0).show();
+            $(".passenger-item input").eq(0).css("border","1px solid red");
+            console.log("false")
+            return false;
+        }else{
+            $(".passenger-item span").eq(0).hide();
+            $(".passenger-item input").eq(0).css("border","1px solid #bdbdbd");
+        }
+    })
+    // 验证手机号
+    $(".passenger-phone").blur(function(){
+        var phone = $(".passenger-phone").val();
+        if (mobileReg(phone) == false) {
+            $(".passenger-item span").eq(1).show();
+            $(".passenger-item input").eq(1).css("border","1px solid red");
+            console.log("false")
+            return false;
+        }else{
+            $(".passenger-item span").eq(1).hide();
+            $(".passenger-item input").eq(1).css("border","1px solid #bdbdbd");
+        }
+    })
+    // 验证身份证
+    $(".passenger-idcard").blur(function(){
+        var idcard = $(".passenger-idcard").val();
+        if (IDcardReg(idcard) == false) {
+            $(".passenger-item span").eq(2).show();
+            $(".passenger-item input").eq(2).css("border","1px solid red");
+            console.log("false")
+            return false;
+        }else{
+            $(".passenger-item span").eq(2).hide();
+            $(".passenger-item input").eq(2).css("border","1px solid #bdbdbd");
+        }
+    })
+    
+    //从日历选择跳回这里
+    function returnGoods() {
+        if ($(".calendar-days-item.day-active").length == 0) {
+            $(".dateList-otherday").html('<p class="lay-calendar">其他日期</p>');
+        } else {
+            var day = $(".calendar-days-item.day-active>.days").text();
+            console.log("hahhah" + day);
+            if (Number(day) < 10) {
+                day = '0' + day;
+            }
+            //用来传递给预定页，下订单用
+            var month = $(".calendar-days-item.day-active>.days").attr("data-month");
+            var year = $(".calendar-days-item.day-active>.days").attr("data-year");
+
+            if (Number(month) < 10) {
+                month = '0' + month;
+            }
+            $(".dateList-otherday").html('<span class="lay-calendar" data-year="' + year + '">' + month + '月' + day + '日' + '</span>');
+        }
+        $(".calendar-container").hide();
+    }
+
+    // 日历 next
+    var num = 0;
+    $(".calendar-right").click(function(){
+        var str = 0;
+        var marginTop = -322;
+        if($(".smallBox").length > num+1){
+            num ++;
+            str = num*marginTop;
+            $(".calendar-day-box").css("margin-top",str+"px");   
+            console.log(str); 
+        }  
+    })
+    $(".calendar-left").click(function(){
+        var str = 0;
+        var marginTop = -322;
+        if(num > 0){
+            num --;
+            str = num*marginTop;
+            $(".calendar-day-box").css("margin-top",str+"px");   
+            console.log(str); 
+        }  
+    })
+
+</script>
+<script>
+    // 票数加减
+    var nums = $("#num_input").val();
+    $("#num_input").bind("input propertychange",function () {
+        nums = $("#num_input").val();
+        var price = onePrice * nums;
+        $("#total-price").text(price);
+        $("#nums").text(nums);
+        btnNums();
+        console.log($("#num_input").val());
+    });
+    $("#num_input").blur(function () {
+        nums = $("#num_input").val();
+        if(nums < 1){
+            $("#num_input").val(1);
+            var price = onePrice;
+            $("#total-price").text(price);
+            $("#nums").text(1);
+        }
+    });
+    btnNums();
+    function btnNums() {
+        if(nums == 1) {
+            $(".num_minus").attr("disabled", true);
+        }else if(nums > 1){
+            $(".num_minus").attr("disabled", false);
+        }
+    }
+    $(".num_minus").on("click",function(){
+        if(nums > 1){
+            nums --
+            $("#num_input").val(nums);
+            var price = onePrice * nums;
+            $("#total-price").text(price);
+            $("#nums").text(nums);
+        }
+        btnNums();
+    })
+    $(".num_plus").on("click",function(){
+        nums ++ 
+        $("#num_input").val(nums);
+        var price = onePrice * nums;
+        $("#total-price").text(price);
+        $("#nums").text(nums);
+        btnNums();
+    })
+</script>
+<script>
+    /*酒店日期插件*/
+    $('#chooseData').calendarSwitch({
+        selectors: {
+            sections: ".calendar"
+        },
+        index: 4,      //展示的月份个数
+        animateFunction: "toggle",        //动画效果
+        controlDay: false,//知否控制在daysnumber天之内，这个数值的设置前提是总显示天数大于90天
+        daysnumber: "90",     //控制天数
+        comeColor: "#47bfc5",       //入住颜色
+        outColor: "#47bfc5",      //离店颜色
+        comeoutColor: "#78e0e6",        //入住和离店之间的颜色
+        callback: function () {
+            console.log("callback")
+        },   //回调函数
+        comfireBtn: '.comfire',//确定按钮的class或者id
+        cancelBtn: '.cancelChoose'//确定按钮的class或者id
+    });
+</script>
+</html>

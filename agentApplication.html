@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>申请</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/public.css">
+    <style>
+        .personalCenter{
+            width: 1200px;
+            margin: auto;
+            min-height: 600px;
+            margin-top: 20px;
+            background: #fff;
+            padding: 10px 20px;
+        }
+        /* 中间 */
+        .content-title{
+            height: 40px;
+            line-height: 40px;
+            border-bottom: 1px #52C0C7 solid;
+            color: #52C0C7;
+        }
+        .content-title ul li{
+            float: left;
+            height: 30px;
+            line-height: 30px;
+            margin: 0 10px 0 0;
+            padding: 0 15px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+
+        }
+        .current{
+            color: #fff;
+            background-color: #52C0C7;
+        }
+        /* 图片 */
+        .upload-img {
+            width: 200px;
+            height: 160px;
+            border-radius: 3px;
+            margin-top: 20px;
+            float: left;
+        }
+        .upload-img p{
+            padding-left: 10px;
+            padding-bottom: 10px;
+        }
+
+        .upload-img input {
+            width: 0;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .upload-img img {
+            width: 120px;
+            height: 120px;
+        }
+        .application{
+            padding-left: 10px;
+            margin-top: 10px
+        }
+        .application-item{
+            padding: 8px 10px;
+        }
+        .application-item label{
+            font-size: 15px;
+            padding-right: 10px
+        }
+        .application-item input{
+            width: 250px;
+            height: 30px;
+            padding-left: 5px;
+            border: 1px solid #bdbdbd;
+        }
+        /* 提交 */
+        .btn{
+            width: 350px;
+            margin-top: 30px;
+        }
+        .btn button{
+            display: block;
+            margin: 0 auto;
+            width: 170px;
+            line-height: 45px;
+            text-align: center;
+            font-size: 20px;
+            background: #fe8101;
+            border-radius: 4px;
+            color: #fff;
+        }
+        /* .footer{
+            margin-top: 180px;
+            background: #fff;
+            color: #666;
+        }
+        .footer a{
+            color: #666;
+        }
+        .copyright {
+            border-top: 1px solid #bdbdbd;
+            padding: 20px 0;
+        } */
+    </style>
+</head>
+<body>
+    <!-- 头部 -->
+    <div id="header">
+        <div class="header-top">
+            <div class="header-nav">
+                <div class="topLogin">
+                    <ul>
+                        <li id="login"><a href="login.html">登录</a> </li>
+                        <li><a href="register.html">注册</a> </li>
+                    </ul>
+                </div>
+                <ul class="clearfix">
+                    <li><a href="http://business.tongyoutrip.com/" target="_blank" class="shouye">商家入驻</a> </li>
+                    <li>0571-86981186 </li>
+                    <li><a href="register.html"></a> </li>
+                </ul>
+            </div>
+        </div>
+        <div class="header-box">
+            <div class="topNavWrapper">
+                <div class="topContent">
+                    <div class="topLogo">
+                        <img src="img/logo.jpg" alt="">
+                    </div>
+                    <div class="topSearch">
+                        <span>同游科技</span>
+                    </div>
+                </div>
+                <div class="menuNav">
+                    <ul id="menu">
+                        <li><a href="index.html">首页</a> </li>
+                        <li><a href="userinfo.html">个人信息</a></li>
+                        <li><a class="changeColor" href="representCenter.html">代言中心</a></li>
+                        <!-- <li id="login" onclick="myExit();">退出登录 </li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="personalCenter">
+        <div class="content">
+            <div class="content-top">
+                <div class="content-title">
+                    <ul>
+                        <li class="organization current" data-type="COMPANY">公司</li>
+                        <li class="organization" data-type="PERSONAL">个人</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="application">
+            <div class="application-item">
+                <label for="">企业名称</label>
+                <input type="text" id="companyName" placeholder="企业名称">
+            </div>
+            <div class="application-item">
+                <label for="">企业地址</label>
+                <input type="text" id="companyAdd" placeholder="企业地址">
+            </div>
+            <div class="application-item">
+                <label for="" class="name">法人姓名</label>
+                <input type="text" id="legalName" placeholder="法人姓名">
+            </div>
+            <div class="application-item">
+                <label for="">联系方式</label>
+                <input type="number" id="legalNumber" placeholder="联系方式">
+            </div>
+            <div class="application-item">
+                <label for="">开户账号</label>
+                <input type="number" maxlength="22" minlength="14" id="accountNumber" placeholder="开户账号">
+            </div>
+            <div class="upload-img" id="personal">
+                <p>导游证</p>
+                <input type="file" id="tourGuideCardImgurl">
+                <img src="img/addto@2x.png" alt="" onclick="getElementById('tourGuideCardImgurl').click()">
+            </div>
+            <div class="upload-img company">
+                <p>旅行社营业许可证</p>
+                <input type="file" id="businessOne">
+                <img src="img/addto@2x.png" alt="" onclick="getElementById('businessOne').click()">
+            </div>
+            <div class="upload-img company">
+                <p>营业执照</p>
+                <input type="file" id="businessTwo">
+                <img src="img/addto@2x.png" alt="" onclick="getElementById('businessTwo').click()">
+            </div>
+            <div class="upload-img">
+                <p>身份证正面</p>
+                <input type="file" id="idCardOne">
+                <img src="img/addto@2x.png" alt="" onclick="getElementById('idCardOne').click()">
+            </div>
+            <div class="upload-img">
+                <p>身份证反面</p>
+                <input type="file" id="idCardTwo">
+                <img src="img/addto@2x.png" alt="" onclick="getElementById('idCardTwo').click()">
+            </div>
+        </div>
+        <div style="clear: both;"></div>
+        <div class="btn">
+            <button class="submit">提交申请</button>
+        </div>
+    </div> 
+    <div id="lodbox"></div>
+    <!-- 底部 -->
+    <div class="footer">
+        <div class="Contactus">
+            <div><span>24小时客服热线：0571-86981889 同游总部：杭州市天目山路226号网新大厦3楼326</span></div>
+            <div>
+                <ul class="clearfix">
+                    <li><a href="">关于同游</a></li>
+                    <li><a href="">联系我们</a></li>
+                    <li><a href="">投诉建议</a></li>
+                    <li><a href="">同游服务</a></li>
+                    <li><a href="">商家入驻</a></li>
+                    <li><a href="">使用指南</a></li>
+                    <li><a href="">运营方案</a></li>
+                    <li><a href="">同游团队</a></li>
+                    <li><a href="">加入我们</a></li>
+                </ul>
+            </div>
+            <div>
+                <ul class="clearfix" style="margin-left: 168px;">
+                    <li>友情链接：</li>
+                    <li><a href="http://www.guoshu.cn/" target="back">找果蔬网</a></li>
+                    <li><a href="http://www.hzvhost.cn/" target="back">域名注册</a></li>
+                    <li><a href="http://www.hzvhost.com/ " target="back">网站建设</a></li>
+                    <li><a href="http://www.dazj.cn/" target="back">空间租用</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <div style="width:1200px; margin:0 auto">
+                <span>Copyright©2017.浙ICP17016319号-1</span>
+                <span> &nbsp; 杭州同游科技有限公司</span>
+                <span> &nbsp; new.tongyoutrip.com</span>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/ajaxTool.js"></script>
+<script src="js/layer-v3.1.1/layer/layer.js"></script>
+<script src="js/public.js"></script>
+<script>
+    var token = $.cookie('token');
+    var businessUserId;
+    $(function(){
+        getUserInfo();
+        businessUserId = GetQueryString("businessUserId");
+        console.log(businessUserId);
+        //检验申请状态
+        publicAjaxToken(baseAjaxUrl + "/ty_api/agent/user/info/checkAgentQualification", "POST", {
+            "businessUserId": businessUserId
+        }, getApplyStatusCall);
+    })
+
+    //获取申请状态的回调
+    function getApplyStatusCall(res){
+        console.log(res);
+        if (res.errorCode == 200) {
+            if (res.data != null) {
+                var data=res.data.agentUserInfo;
+                busniessName=res.data.busniessName;
+                //回显数据
+                $("#companyName").val(data.companyName);
+                $("#companyAdd").val(data.companyAddress);
+                $("#legalName").val(data.legalRepresentativeName);
+                $("#legalNumber").val(data.legalRepresentativeMobile);
+                $("#accountNumber").val(data.bankAccount);
+                if(data.companyType=="PERSONAL"){
+                    // $(".application-tab").hide();
+                    $(".organization").eq(1).addClass("current").siblings().removeClass("current");
+                    personal();
+                    $("#tourGuideCardImgurl").attr("data-imgurl", data.tourGuideCardImgurl);
+                    $("#tourGuideCardImgurl").siblings("img").attr("src", baseImgUrl + data.tourGuideCardImgurl + "_small.jpg");
+
+                }else if(data.companyType=="COMPANY"){
+                    // $(".application-tab").hide();
+                    $(".organization").eq(0).addClass("current").siblings().removeClass("current");
+                    company();
+                    $("#businessOne").attr("data-imgurl", data.travelAgencyLicenceImgurl);
+                    $("#businessOne").siblings("img").attr("src", baseImgUrl + data.travelAgencyLicenceImgurl + "_small.jpg");
+                    $("#businessTwo").attr("data-imgurl", data.businessLicenseImgurl);
+                    $("#businessTwo").siblings("img").attr("src", baseImgUrl + data.businessLicenseImgurl + "_small.jpg");
+                }
+                //回显图片
+                $("#idCardOne").attr("data-imgurl", data.identityCardFrontImgurl);
+                $("#idCardOne").siblings("img").attr("src", baseImgUrl + data.identityCardFrontImgurl + "_small.jpg");
+                $("#idCardTwo").attr("data-imgurl", data.identityCardReverseImgurl);
+                $("#idCardTwo").siblings("img").attr("src", baseImgUrl + data.identityCardReverseImgurl + "_small.jpg");
+            }
+        } else if (res.errorCode == 514) {
+            busniessName=res.data.busniessName;
+            /*审核成功*/
+            layMessage("审核已通过！");
+            
+        } else if (res.errorCode == 511) {
+            /*审核中*/
+            layMessage("审核中！");
+            busniessName=res.data.busniessName;
+        } else if (res.errorCode == 512) {   //审核不通过
+            layMessage("你提交的申请未审核通过，请重新提交！");
+            if (res.data != null) {
+                var data=res.data.agentUserInfo;
+                busniessName=res.data.busniessName;
+                //回显数据
+                $("#companyName").val(data.companyName);
+                $("#companyAdd").val(data.companyAddress);
+                $("#legalName").val(data.legalRepresentativeName);
+                $("#legalNumber").val(data.legalRepresentativeMobile);
+                $("#accountNumber").val(data.bankAccount);
+                if(data.companyType=="PERSONAL"){
+                    // $(".application-tab").hide();
+                    $(".organization").eq(1).addClass("current").siblings().removeClass("current");
+                    personal();
+                    $("#tourGuideCardImgurl").attr("data-imgurl", data.tourGuideCardImgurl);
+                    $("#tourGuideCardImgurl").siblings("img").attr("src", baseImgUrl + data.tourGuideCardImgurl + "_small.jpg");
+
+                }else if(data.companyType=="COMPANY"){
+                    // $(".application-tab").hide();
+                    $(".organization").eq(0).addClass("current").siblings().removeClass("current");
+                    company();
+                    $("#businessOne").attr("data-imgurl", data.travelAgencyLicenceImgurl);
+                    $("#businessOne").siblings("img").attr("src", baseImgUrl + data.travelAgencyLicenceImgurl + "_small.jpg");
+                    $("#businessTwo").attr("data-imgurl", data.businessLicenseImgurl);
+                    $("#businessTwo").siblings("img").attr("src", baseImgUrl + data.businessLicenseImgurl + "_small.jpg");
+                }
+                //回显图片
+                $("#idCardOne").attr("data-imgurl", data.identityCardFrontImgurl);
+                $("#idCardOne").siblings("img").attr("src", baseImgUrl + data.identityCardFrontImgurl + "_small.jpg");
+                $("#idCardTwo").attr("data-imgurl", data.identityCardReverseImgurl);
+                $("#idCardTwo").siblings("img").attr("src", baseImgUrl + data.identityCardReverseImgurl + "_small.jpg");
+            }
+        }else if (res.errorCode == 518) {
+            /*被商家屏蔽*/
+            layMessage("已被商家屏蔽！");
+            busniessName=res.data.busniessName;
+        }
+    }
+    // tab切换
+    $(".organization").each(function (i, v) {
+        $(v).click(function () {
+            $(this).addClass("current").siblings().removeClass("current");
+            if (i == 0) {//公司
+                company();
+            } else if (i == 1) {//个人
+                personal();
+            }
+            // $("input").val('');
+            // $("input[type='file']").attr("data-imgurl",'');
+            // $("input[type='file']").siblings("img").attr("src",'img/addto@2x.png');
+        })
+    });
+    // 公司
+    function company(){
+        $("#personal").hide();
+        $(".company").show();
+        $("#companyName").attr("placeholder","企业名称").parent(".application-item").show();
+        $("#companyAdd").attr("placeholder","企业地址").parent(".application-item").show();
+        $("#legalName").attr("placeholder","法人姓名");
+        $(".name").html("法人姓名");
+        $("#accountNumber").parent(".application-item").show();
+    }
+
+    //身份为个人
+    function personal(){
+        $("#personal").show();
+        $(".company").hide();
+        $(".name").html("用户姓名");
+        $("#legalName").attr("placeholder","姓名");
+        $("#companyName").parent(".application-item").hide();
+        $("#companyAdd").parent(".application-item").hide();
+        $("#accountNumber").parent(".application-item").hide();
+
+    }
+
+    //提交信息
+    $(".submit").click(function () {
+        var companyType=$(".organization.current").attr("data-type");
+        console.log(companyType);
+        var companyName = $("#companyName").val();
+        var companyAddress = $("#companyAdd").val();
+        var legalRepresentativeName = $("#legalName").val();
+        var legalRepresentativeMobile = $("#legalNumber").val();
+        var bankAccount = $("#accountNumber").val();
+        //图片
+        var tourGuideCardImgurl = $("#tourGuideCardImgurl").attr("data-imgurl");
+        var travelAgencyLicenceImg = $("#businessOne").attr("data-imgurl");
+        var businessLicenseImg = $("#businessTwo").attr("data-imgurl");
+        var identityCardFrontImg = $("#idCardOne").attr("data-imgurl");
+        var identityCardReverseImg = $("#idCardTwo").attr("data-imgurl");
+
+        if(companyType=="COMPANY"){
+            if (companyName == '' || companyAddress == '' ||  legalRepresentativeName == '' || legalRepresentativeMobile == '' || bankAccount == '') {
+                layMessage("请完善信息");
+                return false;
+            }
+            if (bankAccount.length < 14 || bankAccount.length > 22) {
+                layMessage("开户账号不正确");
+                return false;
+            }
+        }else if(companyType=="PERSONAL"){
+            if (legalRepresentativeName == '' || legalRepresentativeMobile == '') {
+                layMessage("请完善信息");
+                return false;
+            }
+        }
+
+        //验证手机号
+        if (mobileReg(legalRepresentativeMobile) == false) {
+            layMessage("手机号码格式不正确");
+            return false;
+        }
+
+
+        //验证图片
+        if(companyType=="PERSONAL"){
+            if ($("#tourGuideCardImgurl").siblings("img").attr("src") == "static/img/public/addto@2x.png"||$("#tourGuideCardImgurl").attr("data-imgurl")=='') {
+                layMessage("请上传导游证");
+                return false;
+            }
+        }else{
+            if ($("#businessOne").siblings("img").attr("src") == "static/img/public/addto@2x.png"||$("#businessOne").attr("data-imgurl")=='') {
+                layMessage("请上传营业许可证");
+                return false;
+            }
+            if ($("#businessTwo").siblings("img").attr("src") == "static/img/public/addto@2x.png"||$("#businessTwo").attr("data-imgurl")=='') {
+                layMessage("请上传营业执照");
+                return false;
+            }
+        }
+        if ($("#idCardOne").siblings("img").attr("src") == "static/img/public/addto@2x.png"||$("#idCardOne").attr("data-imgurl")=='') {
+            layMessage("请上传身份证正面");
+            return false;
+        }
+        if ($("#idCardTwo").siblings("img").attr("src") == "static/img/public/addto@2x.png"||$("#idCardTwo").attr("data-imgurl")=='') {
+            layMessage("请上传身份证背面");
+            return false;
+        }
+
+        $("#lodbox").show();
+
+        var data = {};
+        data.companyType=companyType;
+        data.companyName = companyName;
+        data.bankAccount = bankAccount;
+        data.businessUserId = businessUserId;
+        data.companyAddress = companyAddress;
+        data.legalRepresentativeName = legalRepresentativeName;
+        data.legalRepresentativeMobile = legalRepresentativeMobile;
+        //添加图片
+        data.tourGuideCardImgurl = tourGuideCardImgurl;
+        data.travelAgencyLicenceImgurl = travelAgencyLicenceImg;
+        data.businessLicenseImgurl = businessLicenseImg;
+        data.identityCardFrontImgurl = identityCardFrontImg;
+        data.identityCardReverseImgurl = identityCardReverseImg;
+
+
+        $.ajax({
+            beforeSend: function (xhr) {
+                //发送ajax请求之前向http的head里面加入验证信息
+                xhr.setRequestHeader("token", token); // 请求发起前在头部附加token
+            },
+            url: baseAjaxUrl + "/ty_api/agent/user/info/insert",
+            type: "POST",
+            data: data,
+            success: function (res) {
+                console.log(res);
+                if (res.errorCode == 200) {
+                    $("#lodbox").hide();
+                    layMessage("申请已发送！");
+                    setTimeout("history.back(-1);",1000);
+                }else{
+                    console.log(res);
+                }
+            },
+            error: function (res) {
+                alert(res);
+            }
+        })
+
+    });
+</script>
+<script>
+    /*图片上传*/
+    //导游证
+    $("#tourGuideCardImgurl").change(function () {
+        $("#lodbox").show();
+        var tourGuideCardImgurl = getObjectURL(this.files[0]);
+        // $("#tourGuideCardImgurl").siblings("img").attr("src", tourGuideCardImgurl);
+        uploadImage(tourGuideCardImgurl, this.files[0], "tourGuideCardImgurl", getTourGuideCardImgurlCall);
+    });
+    function getTourGuideCardImgurlCall(res) {
+        if (res.errorCode == 200) {
+            $("#lodbox").hide();
+            $("#tourGuideCardImgurl").siblings("img").attr("src", baseImgUrl + res.data + "_small.jpg");
+            $("#tourGuideCardImgurl").attr("data-imgurl", res.data);
+        }else{
+            layMessage("图片上传失败，请重新上传！");
+        }
+    }
+
+    //许可证
+    $("#businessOne").change(function () {
+        $("#lodbox").show();
+        var travelAgencyLicenceImg = getObjectURL(this.files[0]);
+        // $("#businessOne").siblings("img").attr("src", travelAgencyLicenceImg);
+        uploadImage(travelAgencyLicenceImg, this.files[0], "businessOne", getBusinessOneCall);
+    });
+    function getBusinessOneCall(res) {
+        if (res.errorCode == 200) {
+            $("#lodbox").hide();
+            $("#businessOne").siblings("img").attr("src", baseImgUrl + res.data + "_small.jpg");
+            $("#businessOne").attr("data-imgurl", res.data);
+        }else{
+            layMessage("图片上传失败，请重新上传！");
+        }
+    }
+
+    //营业执照
+    $("#businessTwo").change(function () {
+        $("#lodbox").show();
+        var businessLicenseImg = getObjectURL(this.files[0]);
+        // $("#businessTwo").siblings("img").attr("src", businessLicenseImg);
+        uploadImage(businessLicenseImg, this.files[0], "businessTwo", getBusinessTwoCall);
+    });
+    function getBusinessTwoCall(res) {
+        if (res.errorCode == 200) {
+            $("#lodbox").hide();
+            $("#businessTwo").siblings("img").attr("src", baseImgUrl + res.data + "_small.jpg");
+            $("#businessTwo").attr("data-imgurl", res.data);
+        }else{
+            layMessage("图片上传失败，请重新上传！");
+        }
+    }
+
+    //身份证正面
+    $("#idCardOne").change(function () {
+        $("#lodbox").show();
+        var identityCardFrontImg = getObjectURL(this.files[0]);
+        // $("#idCardOne").siblings("img").attr("src", identityCardFrontImg);
+        uploadImage(identityCardFrontImg, this.files[0], "idCardOne", getIdCardOneCall);
+    });
+    function getIdCardOneCall(res) {
+        if (res.errorCode == 200) {
+            $("#lodbox").hide();
+            $("#idCardOne").siblings("img").attr("src", baseImgUrl + res.data + "_small.jpg");
+            $("#idCardOne").attr("data-imgurl", res.data);
+        }else{
+            layMessage("图片上传失败，请重新上传！");
+        }
+    }
+
+    //身份证反面
+    $("#idCardTwo").change(function () {
+        $("#lodbox").show();
+        var identityCardReverseImg = getObjectURL(this.files[0]);
+        // $("#idCardTwo").siblings("img").attr("src", identityCardReverseImg);
+        uploadImage(identityCardReverseImg, this.files[0], "idCardTwo", getIdCardTwoCall);
+    });
+    function getIdCardTwoCall(res) {
+        if (res.errorCode == 200) {
+            $("#lodbox").hide();
+            $("#idCardTwo").siblings("img").attr("src", baseImgUrl + res.data + "_small.jpg");
+            $("#idCardTwo").attr("data-imgurl", res.data);
+        }else{
+            layMessage("图片上传失败，请重新上传！");
+        }
+    }
+
+    /*图片压缩*/
+    function getObjectURL(file) {
+        var url = null;
+        if (window.createObjectURL != undefined) { // basic
+            url = window.createObjectURL(file);
+        } else if (window.URL != undefined) { // mozilla(firefox)
+            url = window.URL.createObjectURL(file);
+        } else if (window.webkitURL != undefined) { // webkit or chrome
+            url = window.webkitURL.createObjectURL(file);
+        }
+        return url;
+    }
+
+    //压缩图片
+    function compress(image) {
+        var height = image.height;
+        var width = image.width;
+        var canvas = document.createElement('canvas');
+        //height、 width 和图片实际的高、宽一致时，直接赋值canvas的宽高为上述宽高
+        canvas.width = width;
+        canvas.height = height;
+        var ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#FFF';//绘制背景色
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+        //0.5为压缩的质量比例，范围是0~1。
+
+        var imgBase = canvas.toDataURL("image/jpeg", 0.5);
+        //转成Blob对象，以ajax的方式上传
+        var formData = new FormData();
+        var arr = imgBase.split(",");
+        var mime = arr[0].match(/:(.*?);/)[1];
+        var bstr = atob(arr[1]);
+        var n = bstr.length;
+        var u8arr = new Uint8Array(n);
+        while (n--) {
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        var obj = new Blob([u8arr], {type: mime});
+
+        formData.append("agentInfo", obj, obj.type);
+        return formData;
+        //这里是用了toDataURL,然后再转成了blob，直接用canvas.toBlob不知道好不好使。
+    }
+
+    //上传方法
+    function uploadImage(objUrl, fileImg, id, callback) {
+        var image = new Image();
+        image.src = objUrl;
+        image.onload = function () {
+            var formData = new FormData();
+            //必须以这种方式获取，以JQuery的方式获取不到
+            var file = document.getElementById(id).files[0];
+            if(file.size > 1024 * 1024 * 10){
+                layMessage("最大上传图片不能超过10M");
+                $("#lodbox").hide();
+                return false;
+            }
+            if (file.size > 1024 * 1024 * 2) {
+                //大于1M的时候压缩
+                formData = compress(image);
+            } else {
+                formData.append("agentInfo", fileImg);
+            }
+            $.ajax({
+                beforeSend: function (xhr) {
+                    //发送ajax请求之前向http的head里面加入验证信息
+                    xhr.setRequestHeader("token", token); // 请求发起前在头部附加token
+                },
+                url: baseAjaxUrl + "/ty_api/agent/user/info/uploadAgentImg",
+                type: "POST",
+                data: formData,
+                processData: false,  // 不处理数据
+                contentType: false,  // 不设置内容类型
+                success: callback
+            })
+        }
+    }
+</script>
+</html>

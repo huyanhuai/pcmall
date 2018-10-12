@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>热门目的地</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="js/swiper/swiper-4.2.0.min.css">
+    <link rel="stylesheet" href="css/public.css">
+    <style>
+        .category-container img{
+            width: 100%;
+            height: 310px;
+        }
+        /* 最新上线/目的地/专题 */
+        .newProduct{
+            width: 1200px;
+            height: auto;
+            min-height: 300px;
+            margin: auto;
+            margin-top: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- 头部 -->
+    <div id="header">
+        <div class="topNavWrapper">
+            <div class="topContent">
+                <div class="topLogo">
+                    <img src="img/logo.jpg" alt="">
+                </div>
+                <div class="topSearch">
+                    <span>同游科技</span>
+                    <input type="text" placeholder="搜索旅游/门票/酒店/目的地">
+                    <button>搜索</button>
+                </div>
+                <ul class="topPanel">
+                    <!-- <li><div class="topPanel-img"><img src="img/seachblue.png" alt=""></div> <span>0571-86981186</span> </li> -->
+                    <li style="padding-left: 30px"><div class="topPanel-img"><img src="img/seachblue.png" alt=""></div><span>信息</span> </li>
+                    <li><div class="topPanel-img"><img src="img/seachblue.png" alt=""></div><span>微信公众号</span> </li>
+                    <li class="recruitment"><div class="topPanel-img"><img src="img/homepage2@2x.png" alt=""></div><a href="http://business.tongyoutrip.com/" target="_blank">商家入驻</a> </li>
+                </ul>
+            </div>
+        </div>
+        <div class="menuNavOuter">
+            <div class="menuNav">
+                <ul id="menu">
+                    <li><a href="index.html">首页</a> </li>
+                    <li><a href="productList.html">景点</a></li>
+                    <li><a href="index.html">酒店</a></li>
+                    <li class="changeColor"><a href="index.html">目的地</a></li>
+                    <li><a href="index.html">专题</a></li>
+                    <li id="login"><a href="login.html">登录/注册</a> </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- 轮播 -->
+    <div id="carousel">
+        <div class="category-container">
+            <img src="" alt="" class="category-headimg">
+        </div>
+    </div>
+    <!-- 热门目的地 -->
+    <div class="newProduct">
+        <div class="tab_title">
+            <h3 style="float: left;">热门目的地</h3>
+            <!-- <h4 style="float: right;"><a href="hotDes.html"> more ></a> </h4> -->
+        </div>
+        <div id="hot-con">
+
+        </div>
+    </div>
+    <!-- 底部 -->
+    <div class="footer">
+        <div class="Contactus">
+            <div>
+                <p>关于同游</p>
+                <ul>
+                    <li><a href="">同游介绍</a></li>
+                    <li><a href="">团队</a></li>
+                    <li><a href="">联系</a></li>
+                    <li><a href="">加入我们</a></li>
+                </ul>
+            </div>
+            <div>
+                <p>同游服务</p>
+                <ul>
+                    <li><a href="">商家入驻</a></li>
+                    <li><a href="">小程序</a></li>
+                    <li><a href="">公众号</a></li>
+                </ul>
+            </div>
+            <div>
+                <p>域名注册</p>
+                <ul>
+                    <li><a href="">使用指南</a></li>
+                    <li><a href="">运营方案</a></li>
+                </ul>
+            </div>
+            <div style="min-width:300px;">
+                <p>联系方式</p>
+                <ul>
+                    <li>0571-86981889</li>
+                    <li>杭州市天目山路226号网新大厦3楼326</li>
+                    <li>tech@057135.com</li>
+                </ul>
+            </div>
+            <div>
+                <p>友情链接</p>
+                <ul>
+                    <li><a href="http://www.guoshu.cn/" target="back">找果蔬网</a></li>
+                    <li><a href="http://www.hzvhost.cn/" target="back">杭州域名注册</a></li>
+                    <li><a href="http://www.hzvhost.com/ " target="back">网站建设</a></li>
+                    <li><a href="http://www.dazj.cn/" target="back">空间租用</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <div style="width:1200px; margin:0 auto">
+                <span>Copyright©2017.浙ICP17016319号-1</span>
+                <span>杭州同游科技有限公司</span>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/swiper/swiper-4.2.0.min.js"></script>
+<script src="js/ajaxTool.js"></script>
+<script src="js/public.js"></script>
+<script>
+    var starsLevel = 5;   //星星最高等级_评分
+    $(function () {
+        // 用户信息
+        getUser();
+        var subjectName = decodeURI(escape(GetQueryString("subjectName")));
+        $("title").html(subjectName);
+        var subjectId=GetQueryString("subjectId");
+        var pictureUrl=GetQueryString("pictureUrl");
+        var subjectTitle=decodeURI(escape(GetQueryString("subjectTitle")));
+        $(".category-headimg").attr("src",baseImgUrl+pictureUrl+".jpg");
+        $(".title").html(subjectTitle)
+        var url = baseAjaxUrl + "/ty_api/subject/queryListBySubject";
+        /*热门目的地详情*/
+        publicAjax(url, "POST", {
+            "subjectId": subjectId,
+            "pageSize": "6",
+            "pageNum": "1"
+        }, hotCallback);
+    });
+    function hotCallback(e){
+        /*用于存放内容*/
+        var data = e.data.list;
+        var innerHtml = '';
+        var listDom = $("#hot-con");
+        var collectionImg = '';
+        for (var i = 0; i < data.length; i++) {
+            //循环标签
+            var tagInnerHtml = '';
+            var starsHtml = '';    //星星的img标签
+            if (data[i].tags[0] != null) {
+                for (var j = 0; j < data[i].tags.length; j++) {
+                    tagInnerHtml += '<span>' + data[i].tags[j] + '</span>';
+                }
+            } else {
+                tagInnerHtml += '<p style="color:#ddd;">暂无标签</p>';
+            }
+
+            //循环收藏
+            var token = null;
+            $.ajax({
+                contentType: "application/x-www-form-urlencoded; charset=utf-8",
+                beforeSend: function (xhr) {
+                    //发送ajax请求之前向http的head里面加入验证信息
+                    xhr.setRequestHeader("token", token); // 请求发起前在头部附加token
+                },
+                url: baseAjaxUrl + "/ty_api/product/collection/isCollection",
+                type: "POST",
+                data: {"productId": data[i].productId},
+                async: false,
+                success: function (e) {
+                    if (e.errorCode == 200) {
+                        if (e.data.isCollection == 0) {
+                            collectionImg = '<img src="img/collection2@2x.png" alt="" class="collection" onclick="collectionFlag(this)" data-collection="0" data-productId="' + data[i].productId + '">';
+                        } else if (e.data.isCollection == 1) {
+                            collectionImg = '<img src="img/collection3@2x.png" alt="" class="collection" onclick="collectionFlag(this)" data-collection="1" data-productId="' + data[i].productId + '">';
+                        }
+                    }
+                },
+                error: function (res) {
+                    alert("您访问的服务器被外星人抓走了")
+                }
+            });
+
+            //星星评分
+            var solidStars = data[i].score;
+            var emptyStars = starsLevel - solidStars;
+            for (var j = 0; j < solidStars; j++) {
+                starsHtml += '<img src="img/stars2@3x.png" alt="">';
+            }
+            for (var n = 0; n < emptyStars; n++) {
+                starsHtml += '<img src="img/stars@3x.png" alt="">';
+            }
+
+            innerHtml +=
+                '<div class="hot-item">\n' +
+                '   <a href="productDetail.html?productId=' + data[i].productId + '">\n' +
+                '       <div class="hot-left" style="background: url(\''+baseImgUrl + data[i].pictureUrl+'.jpg\')center center;background-size: cover">\n' +
+                // '           <img src="' + baseImgUrl + data[i].pictureUrl + '_small.jpg" alt="">\n' +
+                '        </div>\n' +
+                '   </a>\n' +
+                '   <div class="hot-right">\n' +
+                '     <div class="hot-p">\n' +
+                    '       <a href="productDetail.html?productId=' + data[i].productId + '">\n' +
+                '               <h3 class="hot-title">' + data[i].productName + '</h3>\n' +
+                    '       </a>\n' +
+                '            <p class="hot-tag">' + tagInnerHtml + '</p>\n' +
+                '            <p class="hot-stars">\n' +
+                '                <span class="stars">'+starsHtml+'</span>\n' +
+                '                <span>' + (data[i].commentNum == null ? "0" : data[i].commentNum) + '条评论</span>\n' +
+                '            </p>\n' +
+                '            <p class="hot-detail">' + data[i].productAddress  + '</p>\n' +
+                '        </div>\n' +
+                
+                '       <div class="hot-icon">' + collectionImg + '<p><span>￥</span>' + data[i].minPrice + '<span> 起</span></p>\n' +
+                '         <a href="productDetail.html?productId=' + data[i].productId + '">\n' +
+                '           <button>查看详情</button>'+
+                '         </a>\n' +
+                '       </div>\n' +
+                '   </div>\n' +
+                '</div>';
+        }
+        listDom.append(innerHtml);//加在列表的后面,上拉加载
+    }
+    /*点击收藏时的函数*/
+    function collectionFlag(e) {
+        var token = getLocal("token");
+        var collectionIsFlag = $(e).attr("data-collection");
+        var productId = $(e).attr("data-productId");
+        if (collectionIsFlag == "0") {//无——》有
+            $.ajax({
+                beforeSend: function (xhr) {
+                    //发送ajax请求之前向http的head里面加入验证信息
+                    xhr.setRequestHeader("token", token); // 请求发起前在头部附加token
+                },
+                url: baseAjaxUrl + "/ty_api/product/collection/doCollection",
+                type: "POST",
+                data: {"productId": productId},
+                success: function (res) {
+                    if (res.errorCode == 200) {
+                        layMessage(res.message);
+                        $(e).attr("src", "img/collection3@2x.png");
+                        $(e).attr("data-collection", "1");
+                    }
+                },
+                error: function (res) {
+                    alert("您访问的服务器被外星人抓走了")
+                }
+            })
+        } else if (collectionIsFlag == "1") {//有——》无
+            $.ajax({
+                beforeSend: function (xhr) {
+                    //发送ajax请求之前向http的head里面加入验证信息
+                    xhr.setRequestHeader("token", token); // 请求发起前在头部附加token
+                },
+                url: baseAjaxUrl + "/ty_api/product/collection/cancelCollection",
+                type: "POST",
+                data: {"productId": productId},
+                success: function (res) {
+                    if (res.errorCode == 200) {
+                        layMessage(res.message);
+                        $(e).attr("src", "img/collection2@2x.png");
+                        $(e).attr("data-collection", "0");
+                    }
+                },
+                error: function (res) {
+                    alert("您访问的服务器被外星人抓走了")
+                }
+            })
+        }
+    }
+</script>
+</html>

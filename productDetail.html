@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>产品详情</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="js/swiper/swiper-4.2.0.min.css">
+    <link rel="stylesheet" href="css/public.css">
+    <style>
+        /* 图片 */
+        .carousel{
+            width: 1600px;
+            padding: 10px 0;
+            margin-top: 10px;
+            /* border: 1px solid #e5e5e5; */
+        }
+        .carousel-product{
+            /* width: 790px; */
+            width: 49%;
+            height: 400px;
+            margin-right: 2%;
+            float: left;
+        }
+        .carousel-product img{
+            width: 100%;
+            height: 400px;
+        }
+        .carousel-right{
+            /* width: 790px; */
+            width: 49%;
+            height: 400px;
+            float: left;
+            /* padding-left: 20px; */
+        }
+        .carousel-right>p{
+            line-height: 50px;
+        }
+        .carousel-right .carousel-productName{
+            font-size: 26px;
+            color: #1295ad;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        .carousel-right .carousel-common{
+            margin-top: 10px;
+            font-size: 18px;
+            color: #222;
+        }
+        .carousel-right .carousel-common .address{
+            color: #666;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        .carousel-right .carousel-comment{
+            width: 100%;
+            height: 180px;
+            margin-top: 10px;
+            padding: 30px 40px;
+            background: #F2F2F2;
+        }
+        .carousel-right .carousel-comment .title{
+            line-height: 20px;
+        }
+        .carousel-right .carousel-comment .title p{
+            float: left;
+            margin-right: 10px;
+        }
+        .carousel-right .carousel-comment .title .star img{
+            width: 20px;
+            height: 20px;
+        }
+        .carousel-right .carousel-comment .text{
+            width: 100%;
+            height: 70px;
+            margin-top: 20px;
+            color: #999999;
+            white-space:normal;
+            overflow: hidden;
+            /* white-space: nowrap; */
+            text-overflow: ellipsis;
+        }
+        .clear{
+            clear: both;
+        }
+        /* 景点menu */
+        
+        .tab_title{
+            border-bottom: none;
+        }
+        .tab_title ul{
+            height: 50px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #dfdfdf;
+        }
+        .tab_title ul li{
+            float: left;
+            height: 50px;
+            margin: 0 10px 0 0;
+            padding: 0 10px;
+            font-size: 22px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .current{
+            color: #58C0C6;
+            border-bottom: 2px solid #58C0C6;
+        }
+        .tab_title .active {
+            position: fixed;
+            top: 0;
+            z-index: 50;
+        }
+        /* 门票 */
+        .package{
+            height: 70px;
+            line-height: 70px;
+            padding: 0 15px 0 8px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        .package-left{
+            width: 60%;
+            float: left;
+            font-size: 18px;
+            color: rgb(56, 56, 56);
+            font-weight: bold;
+        }
+        .package-right{
+            width: 40%;
+            float: right;
+        }
+        .package-right p{
+            width: 100px;
+            margin-left: 20px;
+            font-size: 20px;
+            vertical-align: -2px;
+            color: #FF4F4F;
+            float: left;
+        }
+        .package-right .refunds{
+            margin: 22px 20px 0 0;
+            padding: 3px 5px;
+            width: 70px;
+            height: 26px;
+            border: 1px solid #85c6d5;
+            color: #4da7b7;
+            font-size: 14px;
+            text-align: center;
+            line-height: 20px;
+        }
+        .package-right button{
+            width: 100px;
+            height: 35px;
+            margin-top: 20px;
+            background: #58C0C6;
+            font-size: 16px;
+            color: #fff;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            float: right;
+        }
+        #package-details{
+            font-size: 14px;
+            color: #666;
+            cursor: pointer;
+        }
+        /* 特色介绍 */
+        .productBox{
+            margin: 30px 0;
+            padding: 40px 50px;
+            color: #666;
+            background: #F0F9F9;
+        }
+        .productBox p{
+            font-size: 14px;
+            line-height: 24px;
+        }
+        .productBox h3{
+            margin-bottom: 10px;
+        }
+        .productDetail img{
+            width: 1000px;
+            margin: 10px 0;
+            /* height: 390px; */
+            /* margin-left: 100px; */
+        }
+        .productDetail h6{
+            font-size: 16px;
+        }
+        /* 评论 */
+        .discuss-item{
+            padding: 10px 0;
+            border-bottom: 1px dashed #d2d2d2;
+        }
+        .discuss-item-head{
+            height: 50px;
+        }
+        .discuss-item-head .discuss-head-left{
+            width: 50%;
+            line-height: 35px;
+            float: left;
+        }
+        .discuss-head-left img{
+            width: 35px;
+            height: 35px;
+            margin-right: 10px;
+            float: left;
+        }
+        .discuss-head-left p{
+            font-size: 16px;
+            color: #333;
+            float: left;
+            
+        }
+        .discuss-head-right{
+            width: 50%;
+            padding-top: 20px;
+        }
+        .discuss-head-right p{
+            font-size: 14px;
+            padding-right: 20px;
+            float: left;
+        }
+        .discuss-head-right p img{
+            width: 20px;
+            height: 20px;
+        }
+        .commentContent{
+            font-size: 14px;
+            color: #333;
+        }
+        .img-prview {
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+            margin-top: 5px;
+            padding: 0 5px;
+        }
+
+        .img-item {
+            width: 100px;
+            height: 100px;
+            float: left;
+            margin-right: 8px;
+            margin-bottom: 5px;
+        }
+
+        .img-prview .img-item:nth-child(4) {
+            margin: 0;
+        }
+
+        .img-item img {
+            width: 100%;
+            height: 100%;
+        }
+        .noComment{
+            padding: 10px 0;
+            border-bottom: 1px dashed #d2d2d2;
+        }
+    </style>
+    <style>
+        .product{
+            width: 1600px;
+            margin: auto;
+        }
+        .product .product-title{
+            margin-top: 30px;
+            padding: 10px 0 30px 0;
+            border-bottom: 2px solid #DBDBDB;
+        }
+        .product .product-title .name{
+            float: left;
+        }
+        .product .product-title .name span:nth-child(1){
+            padding-right: 20px;
+            font-size: 30px;
+            font-weight: 500;
+            font-family: PingFang-SC-Bold;
+            color:rgba(51,51,51,1);
+        }
+        .product .product-title .name span:nth-child(2){
+            font-family:PingFang-SC-Bold;
+            font-weight:bold;
+            color:rgba(255,79,79,1);
+        }
+        .product .product-title .price{
+            float: right;
+            font-size: 14px;
+        }
+        .product .product-title .price span:nth-child(1){
+            color: #FF4F4F;
+        }
+        .product .product-title .price span:nth-child(2){
+            color: #FF4F4F;
+            font-size: 26px;
+        }
+        .product .product-title .price button{
+            width: 169px;
+            height: 46px;
+            margin-left: 20px;
+            color: #fff;
+            font-size: 22px;
+            background:rgba(88,192,198,1);
+            border-radius:8px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部 -->
+    <div id="header">
+        <div class="header-top">
+            <div class="header-nav">
+                <div class="topLogin">
+                    <ul>
+                        <li id="login"><a href="login.html">登录</a> </li>
+                        <li><a href="register.html">注册</a> </li>
+                    </ul>
+                </div>
+                <ul class="clearfix">
+                    <li><a href="http://business.tongyoutrip.com/" target="_blank" class="shouye">商家入驻</a> </li>
+                    <li>0571-86981186 </li>
+                    <li><a href="register.html"></a> </li>
+                </ul>
+            </div>
+        </div>
+        <div class="header-box">
+            <div class="topNavWrapper">
+                <div class="topContent">
+                    <div class="topLogo">
+                        <img src="img/logo.jpg" alt="">
+                    </div>
+                    <div class="topSearch">
+                        <span>同游科技</span>
+                    </div>
+                </div>
+                <div class="menuNav">
+                    <ul id="menu">
+                        <li><a href="index.html">首页</a> </li>
+                        <li class="changeColor"><a href="productList.html">景点</a></li>
+                        <li><a href="hotel/hotel.html">酒店</a></li>
+                        <li><a href="index.html">目的地</a></li>
+                        <li><a href="Topic.html">专题</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="menuNavOuter">
+            
+        </div>
+    </div>
+
+    <!-- 景点 -->
+    <div class="product">
+        <div class="product-title clearfix">
+            <div class="name"><span class="productName">杭州宋城古情</span><span>4A景区</span></div>
+            <div class="price"><span>¥</span><span class="minPrice">99</span>起 <button>立即抢购</button></div>
+        </div>
+        <!-- 轮播 -->
+        <div class="carousel">
+            <div class="carousel-product">
+               <img src="" alt="">
+            </div>
+            <div class="carousel-right">
+                <p class="carousel-productName"></p>
+                <p class="carousel-common"><span>景点位置：</span><span class="address"></span></p>
+                <p class="carousel-common"><span>服务保障：</span><span style="color: #57BFC6">入园保障 &nbsp;&nbsp;  如实描述  &nbsp;&nbsp;  贵就赔</span></p>
+                <div class="carousel-comment">
+                    <div class="title clearfix">
+                        <p class="star"><img src="" alt=""></p>
+                        <p>好评  |</p>
+                        <p class="number"><span>35</span>人点评</p>
+                    </div>
+                    <div class="text"></div>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <!-- 详情 -->
+    <div class="newProduct">
+        <div class="tab_title">
+            <ul class="clearfix">
+                <li class="current" onclick="stick1();">门票预定</li>
+                <li onclick="stick2();">特色介绍</li>
+                <!-- <li onclick="stick3();">购买须知</li> -->
+                <li onclick="stick4();">用户评论</li>
+            </ul>
+        </div>
+        <div id="hot-con">
+            <div class="package">
+                <div class="package-left">
+                    <p>套餐名</p>
+                </div>
+                <div class="package-right">
+                    <p><span>￥</span> 180</p>
+                    <button>预定</button>
+                </div>
+            </div>
+        </div>
+        <div class="productBox productDetailBox">
+            <h3 style="font-size: 16px;color: #58C0C6;">特色介绍</h3>
+            <div class="productDetail"></div>
+        </div>
+        <!-- <div class="productBox packageDetailBox">
+            <h3 style="font-size: 16px;">购买须知</h3>
+            <div class="packageDetail"></div>
+        </div> -->
+        <div class="productBox productDiscuss">
+            <h3 style="font-size: 16px;color: #58C0C6;">用户评论</h3>
+            <div class="discuss"></div>
+        </div>
+    </div>
+    <!-- 合作伙伴 -->
+    <div class="newProduct">
+        <div class="tab_title">
+            <h2 style="float: left;">合作伙伴</h2>
+        </div>
+        <div class="invest-list">
+            <ul class="clearfix">
+                <li><img src="img/logo/印象西湖.jpg" alt=""><p>印象西湖</p></li>
+                <li><img src="img/logo/西溪湿地.jpg" alt=""><p>西溪湿地</p></li>
+                <li><img src="img/logo/千岛湖.jpg" alt=""><p>千岛湖</p></li>
+                <li><img src="img/logo/中南百草园.jpg" alt=""><p>中南百草园</p></li>
+                <li><img src="img/logo/双溪漂流.gif" alt=""><p>双溪漂流</p></li>
+                <li><img src="img/logo/垂云通天河.png" alt=""><p>垂云通天河</p></li>
+                <li><img src="img/logo/天岳幕阜山.png" alt=""><p>天岳幕阜山</p></li>
+                <li><img src="img/logo/春秋旅游.jpg" alt=""><p>春秋旅游</p></li>
+                <li><img src="img/logo/杭州东方文化园.png" alt=""><p>杭州东方文化园</p></li>
+                <li><img src="img/logo/杭州市运河综合保护开发建设集团.jpg" alt=""><p>杭州市运河综合保护开发建设集团</p></li>
+                <li><img src="img/logo/杭州极地海洋公园.png" alt=""><p>杭州极地海洋公园</p></li>
+                <li><img src="img/logo/梅花洲.png" alt=""><p>梅花洲</p></li>
+                <li><img src="img/logo/永嘉书院.png" alt=""><p>永嘉书院</p></li>
+                <li><img src="img/logo/浙旅集团.png" alt=""><p>浙旅集团</p></li>
+                <li><img src="img/logo/浙江外事旅游.png" alt=""><p>浙江外事旅游</p></li>
+                <li><img src="img/logo/清水湾温泉.jpg" alt=""><p>清水湾温泉</p></li>
+                <!-- <li><img src="img/logo/莫干山.png" alt=""></li> -->
+            </ul>
+            <ul class="clearfix" style="display: none;">
+                <li><img src="img/logo/东平水浒影视城.png" alt=""><p>东平水浒影视城</p></li>
+                <li><img src="img/logo/莫干山.png" alt=""><p>莫干山</p></li>
+                <li><img src="img/logo/诸葛八卦村.png" alt=""><p>诸葛八卦村</p></li>
+                <li><img src="img/logo/长兴旅游集团.jpg" alt=""><p>长兴旅游集团</p></li>
+                <li><img src="img/logo/陕旅集团.jpg" alt=""><p>陕旅集团</p></li>
+            </ul>
+        </div>
+        <ul class="invest-dot clearfix">
+                <li class="change"></li>
+                <li></li>
+            </ul>
+    </div>
+    <!-- 底部 -->
+    <div class="footer">
+        <div class="Contactus">
+            <div><span>24小时客服热线：0571-86981889 同游总部：杭州市天目山路226号网新大厦3楼326</span></div>
+            <div>
+                <ul class="clearfix">
+                    <li><a href="">关于同游</a></li>
+                    <li><a href="">联系我们</a></li>
+                    <li><a href="">投诉建议</a></li>
+                    <li><a href="">同游服务</a></li>
+                    <li><a href="">商家入驻</a></li>
+                    <li><a href="">使用指南</a></li>
+                    <li><a href="">运营方案</a></li>
+                    <li><a href="">同游团队</a></li>
+                    <li><a href="">加入我们</a></li>
+                </ul>
+            </div>
+            <div>
+                <ul class="clearfix" style="margin-left: 168px;">
+                    <li>友情链接：</li>
+                    <li><a href="http://www.guoshu.cn/" target="back">找果蔬网</a></li>
+                    <li><a href="http://www.hzvhost.cn/" target="back">域名注册</a></li>
+                    <li><a href="http://www.hzvhost.com/ " target="back">网站建设</a></li>
+                    <li><a href="http://www.dazj.cn/" target="back">空间租用</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <div style="width:1200px; margin:0 auto">
+                <span>Copyright©2017.浙ICP17016319号-1</span>
+                <span> &nbsp; 杭州同游科技有限公司</span>
+                <span> &nbsp; new.tongyoutrip.com</span>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/swiper/swiper-4.2.0.min.js"></script>
+<script src="js/ajaxTool.js"></script>
+<script src="js/public.js"></script>
+<script src="js/layer-v3.1.1/layer/layer.js"></script>
+<script>
+    var starsLevel = 5;   //星星最高等级_评分
+    var dis = $('.tab_title').offset().top;        //tab
+    var productName;
+    $(function () {
+        var productId = GetQueryString("productId");
+        // 用户信息
+        getUser();
+        //获取轮播图
+        publicAjax(baseAjaxUrl + "/ty_api/product/picture/getListByProductId", "POST", {
+            "productId": productId,
+            "pageNum": 1,
+            "pageSize": 3
+        }, goodsSwiperCall);
+        //获取产品详情信息
+        publicAjax(baseAjaxUrl + "/ty_api/product/getProductDetail", "POST", {
+            "productId": productId,
+            "pageNum": 1,
+            "pageSize": 3
+        }, detailCall);
+        //获取产品套餐
+        publicAjax(baseAjaxUrl + "/ty_api/product/package/getListByProductId", "POST", {
+            "productId": productId,
+            "pageNum": 1,
+            "pageSize": 3
+        }, productPackageCall);
+        //获取评论相关
+        publicAjax(baseAjaxUrl + "/ty_api/product/comment/queryProductComment", "POST", {"productId": productId}, getProductCommentCall);
+
+    });
+    function goodsSwiperCall(e){
+        /*用于存放轮播内容*/
+        var innerHtml = '';
+        if (e.errorCode == 200) {
+            var data = e.data.list;
+            var linkUrl;
+            $(".carousel-product img").attr("src", baseImgUrl + data[0].pictureUrl + ".jpg")
+            for (var i = 0; i < data.length; i++) {
+                innerHtml +=
+                    '<div class="swiper-slide">\n' +
+                    '      <img src="' + baseImgUrl + data[i].pictureUrl + '.jpg" alt="">\n' +
+                    '</div>\n';
+            }
+            $(".swiper-wrapper").html(innerHtml);
+            lunbo();
+        }
+    }
+    // 产品信息
+    function detailCall(e){
+        if (e.errorCode == 200) {
+            var data = e.data.productDetail;
+            var address = "景点位置：" + data.address;
+            productName = data.productName;
+            $(".product-title .name .productName").html(data.productName);
+            $(".product-title .price .minPrice").html(data.minPrice);
+            $(".carousel-productName").html(data.productTitle);
+            $("title").html(data.productName);
+            $(".carousel-common .address").html(data.address);
+            $(".productDetail").html(data.detail);
+
+            var img = $(".productDetail img");
+            console.log(img);
+            var h;
+            for(var i=0; i<img.length; i++){
+                h = img[i].naturalHeight*1000/img[i].naturalWidth;
+                img[i].style.height = h;
+            }
+
+        }
+    }
+
+    // 套餐
+    function productPackageCall(e){
+        var innerHtml = '';
+        if (e.errorCode == 200) {
+            var data = e.data.list;
+            for (var i = 0; i < data.length; i++) {
+                var refunds = '';
+                if (data[i].refundType == "NO_REFUND") {
+                    refunds = "概不退款";
+                } else {
+                    refunds = "条件退";
+                }
+                innerHtml +=
+                    '<div class="package">'+
+                        '<div class="package-left">'+
+                            '<p>' + data[i].packageName + '</p>'+
+                       ' </div>'+
+                        '<div class="package-right">'+
+                            '<p class="refunds">' + refunds + '</p>'+
+                            '<p><span>￥</span>' + data[i].salePrice + '</p>'+
+                            '<p id="package-details" onclick="details('+data[i].productPackageId+')">详情></p>'+
+                            '<button onclick="nowReady('+data[i].productPackageId+')">立即抢购</button>'+
+                        '</div>'+
+                    '</div>';
+            }
+            $("#hot-con").html(innerHtml);
+        } else if (e.errorCode == 530) {
+            //信息框
+            
+        }
+    }
+    // 套餐富文本
+    function details(id){
+        publicAjax(baseAjaxUrl + "/ty_api/product/package/getDetail", "POST", {"productPackageId": id}, getPackageDetailCall);
+    }
+    function getPackageDetailCall(e){
+        if(e.errorCode == 200){
+            layer.open({
+                type: 1,
+                title: [e.data.packageName, 'font-size:18px;'],
+                area: ['700px', '500px'],
+                shadeClose: true, //点击遮罩关闭
+                content: '\<\div style="padding:20px;">'+e.data.detail+'\<\/div>'
+            });
+        }
+    }
+    // 跳转预定
+    function nowReady(id,name){
+        // location.href = "order.html?productPackageId= "+id;
+        window.open("order.html?productPackageId=" + id); 
+    }
+    // 评论
+    function getProductCommentCall(res){
+        console.log(res);
+        if (res.errorCode == 200 && res.data.list.length > 0) {
+            var data = res.data.list;
+            var innerHtml = '';
+            var starsLevel=5;   //星星最高等级
+            $(".carousel-comment .title .number span").html(res.data.total);
+            $(".carousel-comment .text").html(data[0].commentContent);
+            for (var i = 0; i < data.length; i++) {
+                var starsHtml='';   //星星的img标签
+                var merchants='';   //商家回复
+                var pictureHtml=''; //评价图片
+                //是否有商家回复
+                if (data[i].revertContent != null) {
+                    merchants =
+                        '<div class="merchants-discuss">\n' +
+                        '   <p>商家回复:</p>\n' +
+                        '   <p>'+data[i].revertContent+'</p>\n' +
+                        '</div>\n';
+                }
+                //星星评分
+                var solidStars = data[i].score;
+                var emptyStars = starsLevel - solidStars;
+                for (var j = 0; j < solidStars; j++) {
+                    starsHtml += '<img src="img/stars2@3x.png" alt="">';
+                }
+                for (var n = 0; n < emptyStars; n++) {
+                    starsHtml += '<img src="img/stars@3x.png" alt="">';
+                }
+
+                $(".carousel-comment .title .star").html(starsHtml);
+
+                //循环评价的图片
+                for (var m = 0; m < data[i].pictureList.length; m++) {
+                    pictureHtml +=
+                        '         <div class="img-item">\n' +
+                        '             <img src="' + baseImgUrl+data[i].pictureList[m].pictureUrl + '_small.jpg" alt="">\n' +
+                        '         </div>\n';
+                }
+                innerHtml +=
+                    '               <div class="discuss-item">\n' +
+                    '                    <div class="discuss-item-head">\n' +
+                    '                        <div class="discuss-head-left">\n' +
+                    '                            <img src="'+baseImgUrl+data[i].headImg+'_small.jpg" alt="">\n' +
+                    '                            <p class="userName"> '+data[i].userName+'</p>\n' +
+                    '                        </div>\n' +
+                    // '                        <div class="discuss-head-right">\n' +
+                    // '                            <p class="createTime">'+timeTransformation(data[i].createTime,"dateCount")+'</p>\n' +
+                    // '                            <p class="starsImg">'+starsHtml+'</p>\n' +
+                    // '                        </div>\n' +
+                    '                    </div>\n' +
+                    '                    <div class="discuss-item-com">\n' +
+                    '                        <div class="img-prview">'+pictureHtml+'</div>\n' +
+                    '                        <div class="commentContent">'+data[i].commentContent+'</div>' +
+                    // '                          '+merchants+
+                    '                    </div>\n' +
+                '                        <div class="discuss-head-right clearfix">\n' +
+                '                            <p class="createTime">'+timeTransformation(data[i].createTime,"dateCount")+'</p>\n' +
+                '                            <p class="starsImg">'+starsHtml+'</p>\n' +
+                '                        </div>\n' +
+                    '                </div>'
+            }
+            $(".discuss").html(innerHtml);
+        }else{
+            var innerHtml = '<div class="noComment">暂无评论</div>';
+            $(".discuss").html(innerHtml);
+        }
+    }
+
+    function stick1() {
+        $('.tab_title ul li').eq(0).addClass("current");
+        $('.tab_title ul li').eq(0).siblings().removeClass("current");
+        $("html,body").animate({scrollTop: $("#hot-con").offset().top}, 100);
+    }
+    function stick2() {
+        $('.tab_title ul li').eq(1).addClass("current");
+        $('.tab_title ul li').eq(1).siblings().removeClass("current");
+        $("html,body").animate({scrollTop: $(".productDetailBox").offset().top}, 100);
+    }
+    function stick4() {
+        $('.tab_title ul li').eq(2).addClass("current");
+        $('.tab_title ul li').eq(2).siblings().removeClass("current");
+        $("html,body").animate({scrollTop: $(".discuss").offset().top - 100}, 100);
+    }
+    window.onscroll = function () {
+            var disA = $("#hot-con").offset().top;
+            var disB = $(".productDetailBox").offset().top;
+            console.log(dis);
+            // disC = $("#productDiscuss").offset().top;
+            if ($(window).scrollTop() >= dis) {
+                $('.tab_title').addClass("active");
+            } else {
+                $('.tab_title').removeClass("active");
+            }
+            /*监听滚动距离，实现切换*/
+            if ($(window).scrollTop() >= 0) {
+                $('.tab_title ul li').eq(0).addClass("current");
+                $('.tab_title ul li').eq(0).siblings().removeClass("current");
+            } else {
+                $('.tab_title ul li').eq(0).removeClass("current");
+            }
+            if ($(window).scrollTop() >= disB) {
+                $('.tab_title ul li').eq(1).addClass("current");
+                $('.tab_title ul li').eq(1).siblings().removeClass("current");
+            } else {
+                $('.tab_title ul li').eq(1).removeClass("current");
+            }
+
+        }
+</script>
+</html>

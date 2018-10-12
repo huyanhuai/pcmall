@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>自驾游  周边游 旅游度假 亲子游 民宿  景点门票 酒店预订 同游科技 同游旅游 杭州同游科技有限公司</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="js/swiper/swiper-4.2.0.min.css">
+    <link rel="stylesheet" href="css/public.css">
+    <style>
+        /* 轮播 */
+        /* 顶部 */
+        
+        i,em{
+            font-style: normal;
+        }
+        /* 搜索框 */
+        .carousel-left{
+            width:700px;
+            height:140px;
+            background:rgba(0,0,0,.48);
+            border-radius:8px;
+            position: absolute;
+            top: 40px;
+            left: 8%;
+            z-index: 100;
+        }
+        .carousel-left>div{
+            width: 650px;
+            margin-left: 30px;
+        }
+        .carousel-left .searchTerms{
+            margin-top: 20px;
+        }
+        .carousel-left .searchTerms ul li{
+            width: 80px;
+            color: #fff;
+            padding-left: 8px;
+            padding-bottom: 20px;
+            float: left;
+        }
+        .carousel-left .searchBox input{
+            width: 550px;
+            height: 50px;
+            font-size: 16px;
+            background:rgba(255,255,255,1);
+            border-radius:8px;
+            padding-left: 8px;
+            float: left;
+        }
+        .carousel-left .searchBox div{
+            width:70px;
+            height:50px;
+            background:rgba(88,192,198,1);
+            border-radius:8px;
+            margin-left: 20px;
+            cursor: pointer;
+            float: left;
+        }
+        /* 精选特惠 */
+        .dadProject{
+            width: 1600px;
+            min-height: 580px;
+            margin: auto;
+            margin-top: 50px;
+        }
+        .dadProject .tab_nav{
+            height: 50px;
+            line-height: 50px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #dfdfdf;
+        }
+        .dadProject .tab_nav h2{
+            color: #333;
+            font-size: 26px;
+            font-family: PingFang-SC-Bold;
+            font-weight: normal;
+        }
+        .dadProject .tab_nav ul{
+            float: left;
+            /* margin: 10px 0 0 50px; */
+        }
+        .dadProject .tab_nav ul li{
+            float: left;
+            max-width: 84px;
+            height: 50px;
+            line-height: 50px;
+            color: #333;
+            font-weight: bolder;
+            float: left;
+            margin-left: 50px;
+            cursor: pointer;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -o-text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .dadProject .tab_nav ul li.at{
+            color: #58C0C6;
+            border-bottom: 2px solid #58C0C6;
+            font-weight: 700;
+        }
+        .dadProject .projectBox ul li{
+            width: 380px;
+            height: 410px;
+            margin: 0 0 20px 20px;
+            float: left;
+        }
+        .dadProject .projectBox ul li:nth-child(1){
+            margin: 0 0 20px 0;
+        }
+        .dadProject .projectBox ul li .pic-box{
+            width: 380px;
+            height: 290px;
+            position: relative;
+        }
+        .dadProject .projectBox ul li .pic-box img{
+            width: 100%;
+            height: 100%;
+        }
+        .dadProject .projectBox ul li .pic-box span{
+            height: 32px;
+            position: absolute;
+            background: #ff6e60;
+            right: 0;
+            bottom: 0;
+            color: #fff;
+            line-height: 32px;
+            padding: 0 12px;
+            z-index: 19;
+        }
+        .dadProject .projectBox ul li .detail-box{
+            height: 120px;
+            border: 1px solid #DEDEDE;
+            border-top: none;
+            padding: 20px 10px 0 10px;
+        }
+        .dadProject .projectBox ul li .detail-box p {
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+        .projectBox ul li .detail-box p {
+            height: 42px;
+            font-size: 18px;
+            /* color: #333; */
+            line-height: 21px;
+            overflow: hidden;
+        }
+        .projectBox ul li .detail-box div {
+            color: #999;
+            line-height: 20px;
+            padding-top: 5px;
+            font-size: 14px;
+        }
+        .projectBox ul li .detail-box div em{
+            float: right;
+        }
+        .projectBox ul li.li-first {
+            width: 800px;
+            height: 840px;
+            position: relative;
+        }
+        .projectBox ul li.li-first .pic-box{
+            width: 800px;
+            height: 840px;
+        }
+        .dadProject .projectBox ul li.li-first .pic-box span{
+            width: 20%;
+            height: 53px;
+            line-height: 53px;
+            font-size: 14px;
+            text-align: center;
+        }
+        .projectBox ul li.li-first .pic-box span i{
+            font-size: 20px;
+        }
+        .projectBox ul li.li-first .pic-box span em{
+            font-size: 22px;
+            font-family: Arial;
+        }
+        .dadProject .projectBox ul li.li-first .intro-box{
+            width: 80%;
+            padding: 9px 10px 7px 10px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background: rgba(0, 0, 0, .5);
+            color: #fff;
+            z-index: 100;
+        }
+        .projectBox ul li.li-first .intro-box>div{
+            font-size: 12px;
+            color: #ccc;
+        }
+        .projectBox ul li.li-first .intro-box>div i{
+            width: 3px;
+            height: 3px;
+            display: inline-block;
+            background: #ccc;
+            margin: 0 6px;
+            vertical-align: middle;
+        }
+
+        #hotel>div:nth-child(3),#hotel>div:nth-child(6){
+            margin-right: 0;
+        }
+        /* 酒店 */
+        .tab-list>div{
+            float: left;
+        }
+        .tab-list .tab-list-left{
+            width: 1195px;
+        }
+        .tab-list .tab-list-right{
+            width: 385px;
+            min-height: 700px;
+            margin-top: 10px;
+            margin-right: 20px;
+        }
+        .tab-list .tab-list-right .hot-common{
+            margin-bottom: 10px;
+        }
+        .tab-list .tab-list-right .hot-common p{
+            color: #333;
+            font-weight: 700;
+            line-height: 26px;
+            padding: 10px 0 0 0;
+        }
+        .tab-list .tab-list-right .hot-common ul{
+            
+        }
+        .tab-list .tab-list-right .hot-common ul li{
+            width: 95px;
+            padding-left: 5px;
+            padding-top: 20px;
+            float: left;
+        }
+        .tab-list .tab-list-right .hot-common ul li a{
+            color: #666;
+            line-height: 26px;
+        }
+        .tab-list .tab-list-right .hot-topic ul li{
+            width: 100px;
+            float: none;
+        }
+
+        #hotDes>div:nth-child(3),#hotDes>div:nth-child(6){
+            margin-right: 0;
+        }
+        #newProductBox>div:nth-child(4),#newProductBox>div:nth-child(8){
+            margin-right: 0;
+        }
+        
+        /* 热门目的地 */
+        
+        /* 底部 */
+
+    </style>
+</head>
+<body>
+    <!-- 头部 -->
+    <div id="header">
+        <div class="header-top">
+            <div class="header-nav">
+                <div class="topLogin">
+                    <ul>
+                        <li id="login"><a href="login.html">登录</a> </li>
+                        <li><a href="register.html">注册</a> </li>
+                    </ul>
+                </div>
+                <ul class="clearfix">
+                    <li><a href="http://business.tongyoutrip.com/" target="_blank" class="shouye">商家入驻</a> </li>
+                    <li>0571-86981186 </li>
+                    <li><a href="register.html"></a> </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="topNavWrapper">
+            <div class="topContent">
+                <div class="topLogo">
+                    <img src="img/logo.jpg" alt="">
+                </div>
+                <div class="topSearch">
+                    <span>同游科技</span>
+                </div>
+            </div>
+            <div class="menuNav">
+                <ul id="menu">
+                    <li ><a class="changeColor" href="index.html" >首页</a> </li>
+                    <li><a href="productList.html">景点</a></li>
+                    <li><a href="hotel/hotel.html">酒店</a></li>
+                    <li><a href="destination.html">目的地</a></li>
+                    <li><a href="Topic.html">专题</a></li>
+                    <!-- <li id="login"><a href="login.html">登录/注册</a> </li> -->
+                </ul>
+            </div>
+        </div>
+        <div class="menuNavOuter">
+            
+        </div>
+    </div>
+    <!-- 轮播 -->
+    <div id="carousel">
+        <div class="carousel-left">
+            <div class="searchTerms">
+                <ul>
+                    <li>全部</li>
+                    <li>景点</li>
+                    <li>酒店</li>
+                    <li>目的地</li>
+                    <li>专题</li>
+                </ul>
+            </div>
+            <div class="searchBox">
+                <input id="searchtext" type="text" placeholder="搜索旅游/门票/酒店/目的地">
+                <div onclick="searchSites();"></div>
+            </div>
+        </div>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <!-- <div class="swiper-slide">Slide 1</div>
+                <div class="swiper-slide">Slide 2</div>
+                <div class="swiper-slide">Slide 3</div> -->
+            </div>
+            <!-- 如果需要分页器 -->
+            <div class="swiper-pagination"></div>
+            <!-- <div class="button-prev"></div> -->
+            <!-- <div class="button-next"></div> 右箭头 -->
+        </div>
+    </div>
+    <!-- 精选特惠 -->
+    <div class="dadProject">
+        <div class="tab_nav">
+            <h2 style="float: left;">精选特惠</h2>
+            <ul class="tab-type">
+                <li class="at">附近景点</li>
+                <li>跟团游</li>
+                <li>亲子游</li>
+                <li>自由行</li>
+                <li>自驾游</li>
+            </ul>
+        </div>
+        <div class="projectBox">
+            <ul>
+                <!-- <li class="li-first">
+                    <a href="">
+                        <div class="pic-box"><img src="img/addto@2x.png" alt=""><span><i>¥</i><em>200</em> 起</span></div>
+                        <div class="intro-box">
+                            <p>曼谷+芭提雅6或7日超值游</p>
+                            <div>
+                                <span>出境游 <i></i> 杭州出发</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <div class="pic-box"><img src="img/addto@2x.png" alt=""><span><i>¥</i><em>200</em> 起</span></div>
+                        <div class="detail-box">
+                            <p>曼谷+芭提雅6或7日超值游</p>
+                            <div>
+                                <span>出境游</span>
+                                <em>杭州出发</em>
+                            </div>
+                        </div>
+                    </a>
+                </li> -->
+            </ul>
+        </div>
+    </div>
+    <div style="clear: both;"></div>
+    <!-- 酒店 -->
+    <div class="dadProject">
+        <div class="tab_nav">
+            <h2 style="float: left;">住酒店</h2>
+            <ul>
+                <li class="at">杭州</li>
+                <li>绍兴</li>
+                <li>湖州</li>
+                <li>嘉兴</li>
+                <li>宁波</li>
+            </ul>
+        </div>
+        <div class="tab-list">
+            <div class="tab-list-right">
+                <div class="hot-common hot-city">
+                    <p>热门城市</p>
+                    <ul class="clearfix">
+                        <li><a href="">杭州</a></li>
+                        <li><a href="">绍兴</a></li>
+                        <li><a href="">湖州</a></li>
+                        <li><a href="">嘉兴</a></li>
+                        <li><a href="">宁波</a></li>
+                        <li><a href="">无锡</a></li>
+                        <li><a href="">常州</a></li>
+                        <li><a href="">丽水</a></li>
+                        <li><a href="">温州</a></li>
+                        <li><a href="">台州</a></li>
+                        <li><a href="">衢州</a></li>
+                        <li><a href="">南京</a></li>
+                    </ul>
+                </div>
+                <div class="hot-common hot-topic">
+                    
+                </div>
+                <div></div>
+            </div>
+            <div class="tab-list-left" id="hotel">
+
+            </div>
+            
+        </div>
+        
+    </div>
+    <div style="clear: both;"></div>
+    <!-- 热门目的地 -->
+    <div class="dadProject">
+        <div class="tab_nav">
+            <h2 style="float: left;">热门目的地</h2>
+            <ul class="hot-menu clearfix">
+                <!-- <li class="at">杭州西湖</li>
+                <li>千岛湖</li>
+                <li>西溪湿地</li>
+                <li>莫干山</li>
+                <li>G20体验馆</li> -->
+            </ul>
+        </div>
+        <div class="tab-list clearfix">
+            <div class="tab-list-right">
+                <div class="hot-common hot-topic">
+                    <p>热门主题活动</p>
+                    <ul class="clearfix">
+                        <li><a href="">游乐园</a></li>
+                        <li><a href="">漂流</a></li>
+                        <li><a href="">亲子户外</a></li>
+                    </ul>
+                </div>
+                <div></div>
+            </div>
+            <div class="tab-list-left" id="hotDes">
+
+            </div>
+        </div>
+    </div>
+    <!-- 最新产品 -->
+    <div class="newProduct">
+        <div class="tab_title">
+            <h2 style="float: left;">最新上线</h2>
+            <!-- <h4 style="float: right;"><a href="productList.html">more ></a> </h4> -->
+        </div>
+        <div class="tab-list clearfix">
+            <div class="" id="newProductBox">
+
+            </div>
+        </div>
+    </div>
+    
+    <!-- 热门专题 -->
+    <!-- <div class="newProduct hot-destination">
+        <div class="tab_title">
+            <h3 style="float: left;">热门专题</h3>
+            <h4 style="float: right;">more ></h4>
+        </div>
+        <div id="hotTopic">
+
+        </div>
+    </div> -->
+    <!-- 合作伙伴 -->
+    <div class="newProduct">
+        <div class="tab_title">
+            <h2 style="float: left;">合作伙伴</h2>
+        </div>
+        <div class="invest-list">
+            <ul class="clearfix">
+                <li><img src="img/logo/印象西湖.jpg" alt=""><p>印象西湖</p></li>
+                <li><img src="img/logo/西溪湿地.jpg" alt=""><p>西溪湿地</p></li>
+                <li><img src="img/logo/千岛湖.jpg" alt=""><p>千岛湖</p></li>
+                <li><img src="img/logo/中南百草园.jpg" alt=""><p>中南百草园</p></li>
+                <li><img src="img/logo/双溪漂流.gif" alt=""><p>双溪漂流</p></li>
+                <li><img src="img/logo/垂云通天河.png" alt=""><p>垂云通天河</p></li>
+                <li><img src="img/logo/天岳幕阜山.png" alt=""><p>天岳幕阜山</p></li>
+                <li><img src="img/logo/春秋旅游.jpg" alt=""><p>春秋旅游</p></li>
+                <li><img src="img/logo/杭州东方文化园.png" alt=""><p>杭州东方文化园</p></li>
+                <li><img src="img/logo/杭州市运河综合保护开发建设集团.jpg" alt=""><p>杭州市运河综合保护开发建设集团</p></li>
+                <li><img src="img/logo/杭州极地海洋公园.png" alt=""><p>杭州极地海洋公园</p></li>
+                <li><img src="img/logo/梅花洲.png" alt=""><p>梅花洲</p></li>
+                <li><img src="img/logo/永嘉书院.png" alt=""><p>永嘉书院</p></li>
+                <li><img src="img/logo/浙旅集团.png" alt=""><p>浙旅集团</p></li>
+                <li><img src="img/logo/浙江外事旅游.png" alt=""><p>浙江外事旅游</p></li>
+                <li><img src="img/logo/清水湾温泉.jpg" alt=""><p>清水湾温泉</p></li>
+                <!-- <li><img src="img/logo/莫干山.png" alt=""></li> -->
+            </ul>
+            <ul class="clearfix" style="display: none;">
+                <li><img src="img/logo/东平水浒影视城.png" alt=""><p>东平水浒影视城</p></li>
+                <li><img src="img/logo/莫干山.png" alt=""><p>莫干山</p></li>
+                <li><img src="img/logo/诸葛八卦村.png" alt=""><p>诸葛八卦村</p></li>
+                <li><img src="img/logo/长兴旅游集团.jpg" alt=""><p>长兴旅游集团</p></li>
+                <li><img src="img/logo/陕旅集团.jpg" alt=""><p>陕旅集团</p></li>
+            </ul>
+        </div>
+        <ul class="invest-dot clearfix">
+                <li class="change"></li>
+                <li></li>
+            </ul>
+    </div>
+    <!-- 底部 -->
+    <div class="footer">
+        <div class="Contactus">
+            <div><span>24小时客服热线：0571-86981889 同游总部：杭州市天目山路226号网新大厦3楼326</span></div>
+            <div>
+                <ul class="clearfix">
+                    <li><a href="">关于同游</a></li>
+                    <li><a href="">联系我们</a></li>
+                    <li><a href="">投诉建议</a></li>
+                    <li><a href="">同游服务</a></li>
+                    <li><a href="">商家入驻</a></li>
+                    <li><a href="">使用指南</a></li>
+                    <li><a href="">运营方案</a></li>
+                    <li><a href="">同游团队</a></li>
+                    <li><a href="">加入我们</a></li>
+                </ul>
+            </div>
+            <div>
+                <ul class="clearfix" style="margin-left: 168px;">
+                    <li>友情链接：</li>
+                    <li><a href="http://www.guoshu.cn/" target="back">找果蔬网</a></li>
+                    <li><a href="http://www.hzvhost.cn/" target="back">域名注册</a></li>
+                    <li><a href="http://www.hzvhost.com/ " target="back">网站建设</a></li>
+                    <li><a href="http://www.dazj.cn/" target="back">空间租用</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <div style="width:1200px; margin:0 auto">
+                <span>Copyright©2017.浙ICP17016319号-1</span>
+                <span> &nbsp; 杭州同游科技有限公司</span>
+                <span> &nbsp; new.tongyoutrip.com</span>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/jq.lazyload.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/swiper/swiper-4.2.0.min.js"></script>
+<script src="js/ajaxTool.js"></script>
+<script src="js/public.js"></script>
+<script>
+    var longitude = "120.13026";
+    var latitude = "30.25961";
+    $(function(){
+        
+        /*获取附近景点*/
+        publicAjaxToken(baseAjaxUrl + "/ty_api/product/queryByAddress", "POST", {
+            "pageSize": "5",
+            "pageNum": "1",
+            "longitude": longitude,
+            "latitude": latitude
+        }, getNearCall);
+        /*banner下方的类型*/
+        publicAjax(baseAjaxUrl + "/ty_api/product/package/type/getList", "POST", {
+            "pageSize": "10",
+            "pageNum": "1"
+        }, bannerBotTypeCall);
+    })
+
+    var innerHtml = '';
+    var liHtml = '<li class="li-first">'+
+            '<a href="productDetail.html">'+
+                '<div class="pic-box"><img  class="lazy" src="img/defaultImg.png" width="400" height="200" data-original=" + pictureUrl + " alt=""><span><i>¥</i><em class="minPrice"></em> 起</span></div>'+
+                '<div class="intro-box">'+
+                    '<p></p>'+
+                    '<div>'+
+                        '<span>附近景点 <i></i> 杭州出发</span>'+
+                    '</div>'+
+                '</div>'+
+            '</a>'+
+        '</li>';
+    for (var i = 1; i < 5; i++) {
+            var pictureUrl = "img/defaultImg.png";
+        innerHtml +=
+        '<li>'+
+            '<a href="productDetail.html?productId= + data[i].productId + ">'+
+                '<div class="pic-box"><img class="lazy" src="img/defaultImg.png" width="400" height="200" data-original=" + pictureUrl + " alt=""><span><i>¥</i><em class="minPrice"></em> 起</span></div>'+
+                '<div class="detail-box">'+
+                    '<p></p>'+
+                    '<div>'+
+                        '<span>附近景点</span>'+
+                        '<em>杭州出发</em>'+
+                    '</div>'+
+                '</div>'+
+            '</a>'+
+        '</li>';
+    }
+    $(".projectBox ul").html("");
+    $(".projectBox ul").append(liHtml);
+    $(".projectBox ul").append(innerHtml);
+    // 附近景点回调
+    function getNearCall(e){
+        console.log(e)
+        // var innerHtml = '';
+        if (e.errorCode == 200) {
+            var data = e.data.list;
+            var arrLen = data.length;
+            // var liHtml = '<li class="li-first">'+
+            //         '<a href="productDetail.html?productId=' + data[0].productId + '">'+
+            //             '<div class="pic-box"><img src="' + baseImgUrl + data[0].pictureUrl + '_small.jpg" alt=""><span><i>¥</i><em>' + data[0].minPrice + '</em> 起</span></div>'+
+            //             '<div class="intro-box">'+
+            //                 '<p>' + data[0].productName + '</p>'+
+            //                 '<div>'+
+            //                     '<span>附近景点 <i></i> 杭州出发</span>'+
+            //                 '</div>'+
+            //             '</div>'+
+            //         '</a>'+
+            //     '</li>';
+            // for (var i = 1; i < arrLen; i++) {
+            //     if (data[i].pictureUrl == null) {
+            //         var pictureUrl = "img/defaultImg.png";
+            //     } else {
+            //         var pictureUrl = baseImgUrl + data[i].pictureUrl + '_small.jpg';
+            //     }
+            //     innerHtml +=
+            //     '<li>'+
+            //         '<a href="productDetail.html?productId=' + data[i].productId + '">'+
+            //             '<div class="pic-box"><img class="lazy" src="img/defaultImg.png" width="400" height="200" data-original="' + pictureUrl + '" alt=""><span><i>¥</i><em>' + data[i].minPrice + '</em> 起</span></div>'+
+            //             '<div class="detail-box">'+
+            //                 '<p>' + data[i].productName + '</p>'+
+            //                 '<div>'+
+            //                     '<span>附近景点</span>'+
+            //                     '<em>杭州出发</em>'+
+            //                 '</div>'+
+            //             '</div>'+
+            //         '</a>'+
+            //     '</li>';
+            // }
+            $(".projectBox ul").html("");
+            $(".projectBox ul").append(liHtml);
+            $(".projectBox ul").append(innerHtml);
+            $(".projectBox ul li").each(function (i, v) {
+                console.log(i)
+                $(".projectBox ul li a").eq(i).attr("href","productDetail.html?productId="+data[i].productId);
+                $(".projectBox ul li .minPrice").eq(i).html(data[i].minPrice);
+                $(".projectBox ul li p").eq(i).html(data[i].productName);
+                $(".projectBox ul li img").eq(i).attr("data-original", baseImgUrl + data[i].pictureUrl + '_small.jpg');
+                $("img.lazy").lazyload({
+                    threshold : 200,
+                    effect : "fadeIn"
+                });
+            });
+            
+        }
+    }
+    // 类型回调
+    var da;
+    function bannerBotTypeCall(e){
+        if(e.errorCode == 200){
+            var data = e.data.list;
+            da = e.data.list;
+            // tab切换
+            
+        }
+    }
+    $(".tab-type li").each(function (i, v) {
+        console.log(i-1)
+        $(v).click(function () {
+            $(this).addClass("at").siblings().removeClass("at");
+            if(i == 0){
+                /*获取附近景点*/
+                publicAjaxToken(baseAjaxUrl + "/ty_api/product/queryByAddress", "POST", {
+                    "pageSize": "9",
+                    "pageNum": "1",
+                    "longitude": longitude,
+                    "latitude": latitude
+                }, getNearCall);
+            }else{
+                /*热门目的地详情*/
+                publicAjax(baseAjaxUrl + "/ty_api/product/package/type/queryProductByType", "POST", {
+                    "productPackageTypeId": da[i-1].productPackageTypeId,
+                    "pageSize": "9",
+                    "pageNum": "1"
+                }, getNearCall);
+            }
+        })
+    });
+</script>
+<script>
+    $(function() {
+        // 用户信息
+        getUser();
+        /*顶部广告位*/
+        publicAjax(baseAjaxUrl + "/ty_api/exhibition/getList", "POST", {
+            "site": "CLIENT_BANNER",
+            "pageSize": "3",
+            "pageNum": "1"
+        }, swiperCallback);
+         /*最新上线*/
+         publicAjax(baseAjaxUrl + "/ty_api/product/queryNewProduct", "POST", {
+            "pageSize": "8",
+            "pageNum": "1"
+        }, newCallback);
+        /*热门目的地*/
+        publicAjax(baseAjaxUrl + "/ty_api/subject/getMap", "POST", {
+            "pageSize": "7",
+            "pageNum": "1"
+        }, hotCallback);
+        
+        /*酒店产品*/
+        publicAjax(baseAjaxUrl + "/ty_api/hotel/getSubjectHotel", "POST", {
+            "pageSize": "6",
+            "pageNum": "1"
+        }, hotelCallback);
+    })
+    
+    // 最新上线
+    function newCallback(e) {
+        var innerHtml = '';
+        if (e.errorCode == 200) {
+            var data = e.data.list;
+            var arrLen = data.length;
+            for (var i = 0; i < arrLen; i++) {
+                if (data[i].pictureUrl == null) {
+                    var pictureUrl = "img/defaultImg.png";
+                } else {
+                    var pictureUrl = baseImgUrl + data[i].pictureUrl + '_small.jpg';
+                }
+                innerHtml +=
+                '<div class="surround-content-item">\n' +
+                '   <a href="productDetail.html?productId=' + data[i].productId + '">\n' +
+                '       <div >\n' +
+                '           <img class="lazy" src="img/defaultImg.png" width="400" height="200" data-original="' + pictureUrl + '" alt="">\n' +
+                '       </div>\n' +
+                '       <div class="item-text"><p class="p1">' + data[i].productName + '</p>\n' +
+                '       <div class="p2"><p>' + data[i].score + '分</p> <p><span style="color: #FF574E;">￥</span><span class="item-price">' + data[i].minPrice + '</span><span>起</span></p></div></div>\n' +
+                '    </a>\n' +
+                '</div>';
+            }
+            $("#newProductBox").html(innerHtml);
+            $("img.lazy").lazyload({
+                threshold : 200,
+                effect : "fadeIn"
+            });
+        }
+    }
+    // 热门目的地/专题
+    function hotCallback(e) {
+        var innerHtml1 = '';
+        var innerHtml2 = '';
+        var html1 = "";
+        var html2 = "";
+        if (e.errorCode == 200) {
+            var data1 = e.data.hotAddress.list;
+            var data2 = e.data.hotSubject.list;
+            var arrLen = data1.length;
+            publicAjax(baseAjaxUrl + "/ty_api/subject/queryListBySubject", "POST", {
+                "subjectId": data1[0].subjectId,
+                "pageSize": "6",
+                "pageNum": "1"
+            }, hotDesCallback);
+            
+            // 热门目的地
+            for(var i = 0; i < arrLen; i++){
+                html1 += '<li>'+data1[i].subjectName+'</li>';
+            }
+            $(".hot-menu").append(html1);
+            $(".hot-menu li").eq(0).addClass("at");
+
+            // 热门专题
+            for(var j = 0; j < data2.length; j++){
+                html2 += '<li><a href="hotTopic.html?subjectId=' + data2[j].subjectId + '&subjectTitle=' + data2[j].subjectTitle + '&pictureUrl=' + data2[j].pictureUrl + '&subjectName=' + data2[j].subjectName + '">' + data2[j].subjectName + '</a></li>';
+            }
+            $(".hot-topic ul").html(html2);
+
+             // 目的地tab切换
+             $(".hot-menu li").each(function (i, v) {
+                $(v).click(function () {
+                    $(this).addClass("at").siblings().removeClass("at");
+                    /*热门目的地详情*/
+                    publicAjax(baseAjaxUrl + "/ty_api/subject/queryListBySubject", "POST", {
+                        "subjectId": data1[i].subjectId,
+                        "pageSize": "6",
+                        "pageNum": "1"
+                    }, hotDesCallback);
+                })
+            });
+
+            
+        }
+    }
+    function hotDesCallback(e){
+        var innerHtml = "";
+        if(e.errorCode == 200){
+            var data = e.data.list;
+            // var htmlFirst = 
+            //     '<div class="surround-content-item list-first">'+
+            //        '<a href="productDetail.html?productId=' + data[0].productId + '">'+
+            //             '<img class="lazy" width="400" height="200" data-original="' + baseImgUrl + data[0].pictureUrl + '_small.jpg" alt="">'+
+            //            '<div class="list-first-detail">'+
+            //                '<p class="p1">' + data[0].productName + '</p>'+
+            //                '<p class="p-price"><span>￥</span>' + data[0].minPrice + '</p>'+
+            //            '</div>'+
+            //        '</a>'+
+            //     '</div>';
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].pictureUrl == null) {
+                    var pictureUrl = "img/defaultImg.png";
+                } else {
+                    var pictureUrl = baseImgUrl + data[i].pictureUrl + '_small.jpg';
+                }
+                innerHtml +=
+                '<div class="surround-content-item">\n' +
+                '   <a href="productDetail.html?productId=' + data[i].productId + '">\n' +
+                '       <div >\n' +
+                '           <img class="lazy" width="400" height="200" data-original="' + pictureUrl + '" alt="">\n' +
+                '       </div>\n' +
+                '       <div class="item-text"><p class="p1">' + data[i].productName + '</p>\n' +
+                '       <div class="p2"><p>' + data[i].score + '分</p> <p><span style="color: #FF574E;">￥</span><span class="item-price">' + data[i].minPrice + '</span><span>起</span></p></div></div>\n' +
+                '    </a>\n' +
+                '</div>';
+            }
+            $("#hotDes").html("");
+            // $("#hotDes").append(htmlFirst);
+            $("#hotDes").append(innerHtml);
+            $("img.lazy").lazyload({
+                threshold : 200,
+                effect : "fadeIn"
+            });
+        }
+    }
+    // 酒店
+    function hotelCallback(e) {
+        var innerHtml = '';
+        if (e.errorCode == 200) {
+            var data = e.data.list;
+            var arrLen = data.length;
+            for (var i = 0; i < arrLen; i++) {
+                innerHtml +=
+                '<div class="surround-content-item">\n' +
+                '   <a href="goods.html?productId=' + data[i].hotelId + '">\n' +
+                '       <div>\n' +
+                '           <img class="lazys" src="img/defaultImg.png" width="400" height="200" data-original="' + baseImgUrl + data[i].pictureUrl + '.jpg" alt="">\n' +
+                '       </div>\n' +
+                '       <div class="item-text"><p class="p1">' + data[i].hotelName + '</p>\n' +
+                '       <div class="p2"><p>5分</p> <p><span style="color: #FF574E;">￥</span><span class="item-price">' + data[i].minPrice + '</span><span>起</span></p></div></div>\n' +
+                '    </a>\n' +
+                '</div>';
+            }
+            $("#hotel").html(innerHtml);
+            $("img.lazys").lazyload({
+                threshold : 200,
+                effect : "fadeIn"
+            });
+        }
+    }
+    //请求轮播成功的回调
+    function swiperCallback(e) {
+        /*用于存放轮播内容*/
+        var innerHtml = '';
+        if (e.errorCode == 200) {
+            var data = e.data.list;
+            var linkUrl;
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].type = "PRODUCT") {
+                    linkUrl = "productDetail.html?productId=" + data[i].param;
+                } else {
+                    linkUrl = data[i].linkUrl;
+                }
+                innerHtml +=
+                    '<div class="swiper-slide">\n' +
+                    '   <a href="' + linkUrl + '">\n' +
+                    '      <img src="' + baseImgUrl + data[i].img + '_big.jpg" alt="">\n' +
+                    '   </a>\n' +
+                    '</div>\n';
+            }
+            $(".swiper-wrapper").html(innerHtml);
+            lunbo();
+        }
+    }
+</script>
+<script>
+    //鼠标
+    $(".invest-dot li").each(function (i, v) {
+        $(v).mouseover(function (){
+            $(this).addClass("change").siblings().removeClass("change");
+            $(".invest-list ul").eq(i).show();
+            $(".invest-list ul").eq(i).siblings().hide();
+            
+        });
+    });
+  
+</script>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>calendar-nick</title>
+    <style>
+        #nickCalendar {
+            width: 250px;
+            padding: 10px;
+            text-align: center;
+            margin: auto;
+            border: 1px solid #bdbdbd;
+        }
+
+        .nick-calendar-tit {
+            width: 168px;
+            margin: auto;
+            color: midnightblue;
+        }
+
+        .nick-calendar-tit span {
+            float: left;
+            width: 20px;
+            font-size: 14px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            margin: 2px;
+            font-weight: bold;
+        }
+
+        .nick-calendar-bd {
+            width: 168px;
+            padding: 10px;
+            background-color: pink;
+            margin: auto;
+            border-radius: 10px;
+        }
+
+        .clear:after {
+            content: '';
+            display: block;
+            height: 0;
+            clear: both;
+        }
+
+        .nick-calendar-bd span {
+            width: 20px;
+            font-size: 14px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            margin: 2px;
+            float: left;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        .prev-date-nick, .next-date-nick {
+            background-color: #999;
+        }
+
+        .nick-calendar-hd {
+            height: 30px;
+            line-height: 30px;
+            font-weight: bold;
+        }
+
+        .nick-calendar-prev, .nick-calendar-next {
+            background-color: #fff;
+            border: 0;
+            border-radius: 5px;
+        }
+
+        .nick-calendar-prev-year, .nick-calendar-next-year {
+            background-color: #fff;
+            border: 0;
+            border-radius: 5px;
+        }
+
+        .nick-calendar-date {
+            display: inline-block;
+            width: 90px;
+        }
+
+        .date-nick {
+            background-color: violet;
+        }
+
+        .nick-calendar-current {
+            background-color: yellowgreen;
+        }
+
+    </style>
+</head>
+<body>
+<input type="text" placeholder="请选择" readonly id="date1">
+<script>
+    //        调用
+    calendarNick({
+        wrapId: 'nickCalendar',//日历容器id
+        triggerId: 'date1'//触发容器id
+    });
+    //日历选择功能
+    function calendarNick(options) {
+        var opt = {//参数保存在此对象中
+            opts: options
+        };
+
+        var obj = {
+            //填充日历
+            fillDate: function (year, month) {
+                //本月份第一天是星期几-为显示上个月的天数做铺垫
+                var first_day = new Date(year, month, 1).getDay();
+                //如果刚好是星期天，则空出一行（显示上个月的天数）
+                first_day = first_day == 0 ? 7 : first_day;
+                //本月份最后一天是几号
+                var final_date = new Date(year, month + 1, 0).getDate(),
+                //上个月的最后一天是几号
+                        last_date = new Date(year, month, 0).getDate(),
+                //剩余的格子数--即排在末尾的格子数
+                        surplus = 42 - first_day - final_date;
+                /*设置表头的日历*/
+                opt.oHeadDate.innerHTML = year + '年' + (month + 1) + '月';
+                /*填充日历执行*/
+                var html = '';
+                //上个月的显示天数
+                for (var i = 0; i < first_day; i++) {
+                    html += '<span class="prev-date-nick">' + (last_date - (first_day - 1) + i) + '</span>';
+                }
+                //本月的显示天数
+                for (var j = 0; j < final_date; j++) {
+                    html += '<span class="date-nick">' + (j + 1) + '</span>';
+                }
+                //下个月的显示天数
+                for (var k = 0; k < surplus; k++) {
+                    html += '<span class="next-date-nick">' + (k + 1) + '</span>';
+                }
+                //fill
+                opt.oBody.innerHTML = html;
+                // 当天
+                if (year == new Date().getFullYear() && month == new Date().getMonth()) {
+                    opt.oBody.getElementsByTagName('span')[first_day + opt.date - 1].className = 'nick-calendar-current date-nick';
+                }
+
+                //点击赋值ipt得到日期
+                for (var x = 0, v = opt.oBody.getElementsByTagName('span'), len = v.length; x < len; x++) {
+                    v[x].onclick = function () {
+                        var now = new Date(year, month, 1), y = 0, m = 0;
+                        if (this.className.indexOf('prev-date-nick') > -1) {
+                            y = new Date(now.setMonth(now.getMonth() - 1)).getFullYear();
+                            m = new Date(now).getMonth();
+                        } else if (this.className.indexOf('next-date-nick') > -1) {
+                            y = new Date(now.setMonth(now.getMonth() + 1)).getFullYear();
+                            m = new Date(now).getMonth();
+                        } else if (this.className.indexOf('date-nick') > -1) {
+                            y = year;
+                            m = month;
+                        }
+                        document.getElementById('date1').value = y + '-' + (m + 1) + '-' + this.innerHTML;
+                        opt.oWrap.style.display = 'none';//隐藏日历容器
+                    }
+                }
+            },
+            // 下个月
+            next: function () {
+                var me = this;
+                opt.oNext.onclick = function () {
+                    opt.month++;
+                    if (opt.month > 11) {
+                        opt.month = 0;
+                        opt.year++;
+                    }
+                    // 填充日历
+                    me.fillDate(opt.year, opt.month);
+                }
+
+            },
+            // 上个月
+            prev: function () {
+                var me = this;
+                opt.oPrev.onclick = function () {
+                    if(opt.year == opt.nowYear){
+                        if(opt.month > opt.nowMonth){
+                            opt.month--;
+                        }
+                    }else{
+                        opt.month--;
+                    }
+                    
+                    if (opt.month < 0) {
+                        opt.month = 11;
+                        opt.year--;
+                    }
+                    // 填充日历
+                    me.fillDate(opt.year, opt.month);
+                }
+
+            },
+            // 下一年
+            nextYear: function () {
+                var me = this;
+                opt.oNextYear.onclick = function () {
+                    opt.year++;
+                    // 填充日历
+                    me.fillDate(opt.year, opt.month);
+                }
+
+            },
+            // 上一年
+            prevYear: function () {
+                var me = this;
+                opt.oPrevYear.onclick = function () {
+                    if (opt.year > opt.nowYear) {
+                        opt.year--;
+                    }
+                    // 填充日历
+                    me.fillDate(opt.year, opt.month);
+                }
+
+            },
+            //获取元素偏移位置
+            offset: function (ele) {
+                var l = ele.offsetLeft, t = ele.offsetTop, p = ele.offsetParent;
+                while (p) {
+                    l += p.offsetLeft + p.clientLeft;
+                    t += p.offsetTop + p.clientTop;
+                    p = p.offsetParent;
+                }
+                return {left: l, top: t}
+            },
+            init: function () {//初始化
+                //  初始化参数
+                //创建日历容器固定结构，每次切换日期值即可
+                var div = document.createElement("DIV");
+                div.setAttribute('id', opt.opts.wrapId);
+                div.innerHTML = '<div class="nick-calendar-hd"><button class="nick-calendar-prev-year">&lt;&lt;</button>' +
+                        '<button class="nick-calendar-prev">&lt;</button><span class="nick-calendar-date"></span>' +
+                        '<button class="nick-calendar-next">&gt;</button><button class="nick-calendar-next-year">&gt;&gt;</button>' +
+                        '</div><div class="nick-calendar-tit clear">' +
+                        '<span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>' +
+                        '</div><div class="nick-calendar-bd clear"></div>';
+                document.getElementsByTagName("body")[0].appendChild(div);
+                opt.oWrap = document.getElementById(opt.opts.wrapId);//日历容器
+                opt.trigger = document.getElementById(opt.opts.triggerId);//触发容器
+                opt.oHeadDate = opt.oWrap.getElementsByClassName('nick-calendar-date')[0];//头部日期
+                opt.oBody = opt.oWrap.getElementsByClassName('nick-calendar-bd')[0];//日期容器
+                opt.oTit = opt.oWrap.getElementsByClassName('nick-calendar-tit')[0];//星期容器
+                opt.oPrev = opt.oWrap.getElementsByClassName('nick-calendar-prev')[0];//上月按钮
+                opt.oNext = opt.oWrap.getElementsByClassName('nick-calendar-next')[0];//下月按钮
+                opt.oPrevYear = opt.oWrap.getElementsByClassName('nick-calendar-prev-year')[0];//上月按钮
+                opt.oNextYear = opt.oWrap.getElementsByClassName('nick-calendar-next-year')[0];//下月按钮
+                opt.year = 0;//年
+                opt.month = 0;//月
+                opt.date = 0;//日
+
+                // 获取今天的日历时间
+                var now = new Date();
+                opt.nowYear = now.getFullYear();
+                opt.nowMonth = now.getMonth();
+                opt.year = now.getFullYear();
+                opt.month = now.getMonth();
+                opt.date = now.getDate();
+                // 初始化--填充日历
+                this.fillDate(opt.year, opt.month);
+                //切换年月
+                this.next();
+                this.nextYear();
+                this.prev();
+                this.prevYear();
+                //设置日历容器位置
+                opt.oWrap.style.position = 'absolute';
+                opt.oWrap.style.left = this.offset(opt.trigger).left + opt.trigger.offsetWidth + 10 + 'px';
+                opt.oWrap.style.top = this.offset(opt.trigger).top + 'px';
+                opt.oWrap.style.display = 'none';//默认隐藏日历容器
+                //ipt触发日历选择
+                opt.trigger.onclick = function () {
+                    opt.oWrap.style.display = 'block';
+                }
+            }
+        };
+        obj.init();//初始化
+    }
+
+</script>
+</body>
+</html>

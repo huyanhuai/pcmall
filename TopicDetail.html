@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>景点搜索</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="js/swiper/swiper-4.2.0.min.css">
+    <link rel="stylesheet" href="css/public.css">
+    <style>
+        .common{
+            width: 1600px;
+            margin: auto;
+            margin-top: 30px;
+        }
+        .destinations .destinations-title{
+            /* height: 50px; */
+        }
+        .destinations .destinations-title .title{
+            font-size: 26px;
+            color: #58C0C6;
+            padding: 30px 0;
+        }
+        .destinations .destinations-content{
+        }
+        .destinations .destinations-content>div{
+            float: left;
+        }
+        .destinations .destinations-content .left{
+            /* width: 1180px; */
+            width: 73%;
+            /* margin-right: 40px; */
+            margin-right: 3%;
+            padding-bottom: 30px;
+            border-top: 3px solid #58C0C6;
+        }
+        .termQuery>p{
+            padding: 20px 0;
+        }
+        /* 词条搜索 */
+        .destinations-content .left .classify{
+            padding: 10px 0;
+            color: #333;
+        }
+        .destinations-content .left .classify>div{
+            float: left;
+            line-height: 35px;
+            margin-right: 20px;
+        }
+        .destinations-content .left .classify>div:nth-child(1){
+            color: #666;
+        }
+        .destinations-content .left .classify>div:nth-child(2){
+            padding: 0 20px;
+        }
+        .classify .classify-list ul li{
+            padding: 0 20px;
+            float: left;
+        }
+        .destinations-content .left .classify>div.pitchOn{
+            border: 1px solid #58C0C6;
+            color: #58C0C6;
+        }
+        /* 搜索结果 */
+        .destinations-content .result{
+            margin-top: 20px;
+        }
+        .result .result-menu{
+            height: 56px;
+            line-height: 56px;
+            background: #F5F5F5;
+            border: 1px solid #D2D2D2;
+        }
+        .result .result-menu ul li{
+            float: left;
+            width: 130px;
+            height: 54px;
+            text-align: center;
+            border-right: 1px solid #D2D2D2;
+            cursor: pointer;
+        }
+        .result .result-menu .rc{
+            background: #fff;
+            color: #58C0C6;
+        }
+        /* 主内容区 */
+        .result .result-container{
+            /* margin-top: 20px; */
+        }
+        .result-container .result-box{
+            margin-top: 20px;
+        }
+        .result-container .result-box .productBox{
+            /* height: 260px; */
+            padding-bottom: 20px;
+
+        }
+        .productBox ul{
+            padding: 10px 0;
+            border-bottom: 1px solid #DBDBDB;
+        }
+        .productBox ul li{
+            float: left;
+            width: 29%;
+        }
+        .productBox ul li img{
+            /* width: 350px; */
+            width: 100%;
+            height: 200px;
+        }
+        
+        .productBox ul .productTitle{
+            width: 50%;
+            padding: 20px 0
+        }
+        .productBox ul .productTitle p{
+            padding: 10px 20px;
+            color: #333;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        .productBox ul .productTitle p:nth-child(1){
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .productBox ul .productInfo{
+            float: right;
+            width: 20%;
+            margin-top: 40px;
+        }
+        .productBox ul .productInfo p{
+            text-align: center;
+        }
+        .productBox ul .productInfo p span{
+            font-size: 28px;
+            color: #FF4F4F;
+        }
+        .productBox ul .productInfo button{
+            width:80%;
+            height:50px;
+            margin-left: 10%;
+            background:rgba(88,192,198,1);
+            border-radius:8px;
+            font-size: 18px;
+            color: #fff;
+        }
+    </style>
+    <style>
+        /* 右边框 */
+        .right{
+            /* width: 370px; */
+            width: 24%;
+            color: #333;
+        }
+        .rightBox{
+            border:1px solid rgba(191,191,191,1);
+        }
+        .rightBox .rightBox-boxImg img{
+            /* width: 368px; */
+            width: 100%;
+            height: 250px;
+        }
+        .rightBox .rightBox-text{
+            padding: 30px 20px;
+        }
+        .rightBox .rightBox-text>p{
+            font-size: 18px;
+            font-weight: 600;
+            padding-bottom:  10px;
+        }
+        .rightBox-text .strategy p{
+            padding-bottom: 10px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        .hotCity{
+            margin-top: 20px;
+        }
+        .hotCity .city ul li{
+            width: 80px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            background: #F0F9F9;
+            border: 1px solid #58C0C6;
+            margin: 10px 28px 10px 0;
+            cursor: pointer;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部 -->
+    <div id="header">
+        <div class="header-top">
+            <div class="header-nav">
+                <div class="topLogin">
+                    <ul>
+                        <li id="login"><a href="login.html">登录</a> </li>
+                        <li><a href="register.html">注册</a> </li>
+                    </ul>
+                </div>
+                <ul class="clearfix">
+                    <li><a href="http://business.tongyoutrip.com/" target="_blank" class="shouye">商家入驻</a> </li>
+                    <li>0571-86981186 </li>
+                    <li><a href="register.html"></a> </li>
+                </ul>
+            </div>
+        </div>
+        <div class="header-box">
+            <div class="topNavWrapper">
+                <div class="topContent">
+                    <div class="topLogo">
+                        <img src="img/logo.jpg" alt="">
+                    </div>
+                    <div class="topSearch">
+                        <span>同游科技</span>
+                    </div>
+                </div>
+                <div class="menuNav">
+                    <ul id="menu">
+                        <li><a href="index.html">首页</a> </li>
+                        <li><a href="productList.html">景点</a></li>
+                        <li><a href="index.html">酒店</a></li>
+                        <li><a href="destination.html">目的地</a></li>
+                        <li><a  class="changeColor" href="Topic.html">专题</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 景点列表 -->
+    <div class="common destinations">   
+        <div class="destinations-title">
+            <p>您所在的位置：<span>首页></span>专题</p>
+            <div class="title">专题详情</div>
+        </div>
+        <div class="destinations-content clearfix">
+            <div class="left">
+
+                <!--  -->
+                <div class="result">
+                    <div class="result-menu">
+                        <ul class="clearfix">
+                            <li class="rc">推荐排序</li>
+                            <li>人气</li>
+                        </ul>
+                    </div>
+                    <!-- 列表 -->
+                    <div class="result-container">
+                        <!-- 产品 -->
+                        <div class="result-box">
+                            <div class="productBox">
+                                <ul class="clearfix">
+                                    <li><img src="img/1.png" alt=""></li>
+                                    <li class="productTitle">
+                                        <p>杭州宋城景区</p>
+                                        <p>景点地址：<span></span></p>
+                                        <p>服务保障：<span>入园保障   如实描述   贵就赔</span></p>
+                                    </li>
+                                    <li class="productInfo">
+                                        <p><span>¥</span> <span>99</span>起</p>
+                                        <button>查看详情</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="pages"></div>
+                </div>
+            </div>
+            <!-- 右边框 -->
+            <div class="right">
+                <div class="rightBox">
+                    <div class="rightBox-boxImg">
+                        <img class="picImg" src="img/1.png" alt="">
+                    </div>
+                    <div class="rightBox-text">
+                        <p class="subjectName">热门攻略</p>
+                        <div class="strategy">
+                            <p class="subjectTitle" title="烟雨江南，游走在杭州城边的公园，体味…">烟雨江南，游走在杭州城边的公园，体味…</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="rightBox hotCity">
+                    <div class="rightBox-text">
+                        <p>专题列表</p>
+                        <div class="city">
+                            <ul class="topicList clearfix">
+                                <li>杭州</li>
+                                <li>宁波</li>
+                                <li>温州</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 合作伙伴 -->
+    <div class="newProduct">
+        <div class="tab_title">
+            <h2 style="float: left;">合作伙伴</h2>
+        </div>
+        <div class="invest-list">
+            <ul class="clearfix">
+                <li><img src="img/logo/印象西湖.jpg" alt=""><p>印象西湖</p></li>
+                <li><img src="img/logo/西溪湿地.jpg" alt=""><p>西溪湿地</p></li>
+                <li><img src="img/logo/千岛湖.jpg" alt=""><p>千岛湖</p></li>
+                <li><img src="img/logo/中南百草园.jpg" alt=""><p>中南百草园</p></li>
+                <li><img src="img/logo/双溪漂流.gif" alt=""><p>双溪漂流</p></li>
+                <li><img src="img/logo/垂云通天河.png" alt=""><p>垂云通天河</p></li>
+                <li><img src="img/logo/天岳幕阜山.png" alt=""><p>天岳幕阜山</p></li>
+                <li><img src="img/logo/春秋旅游.jpg" alt=""><p>春秋旅游</p></li>
+                <li><img src="img/logo/杭州东方文化园.png" alt=""><p>杭州东方文化园</p></li>
+                <li><img src="img/logo/杭州市运河综合保护开发建设集团.jpg" alt=""><p>杭州市运河综合保护开发建设集团</p></li>
+                <li><img src="img/logo/杭州极地海洋公园.png" alt=""><p>杭州极地海洋公园</p></li>
+                <li><img src="img/logo/梅花洲.png" alt=""><p>梅花洲</p></li>
+                <li><img src="img/logo/永嘉书院.png" alt=""><p>永嘉书院</p></li>
+                <li><img src="img/logo/浙旅集团.png" alt=""><p>浙旅集团</p></li>
+                <li><img src="img/logo/浙江外事旅游.png" alt=""><p>浙江外事旅游</p></li>
+                <li><img src="img/logo/清水湾温泉.jpg" alt=""><p>清水湾温泉</p></li>
+                <!-- <li><img src="img/logo/莫干山.png" alt=""></li> -->
+            </ul>
+            <ul class="clearfix" style="display: none;">
+                <li><img src="img/logo/东平水浒影视城.png" alt=""><p>东平水浒影视城</p></li>
+                <li><img src="img/logo/莫干山.png" alt=""><p>莫干山</p></li>
+                <li><img src="img/logo/诸葛八卦村.png" alt=""><p>诸葛八卦村</p></li>
+                <li><img src="img/logo/长兴旅游集团.jpg" alt=""><p>长兴旅游集团</p></li>
+                <li><img src="img/logo/陕旅集团.jpg" alt=""><p>陕旅集团</p></li>
+            </ul>
+        </div>
+        <ul class="invest-dot clearfix">
+                <li class="change"></li>
+                <li></li>
+            </ul>
+    </div>
+    <!-- 底部 -->
+    <div class="footer">
+        <div class="Contactus">
+            <div><span>24小时客服热线：0571-86981889 同游总部：杭州市天目山路226号网新大厦3楼326</span></div>
+            <div>
+                <ul class="clearfix">
+                    <li><a href="">关于同游</a></li>
+                    <li><a href="">联系我们</a></li>
+                    <li><a href="">投诉建议</a></li>
+                    <li><a href="">同游服务</a></li>
+                    <li><a href="">商家入驻</a></li>
+                    <li><a href="">使用指南</a></li>
+                    <li><a href="">运营方案</a></li>
+                    <li><a href="">同游团队</a></li>
+                    <li><a href="">加入我们</a></li>
+                </ul>
+            </div>
+            <div>
+                <ul class="clearfix" style="margin-left: 168px;">
+                    <li>友情链接：</li>
+                    <li><a href="http://www.guoshu.cn/" target="back">找果蔬网</a></li>
+                    <li><a href="http://www.hzvhost.cn/" target="back">域名注册</a></li>
+                    <li><a href="http://www.hzvhost.com/ " target="back">网站建设</a></li>
+                    <li><a href="http://www.dazj.cn/" target="back">空间租用</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <div style="width:1200px; margin:0 auto">
+                <span>Copyright©2017.浙ICP17016319号-1</span>
+                <span> &nbsp; 杭州同游科技有限公司</span>
+                <span> &nbsp; new.tongyoutrip.com</span>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/swiper/swiper-4.2.0.min.js"></script>
+<script src="js/ajaxTool.js"></script>
+<script src="js/public.js"></script>
+<script src="js/jsencrypt.js"></script>
+<script src="js/jqpaginator.min.js"></script>
+<script>
+    var subjectId,subjectName,subjectTitle,pictureUrl;
+    $(function () {
+        // 用户信息
+        getUser();
+        subjectId=GetQueryString("subjectId");
+        subjectName=decodeURI(escape(GetQueryString("subjectName")));
+        subjectTitle=decodeURI(escape(GetQueryString("subjectTitle")));
+        pictureUrl=GetQueryString("pictureUrl");
+        $(".subjectName").html(subjectName);
+        $(".subjectTitle").html(subjectTitle);
+        $(".picImg").attr("src",baseImgUrl + pictureUrl + '.jpg');
+        var url = baseAjaxUrl + "/ty_api/subject/queryListBySubject";
+        /*热门专题*/
+        publicAjax(url, "POST", {
+            "subjectId": subjectId,
+            "pageSize": "6",
+            "pageNum": "1"
+        }, hotCallback);
+        /*热门专题列表*/
+        publicAjax(baseAjaxUrl + "/ty_api/subject/getMap", "POST", {
+            "pageSize": "6",
+            "pageNum": "1"
+        }, hotListCallback);
+        // 分页
+        $('#pages').jqPaginator({
+            totalPages: 5,
+            visiblePages: 3,
+            currentPage: 1,
+            first: "",
+            prev: '<li class="prev"><a href="javascript:;"><</a></li>',
+            next: '<li class="next"><a href="javascript:;">></a></li>',
+            page: '<li class="page"><a href="javascript:;">{{page}}</a></li>',
+            last: "",
+            onPageChange: function (num, type) {
+                console.log(num,type)
+                publicAjaxToken(url, "POST", {
+                    "subjectId": subjectId,
+                    "pageSize": "6",
+                    "pageNum": num
+                }, hotCallback);
+            }
+        });
+    });
+
+
+    // 专题回调
+    function hotCallback(e){
+        var html = ""
+        if (e.errorCode == 200) {
+            var data = e.data.list;
+            for(var i=0; i<data.length; i++){
+                html += '<ul class="clearfix">'+
+                            '<li><img src="'+baseImgUrl + data[i].pictureUrl+'.jpg" alt=""></li>'+
+                            '<li class="productTitle">'+
+                                '<p>' + data[i].productName + '</p>'+
+                                '<p>景点地址：<span>' + data[i].productAddress  + '</span></p>'+
+                                '<p>服务保障：<span>入园保障   如实描述   贵就赔</span></p>'+
+                            '</li>'+
+                            '<li class="productInfo">'+
+                                '<p><span>¥</span> <span>' + data[i].minPrice + '</span>起</p>'+
+                                '<button onclick="getDetail('+ data[i].productId +');">查看详情</button>'+
+                            '</li>'+
+                        '</ul>';
+            }
+            $(".productBox").html(html);
+
+        }
+    }
+
+    function getDetail(id){
+        window.location.href="productDetail.html?productId=" + id;
+    }
+
+    // 专题列表回调
+    function hotListCallback(e){
+        var html2 = "";
+        if(e.errorCode == 200){
+            var data = e.data.hotSubject.list;
+
+            // 热门专题
+            for(var j = 0; j < data.length; j++){
+                html2 += '<li><a href="TopicDetail.html?subjectId=' + data[j].subjectId + '&subjectTitle=' + data[j].subjectTitle + '&pictureUrl=' + data[j].pictureUrl + '&subjectName=' + data[j].subjectName + '">'+
+                         '' + data[j].subjectName + '</a></li>';
+            }
+            $(".topicList").html(html2);
+        }
+    }
+    
+
+</script>
+
+</html>

@@ -1,0 +1,42 @@
+@media screen and (max-width:1400px){    
+    .dadProject{
+        width: 1400px;
+    }  
+    .dadProject .projectBox ul li{
+        width: 330px;
+    }
+    .dadProject .projectBox ul li .pic-box{
+        width: 330px;
+    }
+    .projectBox ul li.li-first {
+        width: 680px;
+    }
+    .projectBox ul li.li-first .pic-box{
+        width: 680px;
+    }
+
+    .tab-list-right{
+        width: 330px;
+    }
+    .tab-list-left{
+        width: 1050px;
+    }
+    .surround-content-item{
+        width: 330px;
+    }
+    .newProduct{
+        width: 100%;
+        min-width: 1400px;
+    }
+}  
+
+@media screen and (max-width:1200px){    
+    .dadProject{
+        width: 100%;
+        min-width: 1200px;
+    }   
+    .newProduct{
+        width: 100%;
+        min-width: 1200px;
+    }
+} 

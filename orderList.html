@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>订单列表</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="js/swiper/swiper-4.2.0.min.css">
+    <link rel="stylesheet" href="css/public.css">
+    <style>
+        .personalCenter{
+            width: 1200px;
+            margin: auto;
+            min-height: 600px;
+            margin-top: 20px;
+        }
+        /* 左边框 */
+        .sidebar{
+            width: 160px;
+            margin: 0 20px;
+            border: 1px solid #e5e5e5;
+            float: left;
+        }
+        .sidebar ul li{
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border-bottom: 1px solid #e5e5e5;
+            color: #333;
+            cursor: pointer;
+        }
+        .sidebar ul li a{
+            display: block;
+            width: 158px;
+            height: 40px;
+            line-height: 40px;
+        }
+        .content{
+            width: 1000px;
+            /* height: 400px; */
+            /* border: 1px solid #e5e5e5; */
+            color: #333;
+            float: left;
+        }
+        .content-title{
+            height: 40px;
+            line-height: 40px;
+            border-bottom: 1px #52C0C7 solid;
+            color: #52C0C7;
+        }
+        .content-title ul li{
+            float: left;
+            height: 30px;
+            line-height: 30px;
+            margin: 0 10px 0 0;
+            padding: 0 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+
+        }
+        .current{
+            color: #fff;
+            background-color: #52C0C7;
+        }
+        /* 中间 */
+        .content-order{
+            margin-top: 20px;
+            height: 140px;
+            border: 1px solid #e5e5e5;
+            font-size: 14px;
+        }
+        .content-order>p{
+            height: 30px;
+            line-height: 30px;
+            font-weight: bold;
+            padding: 0 8px;
+            background: #f7f9fa;
+        }
+        .content-order p span{
+            font-weight: normal;
+        }
+        .order-td{
+            height: 110px;
+        }
+        .order-td-1{
+            float: left;
+        }
+        .td-1{
+            width: 450px;
+        }
+        .td-1>p{
+            width: 136px;
+            padding: 0 8px;
+            float: left;
+        }
+        .td-1>p img{
+            width: 120px;
+            height: 80px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+        .td-1 div{
+            width: 314px;
+            margin-top: 8px;
+            float: left;
+        }
+        .td-1 div p{
+            padding: 8px 5px;
+            word-wrap: break-word;
+            word-break: normal;
+        }
+        .td-2{
+            width: 180px;
+            line-height: 110px;
+        }
+        .td-2>p{
+            font-size: 18px;
+            color: #f49700;
+        }
+        .td-2>p span{
+            font-size: 14px;
+            color: #666;
+        }
+        .td-3{
+            width: 180px;
+            line-height: 110px;
+            color: #666;
+        }
+        .td-4{
+            width: 180px;
+            line-height: 110px;
+            color: #666;
+        }
+        .td-4 .clickBox{
+            margin: auto;
+            margin-top: 8px;
+            width: 70px;
+            height: 25px;
+            line-height: 25px;
+            text-align: center;
+            color: #52C0C7;
+            border: 1px solid #52C0C7;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部 -->
+    <div id="header">
+        <div class="header-top">
+            <div class="header-nav">
+                <div class="topLogin">
+                    <ul>
+                        <li id="login"><a href="login.html">登录</a> </li>
+                        <li><a href="register.html">注册</a> </li>
+                    </ul>
+                </div>
+                <ul class="clearfix">
+                    <li><a href="http://business.tongyoutrip.com/" target="_blank" class="shouye">商家入驻</a> </li>
+                    <li>0571-86981186 </li>
+                    <li><a href="register.html"></a> </li>
+                </ul>
+            </div>
+        </div>
+        <div class="header-box">
+            <div class="topNavWrapper">
+                <div class="topContent">
+                    <div class="topLogo">
+                        <img src="img/logo.jpg" alt="">
+                    </div>
+                    <div class="topSearch">
+                        <span>同游科技</span>
+                    </div>
+                </div>
+                <div class="menuNav">
+                    <ul id="menu">
+                        <li><a href="index.html">首页</a> </li>
+                        <li><a class="changeColor" href="userinfo.html">个人信息</a></li>
+                        <li><a href="representCenter.html">代言中心</a></li>
+                        <!-- <li id="login" onclick="myExit();">退出登录 </li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 个人信息 -->
+    <div class="personalCenter">
+        <div class="sidebar">
+            <ul>
+                <li><a href="userinfo.html"> 我的账户</a></li>
+                <li><a href="orderList.html"> 我的订单</a></li>
+                <li><a href="contact.html">我的联系人</a> </li>
+            </ul>
+        </div>
+        <div class="content">
+            <div class="content-title">
+                <ul>
+                    <li class="current" onclick="">全部订单</li>
+                    <li onclick="">待付款</li>
+                    <li onclick="">待验票</li>
+                    <li onclick="">待评论</li>
+                    <li onclick="">已完成</li>
+                </ul>
+            </div>
+            <div class="content-box">
+                <div class="content-order">
+                    <p>订单号 <span class="orderNo"> 123456</span></p>
+                    <div class="order-td">
+                        <div class="order-td-1 td-1">
+                            <p><img src="http://image.tongyoutrip.com/business/product/46/ac83266dfc23403c97fbb095180342d2_small.jpg" alt=""></p>
+                            <div>
+                                <p class="packageName">产品</p>
+                                <p class="createTime">套餐</p>
+                            </div>
+                        </div>
+                        <div class="order-td-1 td-2">
+                            <p>￥100 <span>x</span><span> 1</span><span>张</span></p>
+                        </div>
+                        <div class="order-td-1 td-3">
+                            <p>已完成</p>
+                        </div>
+                        <div class="order-td-1 td-4">
+                            <div class="clickBox">查看详情</div>
+                            <div class="clickBox">立即支付</div>
+                            <div class="clickBox">取消订单</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- 底部 -->
+    <!-- <div class="footer">
+        <div class="Contactus">
+            <div>
+                <p>关于同游</p>
+                <ul>
+                    <li><a href="">同游介绍</a></li>
+                    <li><a href="">团队</a></li>
+                    <li><a href="">联系</a></li>
+                    <li><a href="">加入我们</a></li>
+                </ul>
+            </div>
+            <div>
+                <p>同游服务</p>
+                <ul>
+                    <li><a href="">商家入驻</a></li>
+                    <li><a href="">小程序</a></li>
+                    <li><a href="">公众号</a></li>
+                </ul>
+            </div>
+            <div>
+                <p>域名注册</p>
+                <ul>
+                    <li><a href="">使用指南</a></li>
+                    <li><a href="">运营方案</a></li>
+                </ul>
+            </div>
+            <div style="min-width:300px;">
+                <p>联系方式</p>
+                <ul>
+                    <li>0571-86981889</li>
+                    <li>杭州市天目山路226号网新大厦1401</li>
+                    <li>tech@057135.com</li>
+                </ul>
+            </div>
+            <div>
+                <p>友情链接</p>
+                <ul>
+                    <li><a href="http://www.guoshu.cn/" target="back">找果蔬网</a></li>
+                    <li><a href="http://www.hzvhost.cn/" target="back">杭州域名注册</a></li>
+                    <li><a href="http://www.hzvhost.com/ " target="back">网站建设</a></li>
+                    <li><a href="http://www.dazj.cn/" target="back">空间租用</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <div style="width:1200px; margin:0 auto">
+                <span>Copyright©2017.浙ICP17016319号-1</span>
+                <span>杭州同游科技有限公司</span>
+            </div>
+        </div>
+    </div> -->
+</body>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/swiper/swiper-4.2.0.min.js"></script>
+<script src="js/ajaxTool.js"></script>
+<script src="js/public.js"></script>
+<script>
+    $(function () {
+        getUserInfo();
+        publicAjaxToken(baseAjaxUrl + "/ty_api/order/getAllOrderVersion2", "POST", {
+        }, allOrderCall);
+    });
+    $(".content-title ul li").each(function (i, v) {
+        $(v).click(function () {
+            $(v).addClass("current").siblings().removeClass("current");
+            switch (i) {
+                case 0:
+                    publicAjaxToken(baseAjaxUrl + "/ty_api/order/getAllOrderVersion2", "POST", {
+                    }, allOrderCall);
+                    break;
+                case 1:
+                    publicAjaxToken(baseAjaxUrl + "/ty_api/order/getAllOrderVersion2", "POST", {"status": "NON_PAY"
+                    }, allOrderCall);
+                    break;
+                case 2:
+                    publicAjaxToken(baseAjaxUrl + "/ty_api/order/getAllOrderVersion2", "POST", {"status": "PAY_SUCCESS"
+                    }, allOrderCall);
+                    break;
+                case 3:
+                    publicAjaxToken(baseAjaxUrl + "/ty_api/order/getAllOrderVersion2", "POST", {"status": "TICKET_SUCCESS"
+                    }, allOrderCall);
+                    break;
+                case 4:
+                    publicAjaxToken(baseAjaxUrl + "/ty_api/order/getAllOrderVersion2", "POST", {"status": "COMMENT_SUCCESS"
+                    }, allOrderCall);
+                    break;
+            }
+        })
+    })
+    // 全部订单
+    function allOrderCall(res){
+        var html = "";
+        var typeHtml = "";
+        var orderStatus = "";
+        var data = res.data.list;
+        if(res.errorCode == 200){
+            for(var i=0; i<data.length; i++){
+                if(data[i].status == "NON_PAY"){
+                    typeHtml = 
+                    '<div class="clickBox" onclick="skipDetail('+data[i].orderNo+','+data[i].productId+');">查看详情</div>'+
+                    '<div class="clickBox" onclick="payMoney('+data[i].orderNo+','+data[i].productId+','+data[i].payTime+');">立即支付</div>'+
+                    '<div class="clickBox" onclick="cancelOrder(' + data[i].orderId + ')">取消订单</div>';
+                    orderStatus = "未付款";
+                }else{
+                    typeHtml = '<div class="clickBox" onclick="skipDetail('+data[i].orderNo+','+data[i].productId+');">查看详情</div>';
+                }
+                if(data[i].status == "PAY_SUCCESS"){
+                    orderStatus = "已付款";
+                }else if(data[i].status == "TICKET_SUCCESS"){
+                    orderStatus = "待评价"
+                }else if(data[i].status == "COMMENT_SUCCESS"){
+                    orderStatus = "已完成"
+                }else if(data[i].status == "CANCEL"){
+                    orderStatus = "已取消"
+                }else if(data[i].status == "REFUND_SUCCESS"){
+                    orderStatus = "已退款"
+                }else if(data[i].status == "INVALID_TICKET"){
+                    orderStatus = "已失效"
+                }
+                html += 
+                    '<div class="content-order">'+
+                        '<p>订单号 <span class="orderNo"> '+data[i].orderNo+'</span></p>'+
+                        '<div class="order-td">'+
+                            '<div class="order-td-1 td-1">'+
+                                '<p><img src="' + baseImgUrl + data[i].pictureUrl + '_small.jpg" alt=""></p>'+
+                                '<div>'+
+                                    '<p class="packageName">'+data[i].packageName+'</p>'+
+                                    '<p class="createTime">'+timeTransformation(data[i].createTime)+'</p>'+
+                                '</div>'+
+                            '</div>'+
+                            '<div class="order-td-1 td-2">'+
+                                '<p>￥'+data[i].salePrice+' <span>x</span><span> '+data[i].buySum+'</span><span>张</span></p>'+
+                            '</div>'+
+                            '<div class="order-td-1 td-3">'+
+                                '<p>'+orderStatus+'</p>'+
+                            '</div>'+
+                            '<div class="order-td-1 td-4">'+typeHtml+'</div>'+
+                        '</div>'+
+                    '</div>';
+            }
+            $(".content-box").html(html);
+        
+        }
+    }
+    // 跳转详情页
+    function skipDetail(orderNo,productId){
+        location.href = "orderDetail.html?orderNo="+orderNo+"&productId="+productId;
+    }
+
+    // 支付
+    function payMoney(orderNo,productId,payTime){
+        // timeTransformation(payTime);
+        var year = timeTransformation(payTime,"year");
+        var date = timeTransformation(payTime,"date");
+        // console.log(timeTransformation(1536911771000,"year"));
+        // console.log(timeTransformation(1536911771000,"date"));
+        location.href = "orderPay.html?orderNo="+orderNo+"&productId="+productId+"&packageDay=" + date + "&packageYear=" + year;
+    }
+
+    //取消订单
+    function cancelOrder(orderId) {
+        layer.open({
+            content: '确定取消订单吗？'
+            , btn: ['取消', '确定']
+            , no: function (index) {
+                publicAjaxToken(baseAjaxUrl + '/ty_api/order/cancelOrder', "POST", {"orderId": orderId}, cancelOrderCall);
+                layer.close(index);
+            }
+        });
+    }
+    //取消订单回调
+    function cancelOrderCall(res) {
+        if (res.errorCode == 200) {
+            layMessage(res.message);
+            setTimeout("location.reload()", 500);
+        } else {
+            layMessage(res.message);
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>订单详情</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="js/swiper/swiper-4.2.0.min.css">
+    <link rel="stylesheet" href="css/public.css">
+    <style>
+        .personalCenter{
+            width: 1200px;
+            margin: auto;
+            min-height: 600px;
+            margin-top: 20px;
+        }
+        /* 左边框 */
+        .sidebar{
+            width: 260px;
+            margin: 0 20px;
+            border: 1px solid #e5e5e5;
+            padding-bottom: 20px;
+            float: left;
+        }
+        .sidebar-img{
+            width: 220px;
+            margin: auto;
+            margin-top: 10px;
+        }
+        .sidebar-img img{
+            width: 220px;
+            height: 140px;
+        }
+        .sidebar-text{
+            margin-top: 10px;
+            font-size: 14px;
+            padding: 0 20px;
+            color: #333;
+        }
+        .sidebar-text>p{
+            padding: 0 0 10px 0;
+        }
+        /* 中间 */
+        .content{
+            width: 900px;
+            float: left;
+            margin: 0;
+        }
+        .content-box{
+            margin-top: 10px;
+        }
+        .content-box >h4{
+            font-size: 15px;
+
+        }
+        .content-box>ul {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #444;
+        }
+        .content-box>ul li{
+            width: 33.33%;
+            padding-bottom: 10px;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部 -->
+    <div id="header">
+        <div class="header-top">
+            <div class="header-nav">
+                <div class="topLogin">
+                    <ul>
+                        <li id="login"><a href="login.html">登录</a> </li>
+                        <li><a href="register.html">注册</a> </li>
+                    </ul>
+                </div>
+                <ul class="clearfix">
+                    <li><a href="http://business.tongyoutrip.com/" target="_blank" class="shouye">商家入驻</a> </li>
+                    <li>0571-86981186 </li>
+                    <li><a href="register.html"></a> </li>
+                </ul>
+            </div>
+        </div>
+        <div class="header-box">
+            <div class="topNavWrapper">
+                <div class="topContent">
+                    <div class="topLogo">
+                        <img src="img/logo.jpg" alt="">
+                    </div>
+                    <div class="topSearch">
+                        <span>同游科技</span>
+                    </div>
+                </div>
+                <div class="menuNav">
+                    <ul id="menu">
+                        <li><a href="index.html">首页</a> </li>
+                        <li><a class="changeColor" href="userinfo.html">个人信息</a></li>
+                        <li><a href="representCenter.html">代言中心</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 个人信息 -->
+    <div class="personalCenter">
+        <!-- 左边框 -->
+        <div class="sidebar">
+            <div class="sidebar-img">
+                <img src="img/logo.jpg" alt="">
+            </div>
+            <div class="sidebar-text">
+                <p>产品：<span class="productName"></span></p>
+                <p>地址：<span class="address"></span></p>
+            </div>
+        </div>
+        <!-- 中 -->
+        <div class="newProduct content">
+            <div class="tab_title">
+                <h3 style="float: left;">订单信息</h3>
+            </div>
+            <div class="content-box">
+                <h4 class="packageName">西湖</h4>
+                <ul>
+                    <li>订单号码：<span class="orderNo"></span></li>
+                    <li>下单时间：<span class="createTime"></span></li>
+                    <li>退款规则：<span class="refundType" style="color: #59b82b"></span></li>
+                    <li>购买数量：<span class="buySum"></span></li>
+                    <li>订单金额： <span class="orderPrice" style="color: #f60;font-size: 16px;"></span></li>
+                    <!-- <li>支付方式：<span class=""></span></li> -->
+                    <li>订单状态：<span class="status" style="color: #ff0073"></span></li>
+                    
+                </ul>
+            </div>
+            <div class="newProduct content">
+                <div class="tab_title">
+                    <h3 style="float: left;">购票人信息</h3>
+                </div>
+                <div class="content-box">
+                    <ul>
+                        <li>姓名：<span class="realname"></span></li>
+                        <li>手机号：<span class="mobile"></span></li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+    </div>
+    <!-- 底部 -->
+    <!-- <div class="footer">
+        <div class="Contactus">
+            <div>
+                <p>关于同游</p>
+                <ul>
+                    <li><a href="">同游介绍</a></li>
+                    <li><a href="">团队</a></li>
+                    <li><a href="">联系</a></li>
+                    <li><a href="">加入我们</a></li>
+                </ul>
+            </div>
+            <div>
+                <p>同游服务</p>
+                <ul>
+                    <li><a href="">商家入驻</a></li>
+                    <li><a href="">小程序</a></li>
+                    <li><a href="">公众号</a></li>
+                </ul>
+            </div>
+            <div>
+                <p>域名注册</p>
+                <ul>
+                    <li><a href="">使用指南</a></li>
+                    <li><a href="">运营方案</a></li>
+                </ul>
+            </div>
+            <div style="min-width:300px;">
+                <p>联系方式</p>
+                <ul>
+                    <li>0571-86981889</li>
+                    <li>杭州市天目山路226号网新大厦1401</li>
+                    <li>tech@057135.com</li>
+                </ul>
+            </div>
+            <div>
+                <p>友情链接</p>
+                <ul>
+                    <li><a href="http://www.guoshu.cn/" target="back">找果蔬网</a></li>
+                    <li><a href="http://www.hzvhost.cn/" target="back">杭州域名注册</a></li>
+                    <li><a href="http://www.hzvhost.com/ " target="back">网站建设</a></li>
+                    <li><a href="http://www.dazj.cn/" target="back">空间租用</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <div style="width:1200px; margin:0 auto">
+                <span>Copyright©2017.浙ICP17016319号-1</span>
+                <span>杭州同游科技有限公司</span>
+            </div>
+        </div>
+    </div> -->
+</body>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/swiper/swiper-4.2.0.min.js"></script>
+<script src="js/ajaxTool.js"></script>
+<script src="js/public.js"></script>
+<script>
+    var orderNo,productId;
+    $(function () {
+        getUserInfo();
+        productId = GetQueryString("productId");
+        orderNo = GetQueryString("orderNo");
+        // 订单详情
+        publicAjaxToken(baseAjaxUrl + "/ty_api/order/getDetailByOrderNo", "POST", {"orderNo": orderNo}, orderDetailCall);
+
+        //获取产品详情信息
+        publicAjax(baseAjaxUrl + "/ty_api/product/queryBaseInfoById", "POST", {
+            "productId": productId,
+        }, detailCall);
+    });
+    // 订单回调
+    function orderDetailCall(res){
+        var orderStatus = "";
+        var refundType = "";
+        if(res.errorCode == 200){
+            $(".sidebar-img img").attr("src", baseImgUrl + res.data.pictureUrl + '_small.jpg');
+            if(res.data.status == "NON_PAY"){
+                orderStatus = "未付款";
+            }else if(res.data.status == "PAY_SUCCESS"){
+                orderStatus = "已付款";
+            }else if(res.data.status == "TICKET_SUCCESS"){
+                orderStatus = "待评价"
+            }else if(res.data.status == "COMMENT_SUCCESS"){
+                orderStatus = "已完成"
+            }else if(res.data.status == "CANCEL"){
+                orderStatus = "已取消"
+            }else if(res.data.status == "REFUND_SUCCESS"){
+                orderStatus = "已退款"
+            }else if(res.data.status == "INVALID_TICKET"){
+                orderStatus = "已失效"
+            }
+            if(res.data.refundType == "NO_REFUND"){
+                refundType = "概不退换"
+            }else if(res.data.refundType == "REFUND"){
+                refundType = "条件退"
+            }
+            $(".packageName").html(res.data.packageName);
+            $(".orderNo").html(res.data.orderNo);
+            $(".createTime").html(timeTransformation(res.data.createTime));
+            $(".refundType").html(refundType);
+            $(".buySum").html(res.data.buySum);
+            $(".status").html(orderStatus);
+            $(".orderPrice").html("¥"+res.data.orderPrice);
+
+            $(".realname").html(res.data.realname);
+            $(".mobile").html(res.data.mobile);
+        }
+    }
+    // 产品回调
+    function detailCall(res){
+        if(res.errorCode == 200){
+            $(".productName").html(res.data.productName);
+            $(".address").html(res.data.address);
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,176 @@
+#calendarBox {
+    display: none;
+}
+
+body td {
+    text-align: center;
+    height: 40px;
+}
+
+.dateZone {
+    width: 50%;
+    background: #f4f3f8;
+    border-bottom: 1px solid #ddd;
+    color: #666;
+    /* margin-top: 50px; */
+}
+
+.dateZone td {
+    background: #f4f3f8;
+}
+
+.tbody td {
+    background: #fff;
+}
+
+.dateZone td {
+    width: 14.2%;
+}
+
+.dateZone .colo {
+    color: #f79628;
+}
+
+.dateTable {
+    width: 99.4%;
+    margin: auto;
+    border-bottom: 1px solid #ddd;
+}
+
+.tbody .ny1 {
+    width: 100%;
+    text-align: center;
+    padding: 5px 0;
+}
+
+.dateTable td {
+    width: 14.2%;
+    color: #666;
+}
+
+/* .dateTable td:first-child {
+    color: #f79628;
+}
+
+.dateTable td:last-child {
+    color: #f79628;
+} */
+
+.dateTable .rz {
+    font-size: 14px;
+}
+
+.datTip {
+    background: rgba(0, 153, 255, 0.8);
+    width: 40%;
+    position: fixed;
+    bottom: 2px;
+    left: 30%;
+}
+
+.datTip p {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    color: #fff;
+    padding: 3px 0;
+    font-size: 14px;
+}
+
+.rz {
+    position: relative;
+    /* display: none; */
+}
+
+.hover {
+    /*font-size:14px;   /*font-size:14px;*/
+    display: inline-block;
+    width: 60%;
+    background: #f79628;
+    /* display: none; */
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+}
+
+td {
+    border-radius: 2px;
+}
+
+/* 日历表修改 */
+.calendar{
+    width: 575px;
+    display: none;
+    background: #fff;
+    border: 1px solid #bcbcbc;
+    position: absolute;
+    top: 60px;
+    left: 20px;
+}
+.calendar .dateZone{
+    width: 250px;
+    margin-left: 25px;
+    float: left;
+}
+/* .calendar .dateZone:nth-child(3){
+    margin-left: 20px;
+} */
+.calendar .tbody{
+    width: 575px;
+    height: 326px;
+    overflow: hidden;
+}
+.calendar .tbody>div{
+    width: 250px;
+    min-height: 317px;
+    margin-left: 25px;
+    float: left;
+}
+.calendar .tbody .ny1{
+    text-align: center;
+}
+.calendar .tbody .dateTable{
+    width: 100%;
+}
+.calendar .tbody .dateTable tr{
+    text-align: center;
+}
+.calendar .tbody .dateTable tr td{
+    width: 14.2%;
+}
+
+/*section{*/
+/*margin:10px;*/
+/*padding:5px;*/
+/*}*/
+@media only screen and (min-width: 400px) {
+    body td {
+        text-align: center;
+        height: 47px;
+
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    body {
+        font-size: 14px;
+    }
+
+    .dateTable .rz {
+        font-size: 12px;
+    }
+
+    .datTip p {
+        font-size: 12px;
+    }
+
+    .hover {
+        font-size: 12px;
+    }
+
+    body td {
+        text-align: center;
+        height: 35px;
+
+    }
+}
