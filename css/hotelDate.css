@@ -115,14 +115,19 @@ td {
 /* .calendar .dateZone:nth-child(3){
     margin-left: 20px;
 } */
-.calendar .tbody{
+.calendar .tbodyHide{
     width: 575px;
     height: 326px;
     overflow: hidden;
 }
+.calendar .tbody{
+    /* width: 575px;
+    height: 326px;
+    overflow: hidden; */
+}
 .calendar .tbody>div{
     width: 250px;
-    min-height: 317px;
+    height: 326px;
     margin-left: 25px;
     float: left;
 }
@@ -137,6 +142,20 @@ td {
 }
 .calendar .tbody .dateTable tr td{
     width: 14.2%;
+}
+
+#hotelTime .arrows{
+    color: #00bdd5;
+    font-size: 40px;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+}
+#hotelTime .arrows.leftArrows{
+    left: 140px;
+}
+#hotelTime .arrows.rightArrows{
+    right: 170px;
 }
 
 /*section{*/

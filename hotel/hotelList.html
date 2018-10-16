@@ -171,6 +171,18 @@
         }
     </style>
     <style>
+        /* 搜索框 */
+        .search input{
+            width: 400px;
+            height: 50px;
+            margin-top: 16px;
+            padding: 0 50px 0 10px;
+            float: right;
+            background: #F2F2F2;
+            border-radius:8px;
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+        }
         /* 右边框 */
         .right{
             /* width: 370px; */
@@ -213,6 +225,9 @@
             float: left;
         }
         /* 搜索框 */
+        .search{
+            position: relative;
+        }
         .search input{
             width: 400px;
             height: 50px;
@@ -223,6 +238,25 @@
             border-radius:8px;
             -webkit-border-radius: 8px;
             -moz-border-radius: 8px;
+        }
+        .search>div{
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            top: 16px;
+            right: 0;
+            cursor: pointer;
+        }
+        .search img{
+            width: 100%;
+            height: 100%;
+        }
+        .icon-sousuo{
+            color: #999999;
+            display: block;
+            font-size: 22px;
+            margin-top: 11px;
+            margin-left: 11px;
         }
     </style>
 </head>
@@ -259,9 +293,13 @@
                         <li><a href="/index.html">首页</a> </li>
                         <li><a href="/productList.html">景点</a></li>
                         <li><a class="changeColor" href="/hotel/hotel.html">酒店</a></li>
-                        <li><a href="/index.html">目的地</a></li>
+                        <li><a href="/destination.html">目的地</a></li>
                         <li><a href="/Topic.html">专题</a></li>
                     </ul>
+                </div>
+                <div class="search">
+                    <input id="hotelKeyWord" type="text" placeholder="搜索旅游/门票/酒店/目的地">
+                    <div><i class="iconfont icon-sousuo" onclick="searchHotel();"></i></div>
                 </div>
             </div>
         </div>
@@ -463,6 +501,11 @@
     $(function () {
         // 用户信息
         getUser();
+        hotelSearchInfo = JSON.parse(getSess("hotelSearchInfo"));
+        startDate = hotelSearchInfo.startDate;
+        endDate = hotelSearchInfo.endDate;
+        starLevel = hotelSearchInfo.starLevel;
+        search = hotelSearchInfo.search;
         // 搜索景点产品
         publicAjax(baseAjaxUrl + "/ty_api/hotel/queryHotelList", "POST", 
            {
@@ -508,7 +551,28 @@
         });
     });
 
-    // 景点搜索回调
+    // 搜索
+    function searchHotel(){
+        search = $("#hotelKeyWord").val();
+        if(search != ""){
+            publicAjax(baseAjaxUrl + "/ty_api/hotel/queryHotelList", "POST", 
+           {
+               "pageSize": "6",
+               "pageNum": "1",
+               "sortBy": sortBy,
+                "starLevel": starLevel,
+                "roomType": roomType,
+                "includeBreakfast": breakfast,
+                "longitude": longitude,
+                "latitude": latitude,
+                "search": search,
+                "startDate": startDate,
+                "endDate": endDate
+           }, getHotelProductCall);
+        }
+    }
+
+    // 酒店搜索回调
     function getHotelProductCall(e){
         var html = "";
         if(e.errorCode == 200){

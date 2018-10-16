@@ -237,6 +237,7 @@
     font-size: 18px;
     /* color: #1e1e1e; */
     margin-top: 2px;
+    cursor: pointer;
 }
 
 .surround-content-item .p2 {
@@ -437,6 +438,49 @@
     -moz-border-radius: 3px;
     border-radius: 3px;
 }
+
+/* 订单menu */
+.order-title ul{
+    display: flex;
+}
+.order-title ul li{
+    flex: 1;
+    height: 100px;
+}
+.order-title ul li>div{
+    width: 96%;
+    height: 3px;
+    margin-top: 20px;
+    background: #D2D2D2;
+    position: relative;
+}
+.order-title ul li>div i{
+    display: block;
+    width:9px;
+    height:9px;
+    background:#D2D2D2;
+    border-radius:50%;
+    position: absolute;
+    top: -3px;
+    left: 50%;
+}
+.order-title ul li p{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 22px;
+    font-family: PingFang-SC-Bold;
+    color: #999999;
+    font-weight: bold;
+}
+.order-title ul li .colorChange{
+    color: #333333;
+}
+.order-title ul li .titleChange{
+    background:#58C0C6;
+}
+
 /* 底部 */
 .footer{
     width: 100%;

@@ -75,7 +75,7 @@ function getToken() {
 }
 
 // $.cookie('token', null);
-console.log($.cookie('token'));
+// console.log($.cookie('token'));
 
 function getUser() {
 
@@ -107,12 +107,12 @@ function getUserInfo() {
 }
 
 function exit(){
-    $.cookie('token', null);
-    window.location.reload()
+    $.cookie('token', null, { expires: -1, path: '/' });
+    window.location.reload();
 }
 
 function myExit(){
-    $.cookie('token', null);
+    $.cookie('token', null,{ expires: -1, path: '/' });
     location.href = "index.html";
 }
 
@@ -126,3 +126,5 @@ function setSess(name,val) {
 function getSess(name) {
     return sessionStorage.getItem(name);
 }
+
+// cookie

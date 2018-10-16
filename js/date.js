@@ -19,7 +19,7 @@
                 me.cancel = me.settings.cancelBtn;
 
 
-                var html = "<div class='headerWrapper'><div class='cancelChoose'>取消</div><div class='headerTip'>请选择入住离店日期</div><div class='comfire'>确定</div></div><table class='dateZone'><tr><td class='colo'>日</td><td>一</td><td>二</td><td>三</td><td>四</td><td>五</td><td class='colo'>六</td></tr></table><table class='dateZone'><tr><td class='colo'>日</td><td>一</td><td>二</td><td>三</td><td>四</td><td>五</td><td class='colo'>六</td></tr></table>" + "<div class='tbody'></div>"
+                var html = "<div class='headerWrapper'><div class='cancelChoose'>取消</div><div class='headerTip'>请选择入住离店日期</div><div class='comfire'>确定</div></div><table class='dateZone'><tr><td class='colo'>日</td><td>一</td><td>二</td><td>三</td><td>四</td><td>五</td><td class='colo'>六</td></tr></table><table class='dateZone'><tr><td class='colo'>日</td><td>一</td><td>二</td><td>三</td><td>四</td><td>五</td><td class='colo'>六</td></tr></table>" + "<div class='tbodyHide'><div class='tbody'></div></div>"
                 $(me.sections).append(html);
                 $(me.sections).find('.headerWrapper').css({
                     "width": "100%",
@@ -49,7 +49,7 @@
                     "line-height": "50px",
                     "font-size": "14px",
                     "position": "absolute",
-                    "left": "185px",
+                    "left": "200px",
                     "top": "0"
                 });
                 $(me.sections).find(me.comfire).css({

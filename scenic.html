@@ -213,6 +213,9 @@
             float: left;
         }
         /* 搜索框 */
+        .search{
+            position: relative;
+        }
         .search input{
             width: 400px;
             height: 50px;
@@ -223,6 +226,25 @@
             border-radius:8px;
             -webkit-border-radius: 8px;
             -moz-border-radius: 8px;
+        }
+        .search>div{
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            top: 16px;
+            right: 0;
+            cursor: pointer;
+        }
+        .search img{
+            width: 100%;
+            height: 100%;
+        }
+        .icon-sousuo{
+            color: #999999;
+            display: block;
+            font-size: 22px;
+            margin-top: 11px;
+            margin-left: 11px;
         }
     </style>
 </head>
@@ -258,14 +280,14 @@
                     <ul id="menu">
                         <li><a href="index.html">首页</a> </li>
                         <li class="changeColor"><a href="productList.html">景点</a></li>
-                        <li><a href="index.html">酒店</a></li>
-                        <li><a href="index.html">目的地</a></li>
+                        <li><a href="hotel/hotel.html">酒店</a></li>
+                        <li><a href="destination.html">目的地</a></li>
                         <li><a href="Topic.html">专题</a></li>
                     </ul>
                 </div>
                 <div class="search">
-                    <input id="" type="text" placeholder="搜索旅游/门票/酒店/目的地">
-                    <div><img src="" alt=""></div>
+                    <input id="headerSearch" type="text" placeholder="搜索旅游/门票/酒店/目的地">
+                    <div><i class="iconfont icon-sousuo" onclick="productSearch();"></i></div>
                 </div>
             </div>
         </div>
@@ -319,7 +341,7 @@
                     <div class="result-container">
                         <!-- 产品 -->
                         <div class="result-box">
-                            <div class="productBox">
+                            <!-- <div class="productBox">
                                 <ul class="clearfix">
                                     <li><img src="img/1.png" alt=""></li>
                                     <li class="productTitle">
@@ -339,7 +361,7 @@
                                     <li class="packagePrice">¥340起</li>
                                     <li class="reserveBtn"><button>立即预定</button></li>
                                 </ul>
-                            </div>
+                            </div> -->
                         </div>
                         <div id="pages"></div>
                     </div>
@@ -535,6 +557,14 @@
             $("#retailPrice").html(e.data.salePrice);
 
         }
+    }
+
+    // 搜索
+    function productSearch(){
+        var text = $("#headerSearch").val();
+        publicAjax(baseAjaxUrl + "/ty_api/product/searchProduct", "POST", 
+           {"content": text,"pageSize": "6","pageNum": "1"
+           }, getSearchScenicCall);
     }
 
 </script>

@@ -402,7 +402,7 @@
                         <li><a href="/index.html">首页</a> </li>
                         <li><a href="/productList.html">景点</a></li>
                         <li><a class="changeColor" href="/hotel/hotel.html">酒店</a></li>
-                        <li><a href="/index.html">目的地</a></li>
+                        <li><a href="/destination.html">目的地</a></li>
                         <li><a href="/Topic.html">专题</a></li>
                     </ul>
                 </div>
@@ -422,10 +422,10 @@
                <img src="" alt="">
             </div>
             <div class="carousel-right">
-                <div class="carousel-hotelImg"><img src="/img/1.png" alt=""></div>
-                <div class="carousel-hotelImg"><img src="/img/1.png" alt=""></div>
-                <div class="carousel-hotelImg"><img src="/img/1.png" alt=""></div>
-                <div class="carousel-hotelImg"><img src="/img/1.png" alt=""></div>
+                <div class="carousel-hotelImg"><img src="/img/defaultImg.png" alt=""></div>
+                <div class="carousel-hotelImg"><img src="/img/defaultImg.png" alt=""></div>
+                <div class="carousel-hotelImg"><img src="/img/defaultImg.png" alt=""></div>
+                <div class="carousel-hotelImg"><img src="/img/defaultImg.png" alt=""></div>
             </div>
         </div>
         <div class="clear"></div>
@@ -452,7 +452,7 @@
                 <div><span>离店 &nbsp;&nbsp;</span><span id="leaveDate">2018-10-12</span></div>
             </div>
             <div class="ht-right" id="liveNum">共1晚</div>
-            <div class="calendar"></div>
+            <div class="calendar"><div class="arrows leftArrows"><</div><div class="arrows rightArrows">></div></div>
         </div>
         <div id="hot-con">
             <div class="package">
@@ -584,6 +584,7 @@
     var dis = $('.tab_title').offset().top;        //tab
     var productName,hotelSearchInfo,hotelName,pictureUrl;
     var oldStartDate, oldEndDate;
+    // var week = new.Date('2017-12-30').getDay(); //转星期
     $(function () {
         var hotelId = GetQueryString("hotelId");
         hotelSearchInfo = JSON.parse(getSess("hotelSearchInfo"));
@@ -621,7 +622,7 @@
             $("#endDate").val(endDate);
 
         } else {
-            initStayLeaveDate()
+            initStayLeaveDate();
         }
 
         $(".comfire").click(function () {
@@ -951,5 +952,28 @@
         comfireBtn: '.comfire',//确定按钮的class或者id
         cancelBtn: '.cancelChoose'//确定按钮的class或者id
     });
+
+    // 日历 next
+    var num = 0;
+    $(".rightArrows").click(function(){
+        var str = 0;
+        var marginTop = -326;
+        if($(".tbody>div").length > num*2){
+            num ++;
+            str = num*marginTop;
+            $(".tbody").css("margin-top",str+"px");   
+            console.log(str); 
+        }  
+    })
+    $(".leftArrows").click(function(){
+        var str = 0;
+        var marginTop = -326;
+        if(num > 0){
+            num --;
+            str = num*marginTop;
+            $(".tbody").css("margin-top",str+"px");   
+            console.log(str); 
+        }  
+    })
 </script>
 </html>

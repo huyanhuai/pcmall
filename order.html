@@ -15,7 +15,7 @@
             margin-top: 30px;
         }
         .order .order-title{
-            height: 150px;
+            height: 100px;
         }
         .order .order-content{
             margin-top: 20px;
@@ -37,6 +37,9 @@
             font-size: 14px;
             padding: 0 20px;
             background: #F0F9F9;
+        }
+        .order .order-content .left .loginStatus a{
+            color: #00bdd5;
         }
         .order .order-content .left .orderInfo{
             margin-top: 20px;
@@ -182,11 +185,11 @@
             padding-left: 18px;
         }
         .contacts{
-            padding: 20px 0 0 0;
+            /* padding: 20px 0 0 0; */
             line-height: 42px;
             font-size: 14px;
             color: #333;
-            display: none;
+            /* display: none; */
         }
         .contacts-left{
             float: left;
@@ -516,7 +519,7 @@
                     <ul id="menu">
                         <li><a href="index.html">首页</a> </li>
                         <li class="changeColor"><a href="productList.html">景点</a></li>
-                        <li><a href="index.html">酒店</a></li>
+                        <li><a href="hotel/hotel.html">酒店</a></li>
                         <li><a href="destination.html">目的地</a></li>
                         <li><a href="Topic.html">专题</a></li>
                     </ul>
@@ -527,11 +530,16 @@
     <!-- 景点支付 -->
     <div class="order">
         <div class="order-title">
-            <img src="" alt="">
+            <!-- <img src="" alt=""> -->
+            <ul>
+                <li><p class="colorChange">填写订单</p> <div class="titleChange"><i class="titleChange"> </i></div></li>
+                <li><p>选择支付方式</p> <div><i></i></div></li>
+                <li><p>完成</p> <div><i></i></div></li>
+            </ul>
         </div>
         <div class="order-content clearfix">
             <div class="left">
-                <p class="loginStatus"> 您当前未登录，如您是同游科技会员，请先 </p>
+                <p class="loginStatus"> 您当前未登录，如您是同游科技会员，请先 <a href="login.html"> 登录</a> </p>
                 <div class="orderInfo">
                     <div class="orderInfo-common">
                         <div class="name packageName">杭州宋城景区</div>
@@ -604,8 +612,8 @@
                                         <input type="radio" name="name" class="" value="1">
                                         <span>联系人</span>
                                     </div>
-                                </div>
-                                <div style="clear: both;"></div> -->
+                                </div> -->
+                                <div style="clear: both;"></div>
                             </div>
                             <div class="passenger-content">
                                 <div class="passenger-item">
@@ -667,6 +675,10 @@
             </div>
         </div>
     </div>
+
+    <form id="form1" action="" method="">
+        <input type="hidden" id="input1">
+    </form>
 
     <!-- 合作伙伴 -->
     <div class="newProduct">
@@ -761,6 +773,11 @@
     $(function () {
         // 用户信息
         getUser();
+        if($.cookie('token') == null){
+            $(".loginStatus").show();
+        }else{
+            $(".loginStatus").hide();
+        }
         // var innerEmpty = priceCalendar("2018-09-05", "2018-12-12", "2018-12-12", "100");
         // $(".calendar-day-box").append(innerEmpty);
         productPackageId=GetQueryString("productPackageId");
@@ -932,7 +949,7 @@
         // }
     }
     // 创建订单
-    $(".submit-btn").on("click",function(){
+    $("#submit").on("click",function(){
         var token = $.cookie("token");
         console.log(token)
         if(token == null || token == undefined || token == "null"){
@@ -953,6 +970,12 @@
             layMessage("请添加联系人");
             return false
         }
+
+        // loading层
+        var index = layer.load(1, {
+            shade: [0.1,'#fff'] //0.1透明度的白色背景
+        });
+
         packageNumber = $("#num_input").val();
         packageDay = $(".dateList-day.day-active .lay-calendar").text();
         packageYear = $(".dateList-day.day-active .lay-calendar").attr("data-year"); 
@@ -974,14 +997,32 @@
         var dataJson = encrypt.encryptLong(data);
         //创建订单
         publicAjaxToken(baseAjaxUrl + "/ty_api/order/createOrder", "POST", {"orderStr": dataJson}, creatOrderCall)
-        // location.href = "orderPay.html?productId="+productId+"&productPackageId=" + productPackageId + "&packageNumber=" + packageNumber + "&packageDay=" + packageDay + "&packageYear=" + packageYear;
     })
     // 订单回调
     function creatOrderCall(res){
         if(res.errorCode == 200){
             var orderNo = res.data.orderNo;
             var orderId = res.data.orderId;
-            location.href = "orderPay.html?orderNo="+orderNo+"&productId="+productId+"&productPackageId=" + productPackageId + "&packageNumber=" + packageNumber + "&packageDay=" + packageDay + "&packageYear=" + packageYear;
+            // location.href = "orderPay.html?orderNo="+orderNo+"&productId="+productId+"&productPackageId=" + productPackageId + "&packageNumber=" + packageNumber + "&packageDay=" + packageDay + "&packageYear=" + packageYear;
+            // 支付
+            var form1 = $("#form1");
+            var input = $("#input1") 
+            // 设置相应参数 
+            input.val(orderNo);
+            console.log(input.val());
+            input.attr("name","orderNo");
+            // 将该输入框插入到 form 中 
+            input.appendTo(form1); 
+            console.log(input);
+            // form 的提交方式 
+            form1.attr("method","post");
+            form1.attr("action",baseAjaxUrl + "/ty_api/pay/aliPcPay");
+            // form 提交路径 
+            // form1.action = baseAjaxUrl +  "/ty_api/pay/aliWebPay"; 
+            // 对该 form 执行提交 
+            form1.submit(); 
+            // 关闭loading
+            layer.closeAll();
         }
     }
     // 信息验证
