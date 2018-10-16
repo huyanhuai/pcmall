@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>自驾游  周边游 旅游度假 亲子游 民宿  景点门票 酒店预订 同游科技 同游旅游 杭州同游科技有限公司</title>
+    <title>自驾游  周边游 旅游度假 亲子游 民宿  景点门票 酒店预订 同游科技 同游旅游</title>
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="js/swiper/swiper-4.2.0.min.css">
     <link rel="stylesheet" href="css/public.css">
@@ -61,7 +61,7 @@
             width: 100%;
             height: 100%;
         }
-        .icon-sousuo{
+        .iconfont.icon-sousuo{
             display: block;
             color: #fff;
             font-size: 28px;
@@ -142,7 +142,7 @@
                 </div>
                 <ul class="clearfix">
                     <li><a href="http://business.tongyoutrip.com/" target="_blank" class="shouye">商家入驻</a> </li>
-                    <li>0571-86981186 </li>
+                    <li>0571-86981889 </li>
                     <li><a href="register.html"></a> </li>
                 </ul>
             </div>
@@ -161,6 +161,7 @@
                 <ul id="menu">
                     <li ><a href="index.html" >首页</a> </li>
                     <li><a class="changeColor" href="productList.html">景点</a></li>
+                    <li><a href="productAndHotel.html">景点+酒店</a></li>
                     <li><a href="hotel/hotel.html">酒店</a></li>
                     <li><a href="destination.html">目的地</a></li>
                     <li><a  href="Topic.html">专题</a></li>
@@ -286,15 +287,12 @@
             <div><span>24小时客服热线：0571-86981889 同游总部：杭州市天目山路226号网新大厦3楼326</span></div>
             <div>
                 <ul class="clearfix">
-                    <li><a href="">关于同游</a></li>
-                    <li><a href="">联系我们</a></li>
-                    <li><a href="">投诉建议</a></li>
-                    <li><a href="">同游服务</a></li>
-                    <li><a href="">商家入驻</a></li>
-                    <li><a href="">使用指南</a></li>
-                    <li><a href="">运营方案</a></li>
-                    <li><a href="">同游团队</a></li>
-                    <li><a href="">加入我们</a></li>
+                    <li><a href="https://mp.weixin.qq.com/s/DF8sJ3AI70jo-O6arYWlbw" target="back">关于同游</a></li>
+                    <li><a href="https://mp.weixin.qq.com/s/5PGxk74O32xMx0avFcnVKw" target="back">入驻流程</a></li>
+                    <li><a href="https://mp.weixin.qq.com/s/6y4vS0126yiFr8oPrbDL0w" target="back">供应商招商标准</a></li>
+                    <li><a href="https://mp.weixin.qq.com/s/835-jOMqW2URLap9FApEAw" target="back">代理商使用指南</a></li>
+                    <li><a href="https://mp.weixin.qq.com/s/FiHiXFYQ0lMH9JpEVEyfpw" target="back">代理商招募业务员指南</a></li>
+                    <li><a href="https://mp.weixin.qq.com/s/dyKkMfnOdgRYCxJrSpypCQ" target="back">代言指南</a></li>
                 </ul>
             </div>
             <div>
@@ -317,6 +315,9 @@
     </div>
 </body>
 <script src="js/jquery-3.2.1.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.4/jquery.xdomainrequest.min.js"></script>
+
 <script src="js/jq.lazyload.js"></script>
 <script src="js/jquery.cookie.js"></script>
 <script src="js/swiper/swiper-4.2.0.min.js"></script>
@@ -382,7 +383,7 @@
                 if (data[i].pictureUrl == null) {
                     var pictureUrl = "img/defaultImg.png";
                 } else {
-                    var pictureUrl = baseImgUrl + data[i].pictureUrl + '_small.jpg';
+                    var pictureUrl = baseImgUrl + data[i].pictureUrl + '.jpg';
                 }
                 innerHtml +=
                 '<div class="surround-content-item">\n' +
@@ -391,8 +392,8 @@
                 '           <img class="lazy" src="img/defaultImg.png" width="400" height="200" data-original="' + pictureUrl + '" alt="">\n' +
                 '       </div>\n' +
                 '    </a>\n' +
-                '   <a href="productDetail.html?productId=' + data[i].productId + '" target="_blank">\n' +
-                '       <div class="item-text"><p class="p1">' + data[i].productName + '</p>\n' +
+                // '   \n' +
+                '       <div class="item-text"><a href="productDetail.html?productId=' + data[i].productId + '" target="_blank"><p class="p1">' + data[i].productName + '</p>\n' +
                 '    </a>\n' +
                 '       <div class="p2"><p>' + data[i].score + '分</p> <p><span style="color: #FF574E;">￥</span><span class="item-price">' + data[i].minPrice + '</span><span>起</span></p></div></div>\n' +
                 
@@ -416,7 +417,7 @@
                 if (data[i].pictureUrl == null) {
                     var pictureUrl = "img/defaultImg.png";
                 } else {
-                    var pictureUrl = baseImgUrl + data[i].pictureUrl + '_small.jpg';
+                    var pictureUrl = baseImgUrl + data[i].pictureUrl + '.jpg';
                 }
                 innerHtml +=
                 '<div class="surround-content-item">\n' +
@@ -425,8 +426,8 @@
                 '           <img class="lazy" src="img/defaultImg.png" width="400" height="200" data-original="' + pictureUrl + '" alt="">\n' +
                 '       </div>\n' +
                 '    </a>\n' +
-                '   <a href="productDetail.html?productId=' + data[i].productId + '" target="_blank">\n' +
-                '       <div class="item-text"><p class="p1">' + data[i].productName + '</p>\n' +
+                // '   \n' +
+                '       <div class="item-text"><a href="productDetail.html?productId=' + data[i].productId + '" target="_blank"><p class="p1">' + data[i].productName + '</p>\n' +
                 '    </a>\n' +
                 '       <div class="p2"><p>' + data[i].score + '分</p> <p><span style="color: #FF574E;">￥</span><span class="item-price">' + data[i].minPrice + '</span><span>起</span></p></div></div>\n' +
                 

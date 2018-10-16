@@ -11,7 +11,6 @@
     <style>
         /* 轮播 */
         /* 顶部 */
-        
         i,em{
             font-style: normal;
         }
@@ -30,7 +29,7 @@
             margin-left: 30px;
         }
         .carousel-left .searchTerms{
-            margin-top: 20px;
+            margin-top: 30px;
         }
         .carousel-left .searchTerms ul li{
             width: 80px;
@@ -42,7 +41,7 @@
         .carousel-left .searchBox input{
             width: 550px;
             height: 50px;
-            font-size: 16px;
+            font-size: 18px;
             background:rgba(255,255,255,1);
             border-radius:8px;
             padding-left: 8px;
@@ -68,69 +67,14 @@
             margin-top: 10px;
             margin-left: 21px;
         }
+        #productAndHotel>div:nth-child(4),#productAndHotel>div:nth-child(8){
+            margin-right: 0;
+        }
 
-        /* 热门专题 */
-        .hotTopic .tab_title ul{
-            float: left;
-            /* margin: 10px 0 0 50px; */
+        #productAndHotel .surround-content-item{
+            height: 370px;
         }
-        .hotTopic .tab_title ul li{
-            float: left;
-            max-width: 84px;
-            height: 50px;
-            line-height: 50px;
-            color: #333;
-            font-weight: bolder;
-            float: left;
-            margin-left: 50px;
-            cursor: pointer;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            -o-text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        .hotTopic .tab_title ul li.at{
-            color: #58C0C6;
-            border-bottom: 2px solid #58C0C6;
-            font-weight: 700;
-        }
-        #hotTopic ul li{
-            float: left;
-            /* width: 540px; */
-            width: 32%;
-            height: 400px;
-            margin-right: 2%;
-            position: relative;
-        }
-        #hotTopic ul li:nth-child(3){
-            /* width: 32%; */
-            margin-right: 0;
-        }
-        #hotTopic ul li:nth-child(6){
-            /* width: 32%; */
-            margin-right: 0;
-        }
-        #hotTopic ul li img{
-            width: 100%;
-            height: 400px;
-        }
-        .topic-title{
-            position: absolute;
-            left: 40px;
-            bottom: 60px;
-        }
-        .topic-title p{
-            font-size: 18px;
-            color: #fff;
-            padding-bottom:10px; 
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-        }
-        .topic-title p:nth-child(1){
-            font-size: 26px;
-            font-weight: 600;
-        }
+
         /* 底部 */
 
     </style>
@@ -167,10 +111,10 @@
                 <ul id="menu">
                     <li ><a href="index.html" >首页</a> </li>
                     <li><a href="productList.html">景点</a></li>
-                    <li><a href="productAndHotel.html">景点+酒店</a></li>
+                    <li><a class="changeColor" href="productAndHotel.html">景点+酒店</a></li>
                     <li><a href="hotel/hotel.html">酒店</a></li>
                     <li><a href="destination.html">目的地</a></li>
-                    <li><a  class="changeColor" href="Topic.html">专题</a></li>
+                    <li><a  href="Topic.html">专题</a></li>
                     <!-- <li id="login"><a href="login.html">登录/注册</a> </li> -->
                 </ul>
             </div>
@@ -208,27 +152,17 @@
             <!-- <div class="button-next"></div> 右箭头 -->
         </div>
     </div>
- 
-    <!-- 热门专题 -->
-    <div class="newProduct hotTopic">
+
+    <!-- 景点+酒店 -->
+    <div class="newProduct">
         <div class="tab_title">
-            <h2 style="float: left;">热门专题</h2>
-                <ul>
-                    <li class="at">杭州</li>
-                    <li>绍兴</li>
-                    <li>湖州</li>
-                    <li>嘉兴</li>
-                    <li>宁波</li>
-                </ul>
+            <h2 style="float: left;">景点+酒店</h2>
         </div>
-        <div id="hotTopic">
-            <ul class="clearfix">
-                <li>
-                    <img src="img/1.png" alt="">
-                </li>
-            </ul>
+        <div class="tab-list clearfix">
+            <div id="productAndHotel"></div>
         </div>
     </div>
+ 
     <!-- 合作伙伴 -->
     <div class="newProduct">
         <div class="tab_title">
@@ -301,12 +235,16 @@
     </div>
 </body>
 <script src="js/jquery-3.2.1.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.4/jquery.xdomainrequest.min.js"></script>
+
 <script src="js/jq.lazyload.js"></script>
 <script src="js/jquery.cookie.js"></script>
 <script src="js/swiper/swiper-4.2.0.min.js"></script>
 <script src="js/ajaxTool.js"></script>
 <script src="js/public.js"></script>
 <script>
+    var total;
     $(function() {
         // 用户信息
         getUser();
@@ -317,34 +255,102 @@
             "pageNum": "1"
         }, swiperCallback);
 
-        /*热门专题*/
-        publicAjax(baseAjaxUrl + "/ty_api/subject/getMap", "POST", {
-            "pageSize": "6",
+        var innerHtml = '';
+        for (var i = 0; i < 4; i++) {
+            var pictureUrl = "img/defaultImg.png";
+            innerHtml +=
+                '<div class="surround-content-item">\n' +
+                '   <a href="productDetail.html?" target="_blank">\n' +
+                '       <div >\n' +
+                '           <img class="lazy" src="img/defaultImg.png" width="400" height="200" data-original="" alt="">\n' +
+                '       </div>\n' +
+                '    </a>\n' +
+                '   <a href="productDetail.html?" target="_blank">\n' +
+                '       <div class="item-text"><p class="p1"></p>\n' +
+                '    </a>\n' +
+                '       <div class="p2"><p>分</p> <p><span style="color: #FF574E;">￥</span><span class="item-price"></span><span>起</span></p></div></div>\n' +
+                
+                '</div>';
+            $("#attractions").html(innerHtml);
+            $("img.lazy").lazyload({
+                threshold : 200,
+                effect : "fadeIn"
+            });
+        }
+
+        // 景+酒
+        publicAjax(baseAjaxUrl + "/ty_api/scenicHotel/getList", "POST", {
+            "pageSize": "4",
             "pageNum": "1"
-        }, hotCallback);
+        }, productHotelCallback);
+
+        var num = 1;
+        var j = 1;
+        $(window).scroll(function(){
+            var winPos = $(window).scrollTop();
+            var pageSize = 4*num;
+            if(winPos > 200*num){
+                if(total+4 > pageSize){
+                    publicAjax(baseAjaxUrl + "/ty_api/scenicHotel/getList", "POST", {
+                        "pageSize": pageSize,
+                    }, productHotelCallback);
+                    num++;
+                }
+            }
+
+            var sum = $("#productAndHotel .surround-content-item").length/4;
+            // console.log(sum);
+            // console.log(j);
+            if(j<sum){
+                $("#productAndHotel .surround-content-item").eq(4*j).css("margin-right","0");
+                j++;
+            }
+        });
         
     })
-    // 热门目的地/专题
-    function hotCallback(e) {
-        var innerHtml1 = '';
-        var innerHtml2 = '';
-        var html1 = "";
-        var html2 = "";
-        if (e.errorCode == 200) {
-            var data1 = e.data.hotAddress.list;
-            var data2 = e.data.hotSubject.list;
-
-            // 热门专题
-            for(var j = 0; j < data2.length; j++){
-                html2 += '<li><a href="TopicDetail.html?subjectId=' + data2[j].subjectId + '&subjectTitle=' + data2[j].subjectTitle + '&pictureUrl=' + data2[j].pictureUrl + '&subjectName=' + data2[j].subjectName + '">'+
-                         '<img src="' + baseImgUrl + data2[j].pictureUrl + '.jpg" alt="">'+
-                         '<div class="topic-title"><p>' + data2[j].subjectName + '</p><p>' + data2[j].subjectTitle + '</p></div>'
-                         '</a></li>';
+    // 景点回调
+    function productHotelCallback(e) {
+        var listDom = $("#productAndHotel");
+        var data = e.data.list;
+        total = e.data.total;
+        console.log(data);
+        var html = '';
+        var obj = {};
+        for (var i = 0; i < data.length; i++) {
+            if(data[i].scenicHotelType == "SCENIC"){
+                obj.url = "productDetail.html?productId=" + data[i].scenicHotelProductId;
+                obj.name = data[i].productName;
+                obj.img = data[i].productPictureUrl;
+                
+            }else{
+                obj.url = "/hotel/hotelDetail.html?hotelId=" + data[i].scenicHotelHotelId;
+                obj.img = data[i].hotelPictureUrl;
+                obj.name = data[i].hotelName;
+                console.log(obj.name);
             }
-            $("#hotTopic ul").html(html2);
-   
+            obj.price = data[i].minPrice;
+            html +=
+                '<div class="surround-content-item">\n' +
+                '   <a href="' + obj.url + '" target="_blank">\n' +
+                '       <div >\n' +
+                '           <img class="lazy" src="img/defaultImg.png" width="400" height="200" data-original="'+baseImgUrl + obj.img +'.jpg" alt="">\n' +
+                '       </div>\n' +
+                '    </a>\n' +
+                // '   \n' +
+                '       <div class="item-text"><a href="' + obj.url + '" target="_blank"><p class="p1">' + obj.name + '</p>\n' +
+                '    </a>\n' +
+                '       </div>\n' +
+                
+                '</div>';
+
         }
+        listDom.html(html);//加在列表的后面,上拉加载
+        $("img.lazy").lazyload({
+            threshold : 200,
+            effect : "fadeIn"
+        });
     }
+
     //请求轮播成功的回调
     function swiperCallback(e) {
         /*用于存放轮播内容*/
@@ -369,17 +375,5 @@
             lunbo();
         }
     }
-</script>
-<script>
-    //鼠标
-    $(".invest-dot li").each(function (i, v) {
-        $(v).mouseover(function (){
-            $(this).addClass("change").siblings().removeClass("change");
-            $(".invest-list ul").eq(i).show();
-            $(".invest-list ul").eq(i).siblings().hide();
-            
-        });
-    });
-        
 </script>
 </html>

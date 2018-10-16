@@ -251,7 +251,7 @@
             width: 100%;
             height: 100%;
         }
-        .icon-sousuo{
+        .iconfont.icon-sousuo{
             color: #999999;
             display: block;
             font-size: 22px;
@@ -292,6 +292,7 @@
                     <ul id="menu">
                         <li><a href="/index.html">首页</a> </li>
                         <li><a href="/productList.html">景点</a></li>
+                        <li><a href="/productAndHotel.html">景点+酒店</a></li>
                         <li><a class="changeColor" href="/hotel/hotel.html">酒店</a></li>
                         <li><a href="/destination.html">目的地</a></li>
                         <li><a href="/Topic.html">专题</a></li>
@@ -455,15 +456,12 @@
             <div><span>24小时客服热线：0571-86981889 同游总部：杭州市天目山路226号网新大厦3楼326</span></div>
             <div>
                 <ul class="clearfix">
-                    <li><a href="">关于同游</a></li>
-                    <li><a href="">联系我们</a></li>
-                    <li><a href="">投诉建议</a></li>
-                    <li><a href="">同游服务</a></li>
-                    <li><a href="">商家入驻</a></li>
-                    <li><a href="">使用指南</a></li>
-                    <li><a href="">运营方案</a></li>
-                    <li><a href="">同游团队</a></li>
-                    <li><a href="">加入我们</a></li>
+                    <li><a href="https://mp.weixin.qq.com/s/DF8sJ3AI70jo-O6arYWlbw" target="back">关于同游</a></li>
+                    <li><a href="https://mp.weixin.qq.com/s/5PGxk74O32xMx0avFcnVKw" target="back">入驻流程</a></li>
+                    <li><a href="https://mp.weixin.qq.com/s/6y4vS0126yiFr8oPrbDL0w" target="back">供应商招商标准</a></li>
+                    <li><a href="https://mp.weixin.qq.com/s/835-jOMqW2URLap9FApEAw" target="back">代理商使用指南</a></li>
+                    <li><a href="https://mp.weixin.qq.com/s/FiHiXFYQ0lMH9JpEVEyfpw" target="back">代理商招募业务员指南</a></li>
+                    <li><a href="https://mp.weixin.qq.com/s/dyKkMfnOdgRYCxJrSpypCQ" target="back">代言指南</a></li>
                 </ul>
             </div>
             <div>
@@ -589,7 +587,7 @@
                                 '</li>'+
                                 '<li class="productInfo">'+
                                     '<p><span>¥</span> <span>' + data[i].minPrice + '</span>起</p>'+
-                                    '<a href="hotelDetail.html?hotelId=' + data[i].hotelId + '"><button>查看详情</button></a>'+
+                                    '<a href="hotelDetail.html?hotelId=' + data[i].hotelId + '" target="back"><button>查看详情</button></a>'+
                                 '</li>'+
                             '</ul>'+
                         '</div>';

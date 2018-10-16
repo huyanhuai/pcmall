@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>酒店详情</title>
+    <title>自驾游  周边游 旅游度假 亲子游 民宿  景点门票 酒店预订 同游科技 同游旅游-</title>
     <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/js/swiper/swiper-4.2.0.min.css">
     <link rel="stylesheet" href="/css/public.css">
@@ -100,12 +100,17 @@
         }
         .package-left .packageName .subtitle{
             max-width: 700px;
+            height: 50px;
             padding-top: 10px;
             font-size: 14px;
             color: #666666;
+            /* overflow: hidden;
+            text-overflow: ellipsis; */
             overflow: hidden;
-            /* white-space: nowrap; */
             text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
         }
         .package-left .packageImg{
             width: 200px;
@@ -138,7 +143,7 @@
         }
 
         .packageList{
-            display: none;
+            /* display: none; */
         }
         .packageList .boxLine{
             height: 2px;
@@ -146,7 +151,7 @@
             background: #e5e5e5;
         }
         .roomBox ul li{
-            width: 20%;
+            width: 18%;
             height: 60px;
             line-height: 60px;
             font-size: 14px;
@@ -154,6 +159,12 @@
             float: left;
             text-align: center;
             border-bottom: 1px solid #e5e5e5;
+        }
+        .roomBox ul li:nth-child(1){
+            width: 28%;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
         }
         .roomBox ul li.roomPrice{
             font-size: 20px;
@@ -401,6 +412,7 @@
                     <ul id="menu">
                         <li><a href="/index.html">首页</a> </li>
                         <li><a href="/productList.html">景点</a></li>
+                        <li><a href="/productAndHotel.html">景点+酒店</a></li>
                         <li><a class="changeColor" href="/hotel/hotel.html">酒店</a></li>
                         <li><a href="/destination.html">目的地</a></li>
                         <li><a href="/Topic.html">专题</a></li>
@@ -542,15 +554,12 @@
             <div><span>24小时客服热线：0571-86981889 同游总部：杭州市天目山路226号网新大厦3楼326</span></div>
             <div>
                 <ul class="clearfix">
-                    <li><a href="">关于同游</a></li>
-                    <li><a href="">联系我们</a></li>
-                    <li><a href="">投诉建议</a></li>
-                    <li><a href="">同游服务</a></li>
-                    <li><a href="">商家入驻</a></li>
-                    <li><a href="">使用指南</a></li>
-                    <li><a href="">运营方案</a></li>
-                    <li><a href="">同游团队</a></li>
-                    <li><a href="">加入我们</a></li>
+                    <li><a href="https://mp.weixin.qq.com/s/DF8sJ3AI70jo-O6arYWlbw" target="back">关于同游</a></li>
+                    <li><a href="https://mp.weixin.qq.com/s/5PGxk74O32xMx0avFcnVKw" target="back">入驻流程</a></li>
+                    <li><a href="https://mp.weixin.qq.com/s/6y4vS0126yiFr8oPrbDL0w" target="back">供应商招商标准</a></li>
+                    <li><a href="https://mp.weixin.qq.com/s/835-jOMqW2URLap9FApEAw" target="back">代理商使用指南</a></li>
+                    <li><a href="https://mp.weixin.qq.com/s/FiHiXFYQ0lMH9JpEVEyfpw" target="back">代理商招募业务员指南</a></li>
+                    <li><a href="https://mp.weixin.qq.com/s/dyKkMfnOdgRYCxJrSpypCQ" target="back">代言指南</a></li>
                 </ul>
             </div>
             <div>
@@ -600,7 +609,6 @@
         //获取酒店设施
         publicAjax(baseAjaxUrl + "/ty_api/hotel/queryItems", "POST", {"hotelId": hotelId}, getQueryItems);
 
-        //获取酒店套餐
         //获取酒店房型及套餐
         publicAjax(baseAjaxUrl + "/ty_api/hotel/room/queryHotelRoomList", "POST", {
             "hotelId": hotelId,
@@ -617,7 +625,10 @@
             liveNum = hotelSearchInfo.liveNum;
             $("#stayDate").html(timeTransformation(startDate, "date"));
             $("#leaveDate").html(timeTransformation(endDate, "date"));
-            $("#liveNum").html(liveNum);
+            if(liveNum != ""){
+                $("#liveNum").html(liveNum);
+            }
+            
             $("#startDate").val(startDate);
             $("#endDate").val(endDate);
 
@@ -641,6 +652,12 @@
                 hotelSearchInfo.endDate = oldEndDate;
                 hotelSearchInfo.liveNum = "共" + $(".hover").html() + "晚";
                 setSess("hotelSearchInfo", JSON.stringify(hotelSearchInfo));
+
+                publicAjax(baseAjaxUrl + "/ty_api/hotel/room/queryHotelRoomList", "POST", {
+                    "hotelId": hotelId,
+                    "startDate": $('#startDate').val(),
+                    "endDate": $('#endDate').val()
+                }, getHotelRoomListCall);
             }
         })
     });
@@ -680,6 +697,7 @@
         if(e.errorCode == 200){
             $(".carousel-product img").attr("src", baseImgUrl + e.data.pictureUrl + ".jpg");
             pictureUrl = e.data.pictureUrl;
+            $("title").html("自驾游  周边游 旅游度假 亲子游 民宿  景点门票 酒店预订 同游科技 同游旅游-" + e.data.hotelName);
             $(".productName").html(e.data.hotelName);
             hotelName = e.data.hotelName;
             $(".minPrice").html(e.data.minPrice);
@@ -752,7 +770,7 @@
                     }
                     RoomInnerHtml += '<div class="roomBox clearfix">'+
                             '<ul>'+
-                                '<li>' + roomList[j].comboName + '</li><li>' + breakfastInnerHtml + '</li><li>' + refunds + '</li>'+
+                                '<li title="'+ roomList[j].comboName +'">' + roomList[j].comboName + '</li><li>' + breakfastInnerHtml + '</li><li>' + refunds + '</li>'+
                                 '<li class="roomPrice"><p>￥<span>' + roomList[j].salePrice + '</span></p></li>'+
                                 '<li><button onclick="jumpHouseOrder(' + data[i].hotelRoomId + ',\'' + roomList[j].comboName + '\',\'' + breakfastInnerHtml + '\',' + roomList[j].salePrice + ',' + roomList[j].hotelRoomComboId + ',\'' + data[i].peopleNum + '\')">预定</button></li>'+
                             '</ul>'+

@@ -1,13 +1,34 @@
 /*封装通用ajax*/
 function publicAjax(url, type, data, callback) {
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        },
         url: url,
         type: type,
         data: data,
+        async: false,
         success: callback,
+        error: call
     })
+
+    // $.getJSON(url).done(callback
+    // );
+    // $.ajax({
+    //     url: url,
+    //     type: type,
+    //     data: data,
+    //     contentType: 'text/plain',
+    //     dataType: 'json'
+    //   }).done(callback);
 }
 
+function call(XMLHttpRequest, textStatus, errorThrown) {
+    // alert(XMLHttpRequest.status);
+    // alert(XMLHttpRequest.readyState);
+    console.log(XMLHttpRequest.status);
+    // alert(textStatus);
+};
 //带token的ajax
 function publicAjaxToken(url, type, data, callback, async) {
     async = async || true;
@@ -127,4 +148,3 @@ function getSess(name) {
     return sessionStorage.getItem(name);
 }
 
-// cookie

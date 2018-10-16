@@ -9,10 +9,12 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    
 }
 body{
-    /* color: #333; */
+    font-family: Microsoft YaHei, Helvetica, '宋体' , Tahoma, Arial, "\5b8b\4f53", sans-serif;
 }
+
 
 a {
     text-decoration: none;
@@ -140,6 +142,12 @@ input[type="number"]{
         width: 335px;
     }
 
+    /* 景+酒 */
+    body
+    #productAndHotel .surround-content-item{
+        height: 330px;
+    }
+
     /* 专题 */
     /* 目的地 */
     body
@@ -260,6 +268,12 @@ input[type="number"]{
     .newProduct
     .localAttractions>div:nth-child(1){
         width: 285px;
+    }
+
+    /* 景+酒 */
+    body
+    #productAndHotel .surround-content-item{
+        height: 300px;
     }
 
     /* 专题 */

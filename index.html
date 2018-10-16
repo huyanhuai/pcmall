@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>自驾游  周边游 旅游度假 亲子游 民宿  景点门票 酒店预订 同游科技 同游旅游 杭州同游科技有限公司</title>
+    <title>自驾游  周边游 旅游度假 亲子游 民宿  景点门票 酒店预订 同游科技 同游旅游</title>
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="js/swiper/swiper-4.2.0.min.css">
     <link rel="stylesheet" href="css/public.css">
@@ -62,7 +62,7 @@
             width: 100%;
             height: 100%;
         }
-        .icon-sousuo{
+        .iconfont.icon-sousuo{
             display: block;
             color: #fff;
             font-size: 28px;
@@ -263,10 +263,24 @@
         #hotDes>div:nth-child(3),#hotDes>div:nth-child(6){
             margin-right: 0;
         }
+
         #newProductBox>div:nth-child(4),#newProductBox>div:nth-child(8){
             margin-right: 0;
         }
+
+        #productAndHotel>div:nth-child(4),#productAndHotel>div:nth-child(8){
+            margin-right: 0;
+        }
+
+        #hotel .surround-content-item:nth-child(4){
+            margin-right: 20px;
+        }
         
+        /* 景+酒
+         */
+        #productAndHotel .surround-content-item{
+            height: 370px;
+        }
         /* 热门目的地 */
         
         /* 底部 */
@@ -286,7 +300,7 @@
                 </div>
                 <ul class="clearfix">
                     <li><a href="http://business.tongyoutrip.com/" target="_blank" class="shouye">商家入驻</a> </li>
-                    <li>0571-86981186 </li>
+                    <li>0571-86981889 </li>
                     <li><a href="register.html"></a> </li>
                 </ul>
             </div>
@@ -295,16 +309,17 @@
         <div class="topNavWrapper">
             <div class="topContent">
                 <div class="topLogo">
-                    <img src="img/logo.jpg" alt="">
+                    <a href="index.html"> <img src="img/logo.jpg" alt=""></a>
                 </div>
                 <div class="topSearch">
-                    <span>同游科技</span>
+                    <a href="index.html"><span>同游科技</span></a> 
                 </div>
             </div>
             <div class="menuNav">
                 <ul id="menu">
                     <li ><a class="changeColor" href="index.html" >首页</a> </li>
                     <li><a href="productList.html">景点</a></li>
+                    <li><a href="productAndHotel.html">景点+酒店</a></li>
                     <li><a href="hotel/hotel.html">酒店</a></li>
                     <li><a href="destination.html">目的地</a></li>
                     <li><a href="Topic.html">专题</a></li>
@@ -330,7 +345,7 @@
             </div>
             <div class="searchBox">
                 <input id="searchtext" type="text" placeholder="搜索旅游/门票/酒店/目的地">
-                <div onclick="searchSites();"><i class="iconfont icon-sousuo"></i></div>
+                <div onclick="searchSites();"><i class="iconfont icon-sousuo" ></i></div>
             </div>
         </div>
         <div class="swiper-container">
@@ -386,6 +401,21 @@
         </div>
     </div>
     <div style="clear: both;"></div>
+
+    <!-- 景点+酒店 -->
+    <div class="newProduct">
+        <div class="tab_title">
+            <h2 style="float: left;">景点+酒店</h2>
+            <!-- <h4 style="float: right;"><a href="productList.html">more ></a> </h4> -->
+        </div>
+        <div class="tab-list clearfix">
+            <div class="" id="productAndHotel">
+
+            </div>
+        </div>
+    </div>
+
+
     <!-- 酒店 -->
     <div class="dadProject">
         <div class="tab_nav">
@@ -430,6 +460,7 @@
         
     </div>
     <div style="clear: both;"></div>
+
     <!-- 热门目的地 -->
     <div class="dadProject">
         <div class="tab_nav">
@@ -459,6 +490,7 @@
             </div>
         </div>
     </div>
+
     <!-- 最新产品 -->
     <div class="newProduct">
         <div class="tab_title">
@@ -526,15 +558,12 @@
             <div><span>24小时客服热线：0571-86981889 同游总部：杭州市天目山路226号网新大厦3楼326</span></div>
             <div>
                 <ul class="clearfix">
-                    <li><a href="">关于同游</a></li>
-                    <li><a href="">联系我们</a></li>
-                    <li><a href="">投诉建议</a></li>
-                    <li><a href="">同游服务</a></li>
-                    <li><a href="">商家入驻</a></li>
-                    <li><a href="">使用指南</a></li>
-                    <li><a href="">运营方案</a></li>
-                    <li><a href="">同游团队</a></li>
-                    <li><a href="">加入我们</a></li>
+                    <li><a href="https://mp.weixin.qq.com/s/DF8sJ3AI70jo-O6arYWlbw" target="back">关于同游</a></li>
+                    <li><a href="https://mp.weixin.qq.com/s/5PGxk74O32xMx0avFcnVKw" target="back">入驻流程</a></li>
+                    <li><a href="https://mp.weixin.qq.com/s/6y4vS0126yiFr8oPrbDL0w" target="back">供应商招商标准</a></li>
+                    <li><a href="https://mp.weixin.qq.com/s/835-jOMqW2URLap9FApEAw" target="back">代理商使用指南</a></li>
+                    <li><a href="https://mp.weixin.qq.com/s/FiHiXFYQ0lMH9JpEVEyfpw" target="back">代理商招募业务员指南</a></li>
+                    <li><a href="https://mp.weixin.qq.com/s/dyKkMfnOdgRYCxJrSpypCQ" target="back">代言指南</a></li>
                 </ul>
             </div>
             <div>
@@ -554,9 +583,11 @@
                 <span> &nbsp; new.tongyoutrip.com</span>
             </div>
         </div>
-    </div>
+    </div>  
+     
 </body>
 <script src="js/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.4/jquery.xdomainrequest.min.js"></script>
 <script src="js/jq.lazyload.js"></script>
 <script src="js/jquery.cookie.js"></script>
 <script src="js/swiper/swiper-4.2.0.min.js"></script>
@@ -659,7 +690,7 @@
                 $(".projectBox ul li a").eq(i).attr("href","productDetail.html?productId="+data[i].productId);
                 $(".projectBox ul li .minPrice").eq(i).html(data[i].minPrice);
                 $(".projectBox ul li p").eq(i).html(data[i].productName);
-                $(".projectBox ul li img").eq(i).attr("data-original", baseImgUrl + data[i].pictureUrl + '_small.jpg');
+                $(".projectBox ul li img").eq(i).attr("data-original", baseImgUrl + data[i].pictureUrl + '.jpg');
                 $("img.lazy").lazyload({
                     threshold : 200,
                     effect : "fadeIn"
@@ -711,11 +742,19 @@
             "pageSize": "3",
             "pageNum": "1"
         }, swiperCallback);
+
+        // 景+酒
+        publicAjax(baseAjaxUrl + "/ty_api/scenicHotel/getList", "POST", {
+            "pageSize": "4",
+            "pageNum": "1"
+        }, productHotelCallback);
+
          /*最新上线*/
          publicAjax(baseAjaxUrl + "/ty_api/product/queryNewProduct", "POST", {
             "pageSize": "8",
             "pageNum": "1"
         }, newCallback);
+
         /*热门目的地*/
         publicAjax(baseAjaxUrl + "/ty_api/subject/getMap", "POST", {
             "pageSize": "7",
@@ -728,6 +767,46 @@
             "pageNum": "1"
         }, hotelCallback);
     })
+
+    // 景+酒
+    function productHotelCallback(e){
+        var listDom = $("#productAndHotel");
+        var data = e.data.list;
+        var innerHtml = '';
+        var obj = {};
+        for (var i = 0; i < data.length; i++) {
+            if(data[i].scenicHotelType == "SCENIC"){
+                obj.url = "productDetail.html?productId=" + data[i].scenicHotelProductId;
+                obj.name = data[i].productName;
+                obj.img = data[i].productPictureUrl;
+                console.log(obj.name);
+            }else{
+                obj.url = "/hotel/hotelDetail.html?hotelId=" + data[i].scenicHotelHotelId;
+                obj.img = data[i].hotelPictureUrl;
+                obj.name = data[i].hotelName;
+            }
+            obj.price = data[i].minPrice;
+            innerHtml +=
+                '<div class="surround-content-item">\n' +
+                '   <a href="' + obj.url + '" target="_blank">\n' +
+                '       <div >\n' +
+                '           <img class="lazy" src="img/defaultImg.png" width="400" height="200" data-original="'+baseImgUrl + obj.img +'.jpg" alt="">\n' +
+                '       </div>\n' +
+                '    </a>\n' +
+                // '   \n' +
+                '       <div class="item-text"><a href="' + obj.url + '" target="_blank"><p class="p1">' + obj.name + '</p>\n' +
+                '    </a>\n' +
+                '       </div>\n' +
+                
+                '</div>';
+
+        }
+        listDom.html(innerHtml);//加在列表的后面,上拉加载
+        $("img.lazy").lazyload({
+            threshold : 200,
+            effect : "fadeIn"
+        });
+    }
     
     // 最新上线
     function newCallback(e) {
@@ -739,7 +818,7 @@
                 if (data[i].pictureUrl == null) {
                     var pictureUrl = "img/defaultImg.png";
                 } else {
-                    var pictureUrl = baseImgUrl + data[i].pictureUrl + '_small.jpg';
+                    var pictureUrl = baseImgUrl + data[i].pictureUrl + '.jpg';
                 }
                 innerHtml +=
                 '<div class="surround-content-item">\n' +
@@ -748,8 +827,8 @@
                 '           <img class="lazy" src="img/defaultImg.png" width="400" height="200" data-original="' + pictureUrl + '" alt="">\n' +
                 '       </div>\n' +
                 '    </a>\n' +
-                '   <a href="productDetail.html?productId=' + data[i].productId + '" target="_blank">\n' +
-                '       <div class="item-text"><p class="p1">' + data[i].productName + '</p>\n' +
+                // '   \n' +
+                '       <div class="item-text"><a href="productDetail.html?productId=' + data[i].productId + '" target="_blank"><p class="p1">' + data[i].productName + '</p>\n' +
                 '    </a>\n' +
                 '       <div class="p2"><p>' + data[i].score + '分</p> <p><span style="color: #FF574E;">￥</span><span class="item-price">' + data[i].minPrice + '</span><span>起</span></p></div></div>\n' +
                 
@@ -762,6 +841,7 @@
             });
         }
     }
+
     // 热门目的地/专题
     function hotCallback(e) {
         var innerHtml1 = '';
@@ -825,7 +905,7 @@
                 if (data[i].pictureUrl == null) {
                     var pictureUrl = "img/defaultImg.png";
                 } else {
-                    var pictureUrl = baseImgUrl + data[i].pictureUrl + '_small.jpg';
+                    var pictureUrl = baseImgUrl + data[i].pictureUrl + '.jpg';
                 }
                 innerHtml +=
                 '<div class="surround-content-item">\n' +
@@ -834,8 +914,8 @@
                 '           <img class="lazy" width="400" height="200" data-original="' + pictureUrl + '" alt="">\n' +
                 '       </div>\n' +
                 '    </a>\n' +
-                '   <a href="productDetail.html?productId=' + data[i].productId + '" target="_blank">\n' +
-                '       <div class="item-text"><p class="p1">' + data[i].productName + '</p>\n' +
+                // '   \n' +
+                '    <div class="item-text"><a href="productDetail.html?productId=' + data[i].productId + '" target="_blank"><p class="p1">' + data[i].productName + '</p>\n' +
                 '    </a>\n' +
                 '       <div class="p2"><p>' + data[i].score + '分</p> <p><span style="color: #FF574E;">￥</span><span class="item-price">' + data[i].minPrice + '</span><span>起</span></p></div></div>\n' +
                 
@@ -850,6 +930,7 @@
             });
         }
     }
+
     // 酒店
     function hotelCallback(e) {
         var innerHtml = '';
@@ -864,8 +945,8 @@
                 '           <img class="lazys" src="img/defaultImg.png" width="400" height="200" data-original="' + baseImgUrl + data[i].pictureUrl + '.jpg" alt="">\n' +
                 '       </div>\n' +
                 '    </a>\n' +
-                '   <a href="hotel/hotelDetail.html?hotelId=' + data[i].hotelId + '" target="_blank">\n' +
-                '       <div class="item-text"><p class="p1">' + data[i].hotelName + '</p>\n' +
+                // '   \n' +
+                '       <div class="item-text"><a href="hotel/hotelDetail.html?hotelId=' + data[i].hotelId + '" target="_blank"><p class="p1">' + data[i].hotelName + '</p>\n' +
                 '    </a>\n' +
                 '       <div class="p2"><p>5分</p> <p><span style="color: #FF574E;">￥</span><span class="item-price">' + data[i].minPrice + '</span><span>起</span></p></div></div>\n' +
                 '</div>';

@@ -11,16 +11,17 @@ function lunbo() {
     var mySwiper = new Swiper ('.swiper-container', {
         loop: true,
         autoplay:true,
+        // autoplay : 2000,
         
         // 如果需要分页器
         pagination: {
             el: '.swiper-pagination',
             clickable :true,
         },
-        navigation: {
-            nextEl: '.button-next',
-            prevEl: '.button-prev',
-        },
+        // navigation: {
+        //     nextEl: '.button-next',
+        //     prevEl: '.button-prev',
+        // },
     })
 }
 
