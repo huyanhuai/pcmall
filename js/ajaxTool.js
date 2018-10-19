@@ -107,7 +107,7 @@ function getUser() {
     function getUserInfoCall(res){
         if(res.errorCode == 200){
             var html = '<li><a href="userinfo.html"><p id="nickName">'+res.data.nickName+'</p></a></li>'+
-            '<li><p style="color: rgb(41, 75, 230);font-size:14px;padding:0 0 0 10px;" onclick="exit();"> 退出</p></li>';
+            '<li><p style="color: rgb(41, 75, 230);font-size:14px;padding:0 0 0 10px;cursor: pointer;" onclick="exit();"> 退出</p></li>';
             $(".topLogin ul").html(html);
         }
     }

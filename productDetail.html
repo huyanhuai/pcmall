@@ -154,6 +154,7 @@
         .package-right button{
             width: 100px;
             height: 35px;
+            line-height: 35px;
             margin-top: 20px;
             background: #58C0C6;
             font-size: 16px;
@@ -188,8 +189,17 @@
             /* height: 390px; */
             /* margin-left: 100px; */
         }
+        .productDetail h3,.productDetail h4,.productDetail h5{
+            width: 80%;
+        }
         .productDetail h6{
+            width: 80%;
             font-size: 16px;
+        }
+        .productDetail p{
+            width: 80%;
+            padding: 5px 0;
+            text-align: left !important;
         }
         /* 评论 */
         .discuss-item{
@@ -358,7 +368,7 @@
     <div class="product">
         <div class="product-title clearfix">
             <div class="name"><span class="productName">杭州宋城古情</span><span>5A景区</span></div>
-            <div class="price"><span>¥</span><span class="minPrice">99</span>起 <button>立即抢购</button></div>
+            <!-- <div class="price"><span>¥</span><span class="minPrice">99</span>起 <button>立即抢购</button></div> -->
         </div>
         <!-- 轮播 -->
         <div class="carousel">
@@ -368,12 +378,12 @@
             <div class="carousel-right">
                 <p class="carousel-productName"></p>
                 <p class="carousel-common"><span>景点位置：</span><span class="address"></span></p>
-                <p class="carousel-common"><span>服务保障：</span><span style="color: #57BFC6">入园保障 &nbsp;&nbsp;  如实描述  &nbsp;&nbsp;  贵就赔</span></p>
+                <p class="carousel-common"><span>服务保障：</span><span style="color: #57BFC6">入园保障 &nbsp;&nbsp;  如实描述  &nbsp;&nbsp;  </span></p>
                 <div class="carousel-comment">
                     <div class="title clearfix">
                         <p class="star"><img src="" alt=""></p>
                         <p>好评  |</p>
-                        <p class="number"><span>35</span>人点评</p>
+                        <p class="number" style="cursor: pointer;" onclick="stick4();"><span></span>人点评</p>
                     </div>
                     <div class="text"></div>
                 </div>
@@ -395,11 +405,11 @@
         <div id="hot-con">
             <div class="package">
                 <div class="package-left">
-                    <p>套餐名</p>
+                    <p></p>
                 </div>
                 <div class="package-right">
-                    <p><span>￥</span> 180</p>
-                    <button>预定</button>
+                    <p><span>￥</span> </p>
+                    <button></button>
                 </div>
             </div>
         </div>
@@ -457,7 +467,7 @@
     <!-- 底部 -->
     <div class="footer">
         <div class="Contactus">
-            <div><span>24小时客服热线：0571-86981889 同游总部：杭州市天目山路226号网新大厦3楼326</span></div>
+            <div><span>24小时客服热线：18072731835 同游总部：杭州市天目山路226号网新大厦3楼326</span></div>
             <div>
                 <ul class="clearfix">
                     <li><a href="https://mp.weixin.qq.com/s/DF8sJ3AI70jo-O6arYWlbw" target="back">关于同游</a></li>
@@ -482,7 +492,7 @@
             <div style="width:1200px; margin:0 auto">
                 <span>Copyright©2017.浙ICP17016319号-1</span>
                 <span> &nbsp; 杭州同游科技有限公司</span>
-                <span> &nbsp; new.tongyoutrip.com</span>
+                <span> &nbsp; www.tongyoutrip.com</span>
             </div>
         </div>
     </div>
@@ -582,7 +592,7 @@
                             '<p>' + data[i].packageName + '</p>'+
                        ' </div>'+
                         '<div class="package-right">'+
-                            '<p class="refunds">' + refunds + '</p>'+
+                            // '<p class="refunds">' + refunds + '</p>'+
                             '<p><span>￥</span>' + data[i].salePrice + '</p>'+
                             '<p id="package-details" onclick="details('+data[i].productPackageId+')">详情></p>'+
                             '<button onclick="nowReady('+data[i].productPackageId+')">立即抢购</button>'+
@@ -612,8 +622,8 @@
     }
     // 跳转预定
     function nowReady(id,name){
-        // location.href = "order.html?productPackageId= "+id;
-        window.open("order.html?productPackageId=" + id); 
+        location.href = "order.html?productPackageId= "+id;
+        // window.open("order.html?productPackageId=" + id); 
     }
     // 评论
     function getProductCommentCall(res){

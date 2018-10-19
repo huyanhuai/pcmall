@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>预定</title>
     <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="js/swiper/swiper-4.2.0.min.css">
     <link rel="stylesheet" href="css/public.css">
     <style>
         .order{
@@ -55,6 +54,9 @@
             background:rgba(247,247,247,1);
             font-size: 26px;
             padding: 0 30px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
         }
         .orderInfo .orderInfo-common .infoInput{
             margin-top: 20px;
@@ -254,8 +256,8 @@
         }
         /* 提交按钮 */
         #submit{
-            width:400px;
-            height:60px;
+            width:300px;
+            height:50px;
             display: block;
             margin: auto;
             font-size: 24px;
@@ -540,7 +542,7 @@
         </div>
         <div class="order-content clearfix">
             <div class="left">
-                <p class="loginStatus"> 您当前未登录，如您是同游科技会员，请先 <a href="login.html"> 登录</a> </p>
+                <p class="loginStatus"> 您当前未登录，如您是同游科技会员，请先 <a href="login.html" onclick="layLogin();return false"> 登录</a> </p>
                 <div class="orderInfo">
                     <div class="orderInfo-common">
                         <div class="name packageName">杭州宋城景区</div>
@@ -601,7 +603,7 @@
                     <div class="orderInfo-common">
                         <div class="name passenger-title">用户信息
                             <span>请填写任意1位游客信息</span>
-                            <span id="addcontact">请先<a href="" style="color: #00bdd5">登录</a>添加联系人</span>
+                            <span id="addcontact">请先<a href="login.html" onclick="layLogin();return false" style="color: #00bdd5">登录</a>添加联系人</span>
                         </div>
                         <div class="infoInput">
                             <div class="contacts">
@@ -681,6 +683,8 @@
         <input type="hidden" id="input1">
     </form>
 
+    <!-- 登录框 -->
+
     <!-- 合作伙伴 -->
     <div class="newProduct">
         <div class="tab_title">
@@ -722,7 +726,7 @@
     <!-- 底部 -->
     <div class="footer">
         <div class="Contactus">
-            <div><span>24小时客服热线：0571-86981889 同游总部：杭州市天目山路226号网新大厦3楼326</span></div>
+            <div><span>24小时客服热线：18072731835 同游总部：杭州市天目山路226号网新大厦3楼326</span></div>
             <div>
                 <ul class="clearfix">
                     <li><a href="https://mp.weixin.qq.com/s/DF8sJ3AI70jo-O6arYWlbw" target="back">关于同游</a></li>
@@ -747,7 +751,7 @@
             <div style="width:1200px; margin:0 auto">
                 <span>Copyright©2017.浙ICP17016319号-1</span>
                 <span> &nbsp; 杭州同游科技有限公司</span>
-                <span> &nbsp; new.tongyoutrip.com</span>
+                <span> &nbsp; www.tongyoutrip.com</span>
             </div>
         </div>
     </div>
@@ -755,14 +759,14 @@
 </body>
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="js/jquery.cookie.js"></script>
-<script src="js/swiper/swiper-4.2.0.min.js"></script>
 <script src="js/ajaxTool.js"></script>
 <script src="js/public.js"></script>
 <script src="js/calendarPlug.js"></script>
 <script src="js/jsencrypt.js"></script>
 <script src="js/layer-v3.1.1/layer/layer.js"></script>
-<script>
-    var showA = 1;   
+<script src="js/md5.js"></script>
+<script src="js/login.js"></script>
+<script> 
     var productId,productPackageId,startTime,endTime,endSale, endSaleTime,weekData,pubKey,buyCustomer;
     var packageNumber,packageDay,packageYear; //传参
     var detail;
@@ -948,24 +952,15 @@
     // 创建订单
     $("#submit").on("click",function(){
         var token = $.cookie("token");
-        console.log(token)
-        if(token == null || token == undefined || token == "null"){
-            layer.open({
-                type: 1
-                ,content: '<div style="padding: 10px 20px;">请登陆后进行该操作！</div>'
-                ,btn: '确定',
-                title: ["提示", 'font-size:18px;'],
-                area: ['300px', '160px'],
-                shadeClose: true,
-                yes: function(){
-                    layer.closeAll();
-                }
-            });
-            return false;
-        }
+        console.log(token);
         if(buyCustomer == null || buyCustomer == ""){
-            layMessage("请添加联系人");
+            layMessage("请添加联系人及电话");
             return false
+        }
+        if(token == null || token == undefined || token == "null"){
+            // 登录
+            layLogin();
+            return false;
         }
 
         // loading层

@@ -579,6 +579,95 @@
     background: #00c77b;
 }
 
+/* 右侧边栏 */
+.rightside{
+    z-index: 9999;
+    width: 70px;
+    position: fixed;
+    right: 20px;
+    top: 30%;
+}
+.dingimg img {
+    background: #fff;
+}
+.rightside img {
+    margin-bottom: 10px;
+    width: 100%;
+    cursor: pointer;
+}
+
+/* 登录框 */
+.register-box>div{
+    padding-bottom: 20px;
+}
+.register-box label{
+    display: inline-block;
+    width: 70px;
+    text-align: right;
+    font-size: 14px;
+    vertical-align: middle;
+}
+.register-box input{
+    border: 1px solid #ccc;
+    line-height: 40px;
+    height: 40px;
+    width: 244px;
+    padding-left: 5px;
+    margin-left: 5px
+}
+.register-box button{
+    width: 75px;
+    height: 30px;
+    line-height: 30px;
+    background: #47bfc5;
+    color: #fff;
+    margin-left: 5px; 
+}
+#subLogin{
+    width: 244px;
+    height: 40px;
+    font-size: 16px;
+    color: white;
+    background: #58C0C6;
+    border-radius:5px;
+    -webkit-border-radius: 5px;
+    margin-left: 80px;
+    margin-top: 10px;
+}
+.codeBox{
+    display: none;
+}
+.register-box ul{
+    margin-top: 20px;
+    margin-left: 80px;
+    font-size: 13px;
+}
+.register-box ul .loginMethod{
+    line-height: 40px;
+    margin-right: 70px;
+    cursor: pointer;
+    float: left;
+}
+.active{
+    font-size: 16px;
+    font-weight: bold;
+    color: #47bfc5;
+    border-bottom: 1px solid #47bfc5
+}
+.tab-check{
+    width: 244px;
+    height: 40px;
+}
+.tab-check li{
+    float: left;
+}
+.tab-check li:nth-child(2){
+    float: right;
+}
+.tab-check li a{
+    color: #0069ca;
+}
+
 /* 分页 */
 #pages{
     float: right;

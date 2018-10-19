@@ -199,4 +199,37 @@ $(".invest-dot li").each(function (i, v) {
         
     });
 });
+
+//右导航的公用js
+function qiehuan(e) {
+    if ($(e).attr('name') == 'img1') {
+        window.open('http://wpa.qq.com/msgrd?v=3&uin=2956369241&site=qq&menu=yes')
+        // window.open('https://connect.qq.com/widget/wpa/login.html?tuin=2956369241&sigT=fada0d2e2e193a6e25b3e7707eded461c12499affd27488da1fe842fdfc9d49fc2d3acdd271c2e2fd45481ed247e6074&sigU=cf2af274beb6844bf690f22d9df262042d240c19540567d72266f6a61c8060b937c35db4d8c687f7')
+    }
+    if ($(e).attr('name') == 'img2') {
+        layer.open({
+            type: 1,
+            title: '热线服务 : 0571-86981889',
+            skin: 'layui-layer-rim', //加上边框
+            area: ['440px', '360px'], //宽高
+            content: '<div style="width:100%;height:300px; text-align:center;"><img src="img/1509089527.png"/></div>'
+        });
+    }
+}
+$(".rightside img").each(function (i, v) {
+    $(v).mouseover(function (){
+        if(i == 0){
+            $(".rightside img").eq(0).attr("src","img/zaixianzixun2.png");
+            $(".rightside img").eq(1).attr("src","img/rexianfuwu.png");
+        }else if(i == 1){
+            $(".rightside img").eq(0).attr("src","img/zaixianzixun.png");
+            $(".rightside img").eq(1).attr("src","img/rexianfuwu2.png");
+        }
+        
+    });
+    $(v).mouseout(function () { 
+        $(".rightside img").eq(0).attr("src","img/zaixianzixun.png");
+        $(".rightside img").eq(1).attr("src","img/rexianfuwu.png");
+    });
+});
     

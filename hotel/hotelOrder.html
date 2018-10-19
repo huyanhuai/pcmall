@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>酒店预定</title>
     <link rel="stylesheet" href="/css/base.css">
-    <link rel="stylesheet" href="/js/swiper/swiper-4.2.0.min.css">
     <link rel="stylesheet" href="/css/public.css">
     <link rel="stylesheet" href="/css/hotelDate.css">
     <style>
@@ -56,6 +55,9 @@
             background:rgba(247,247,247,1);
             font-size: 26px;
             padding: 0 30px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
         }
         .orderInfo .orderInfo-common .infoInput{
             margin-top: 20px;
@@ -386,7 +388,7 @@
         </div>
         <div class="order-content clearfix">
             <div class="left">
-                <p class="loginStatus"> 您当前未登录，如您是同游科技会员，请先<a href="/login.html"> 登录</a> </p>
+                <p class="loginStatus"> 您当前未登录，如您是同游科技会员，请先<a href="/login.html" onclick="layLogin('hotel');return false"> 登录</a> </p>
                 <div class="orderInfo">
                     <div class="orderInfo-common">
                         <div class="name packageName">预订信息</div>
@@ -432,7 +434,7 @@
                     <div class="orderInfo-common">
                         <div class="name passenger-title">用户信息
                             <span>请填写任意1位游客信息</span>
-                            <span id="addcontact">请先<a href="/login.html" style="color: #00bdd5">登录</a>添加联系人</span>
+                            <span id="addcontact">请先<a href="/login.html" onclick="layLogin('hotel');return false" style="color: #00bdd5">登录</a>添加联系人</span>
                         </div>
                         <div class="infoInput">
                             <div class="contacts">
@@ -583,12 +585,13 @@
 </body>
 <script src="/js/jquery-3.2.1.min.js"></script>
 <script src="/js/jquery.cookie.js"></script>
-<script src="/js/swiper/swiper-4.2.0.min.js"></script>
 <script src="/js/ajaxTool.js"></script>
 <script src="/js/public.js"></script>
 <script src="/js/jsencrypt.js"></script>
 <script src="/js/date.js"></script>
 <script src="/js/layer-v3.1.1/layer/layer.js"></script>
+<script src="/js/md5.js"></script>
+<script src="/js/login.js"></script>
 <script>  
     var hotelRoomComboId,startTime,endTime,endSale, endSaleTime,weekData,pubKey;
     var packageNumber; //传参
@@ -753,23 +756,16 @@
         var token = $.cookie("token");
         var phone = $(".passenger-phone").val();
         var name = $(".passenger-name").val();
-        if(token == null || token == undefined || token == "null"){
-            layer.open({
-                type: 1
-                ,content: '<div style="padding: 10px 20px;">请登陆后进行该操作！</div>'
-                ,btn: '确定',
-                title: ["提示", 'font-size:18px;'],
-                area: ['300px', '160px'],
-                shadeClose: true,
-                yes: function(){
-                    layer.closeAll();
-                }
-            });
-            return false;
-        }
+
         if(name == "" && phone == ""){
             layMessage("请填写联系人及电话！");
             return false
+        }
+        
+        if(token == null || token == undefined || token == "null"){
+            // 登录
+            layLogin("hotel");
+            return false;
         }
 
         // loading层
@@ -800,7 +796,7 @@
         //加密串分段加密
         var dataJson = encrypt.encryptLong(data);
         //创建订单
-        publicAjaxToken(baseAjaxUrl + "/ty_api/order/createOrder", "POST", {"orderStr": dataJson}, creatOrderCall)
+        publicAjaxToken(baseAjaxUrl + "/ty_api/order/createHotelOrder", "POST", {"orderStr": dataJson}, creatOrderCall)
     })
     // 订单回调
     function creatOrderCall(res){

@@ -173,6 +173,7 @@
         .roomBox ul li button{
             width: 60px;
             height: 35px;
+            line-height: 35px;
             margin-top: 13px;
             background: #FF4F4F;
             font-size: 16px;
@@ -426,7 +427,7 @@
     <div class="product">
         <div class="product-title clearfix">
             <div class="name"><span class="productName">南京罗马假日酒店</span><span>5</span>/5分</div>
-            <div class="price"><span>¥</span><span class="minPrice">99</span>起 <button>立即抢购</button></div>
+            <!-- <div class="price"><span>¥</span><span class="minPrice">99</span>起 <button>立即抢购</button></div> -->
         </div>
         <!-- 轮播 -->
         <div class="carousel">
@@ -838,7 +839,8 @@
         hotelInfo.peopleNum = peopleNum;
         hotelInfo.dayNum = $(".hover").html() == undefined ? "1" : $(".hover").html();
         setSess("hotelInfo", JSON.stringify(hotelInfo));
-        window.open("hotelOrder.html"); 
+        location.href = "hotelOrder.html";
+        // window.open("hotelOrder.html"); 
     }
     // 评论
     function getProductCommentCall(res){
