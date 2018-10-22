@@ -98,6 +98,26 @@ function getToken() {
 // $.cookie('token', null);
 // console.log($.cookie('token'));
 
+/*获取用户的详细信息，并且存储起来*/
+// publicAjaxToken(baseAjaxUrl + "/ty_api/user/getDetail", "POST", {}, getUserInfoCall);
+
+// //用户信息的回调
+// function getUserInfoCall(res){
+//     if(res.errorCode == 200){
+//         var nickName = res.data.nickName;
+//         sessionStorage.setItem("name",nickName);
+//     }
+// }
+// function getUser(){
+//     var name = sessionStorage.getItem("name");
+//     if(name != null && name != undefined){
+//         var html = '<li><a href="userinfo.html"><p id="nickName">'+name+'</p></a></li>'+
+//         '<li><p style="color: rgb(41, 75, 230);font-size:14px;padding:0 0 0 10px;cursor: pointer;" onclick="exit();"> 退出</p></li>';
+//         $(".topLogin ul").html(html);
+//     }
+// }
+
+// 用户信息
 function getUser() {
 
     /*获取用户的详细信息，并且存储起来*/
